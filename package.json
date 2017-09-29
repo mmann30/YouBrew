@@ -1,7 +1,7 @@
 {
   "name": "youbrew",
   "version": "1.0.0",
-  "description": "",
+  "description": "Youbrew is a MERN stack application used to communicate production and avialable inventory to sales representatives of craft breweries",
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
@@ -12,7 +12,7 @@
     "seed": "node scripts/seedDB",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Tyler Finkle, Florian Hutter, Andrew Coleman, Michael Mann",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
