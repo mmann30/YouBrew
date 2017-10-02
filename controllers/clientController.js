@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for batch controller
+// Defining methods for client controller
 module.exports = {
   findAll: function(req, res) {
     db.Client

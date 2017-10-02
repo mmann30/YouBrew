@@ -1,17 +1,24 @@
 const db = require("../models");
 
-// Defining methods for batch controller
+// Defining methods for recipe controller
 module.exports = {
   findAll: function(req, res) {
     db.Recipe
       .find(req.query)
-      .sort({ name: -1 })
+      .sort({ name: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Recipe
       .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findByStyle: function(req, res) {
+    db.Recipe
+      .find(req.params.style)
+      .sort({ name: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
