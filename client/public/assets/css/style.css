@@ -1,5 +1,5 @@
 body{
-	color: #AF8243;
+	color: #30231d;
 	font-family: 'Viga', sans-serif;
 }
 
@@ -11,32 +11,49 @@ h1 {
 	margin-right: 20px;
 }
 
+#emptytop{
+	height: 100px;
+}
+
 #top-of-site {
 	margin-top: 150px;
 }
 
+#availability{
+	margin-top: 40px:
+}
+
 #form-username{
 	background-color: transparent;
-	border-color: #AF8243;
-	color: #AF8243;
+	border-color: #30231d;
+	color: #30231d;
 }
 
 #form-password{
 	background-color: transparent;
-	border-color: #AF8243;
-	color: #AF8243;
+	border-color: #30231d;
+	color: #30231d;
 }
 
 #login.btn{
-	background-color: transparent;
-	border-color: #AF8243;
-	color: #AF8243;
+	background-color: #ffbd36;
+	border-color: #30231d;
+	color: #30231d;
 }
 
 #login-area{
 	margin-top: 150px;
+	background-color: rgba(236,197,158,0.71);
+	border-radius: 20px;
+	box-shadow: 0 0 30px black;
+	
 }
 
+.welcome{
+	background-color: rgba(236,197,158,0.71);
+	border-radius: 20px;
+	box-shadow: 0 0 30px black;
+}
 .fullscreen-bg {
   position: fixed;
   top: 0;
@@ -61,7 +78,7 @@ h1 {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 30px;
-  background-color: #AF8243;
+  background-color: #30231d;
   text-align: center;
   margin-bottom: 0px;
   grid-row-start: 2;
@@ -69,7 +86,7 @@ h1 {
 }
 
 .text-muted {
-    color: #1B0000;
+    color: #ffbd36;
 	padding-top: 7px;
 }
 
@@ -92,7 +109,7 @@ h1 {
 
 @media (max-width: 767px) {
   .fullscreen-bg {
-    background: url('../images/beer.jpg') center center / cover no-repeat;
+    background: url('../images/beer2.jpg') center center / cover no-repeat;
   }
 
   .fullscreen-bg__video {
@@ -143,27 +160,27 @@ h1 {
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #AF8243;
+    color: #30231d;
 }
 /* Link */
 .navbar-default .navbar-nav > li > a {
-    color: #AF8243;
+    color: #30231d;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #AF8243;
+    color: #30231d;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #AF8243;
+    color: #30231d;
     background-color: transparent;
 }
 
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #FFF200;
+    color: #ffbd36;
     background-color: transparent;
 }
 
@@ -175,12 +192,12 @@ h1 {
 }
 /* Caret */
 .navbar-default .navbar-nav > .dropdown > a .caret {
-    border-top-color: #AF8243;
+    border-top-color: #30231d;
     border-bottom-color: transparent;
 }
 .navbar-default .navbar-nav > .dropdown > a:hover .caret,
 .navbar-default .navbar-nav > .dropdown > a:focus .caret {
-    border-top-color: #AF8243;
+    border-top-color: #30231d;
     border-bottom-color: transparent;
 }
 .navbar-default .navbar-nav > .open > a .caret,
@@ -191,21 +208,21 @@ h1 {
 }
 /* Mobile version */
 .navbar-default .navbar-toggle {
-    border-color: #AF8243;
+    border-color: #30231d;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-    background-color: #AF8243;
+    background-color: #30231d;
 }
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #AF8243;
+    background-color: #30231d;
 }
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #AF8243;
+        color: #30231d;
     }
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-          color: #AF8243;
+          color: #30231d;
     }
 }
