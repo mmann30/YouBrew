@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
+import { Col, Row, Container } from "../components/Grid";
 
-class SignIn extends Component {
+class Admin extends Component {
   render() {
     return (
       <Container fluid>
@@ -29,4 +29,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default Admin;
