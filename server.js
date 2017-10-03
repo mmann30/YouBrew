@@ -2,25 +2,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
-// Sets the PORT
-const PORT = process.env.PORT || 3001;
+const routes = require("./routes");
 
 // Intialize Express
 const app = express();
+
+// Sets the PORT
+const PORT = process.env.PORT || 3001;
 
 // Configure body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Ser up static assets
+// Serve up static assets
 app.use(express.static("client/build"));
 
-// Import MongoDB Models
-/* <fill in ....>
-*
-*
-*/
+// Add routes
+app.use(routes);
 
 // Set mongoose to use promises
 mongoose.Promise = Promise;
@@ -31,7 +29,6 @@ mongoose.connect(
         useMongoClient: true
     }
 );
-
 
 // Starts the server
 app.listen(PORT, () => {
