@@ -16,11 +16,11 @@ const Nav = () =>
       <ul className="nav navbar-nav">
       </ul>
       <ul className="nav navbar-nav navbar-right">
-        <li className="active"><a href="index.html">Home<span className="sr-only">(current)</span></a></li>
-        <li><a href="availability.html">Availability</a></li>
-        <li><a href="mysales.html">My Sales</a></li>
-        <li><a href="request.html">Request</a></li>
-        <li><a href="administrator.html" className="administrator">Administrator</a></li>
+        <li className="active"><a href="/">Home<span className="sr-only">(current)</span></a></li>
+        <li><a href="availability">Availability</a></li>
+        <li><a href="mysales">My Sales</a></li>
+        <li><a href="request">Request</a></li>
+        <li><a href="admin" className="administrator">Administrator</a></li>
       </ul>
     </div>
   </nav>

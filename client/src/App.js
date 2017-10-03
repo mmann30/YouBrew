@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import Availability from "./pages/Availability";
 import MySales from "./pages/MySales";
 import Request from "./pages/Request";
 import Admin from "./pages/Admin";
+import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+const About = () => <h1>About Us</h1>
 
 const App = () =>
 
@@ -19,6 +22,8 @@ const App = () =>
         <Route exact path="/mysales" component={MySales} />
         <Route exact path="/request" component={Request} />
         <Route exact path="/admin" component={Admin} />
+        <Route exact path="/about" component={About} />
+        <Route component={NoMatch} />
       </Switch>
     </div>
   </Router>;
