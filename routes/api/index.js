@@ -2,7 +2,7 @@ const router = require("express").Router();
 const batchRoutes = require("./batch");
 const recipeRoutes = require("./recipe");
 const customerRoutes = require("./customer");
-const saleRoutes = requrie("./sale");
+const saleRoutes = require("./sale");
 const userRoutes = require("./user");
 
 // Routes
