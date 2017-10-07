@@ -46,7 +46,7 @@ h1 {
 	background-color: rgba(236,197,158,0.71);
 	border-radius: 20px;
 	box-shadow: 0 0 30px black;
-	
+
 }
 
 .welcome{
@@ -135,13 +135,11 @@ h1 {
 
 
 #logo{
-	height:75px;
-	width:75px;
+	height:40px;
+	width:40px;
 	padding: 0px;
 	margin: 10px;
 }
-
-
 
 
 .navbar-default{
