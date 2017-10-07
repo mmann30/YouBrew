@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const clientSchema = new Schema({
+const customerSchema = new Schema({
   busName: { type: String, required: true, unique: true },
   custName: { type: String, required: true },  
   phone: { type: Number, required: true, unique: true }, 
   notes: String
 });
 
-const Client = mongoose.model("Client", clientSchema);
+const Customer = mongoose.model("Customer", customerSchema);
 
-module.exports = Client;
+module.exports = Customer;
