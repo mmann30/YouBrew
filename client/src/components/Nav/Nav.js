@@ -1,7 +1,7 @@
 import React from "react";
 
 const Nav = () =>
-  <nav className="navbar navbar-default navbar-fixed-top">
+  <nav className="navbar navbar-default navbar-top">
     <div className="navbar-header">
       <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span className="sr-only">Toggle navigation</span>
