@@ -7,6 +7,7 @@ import Request from "./pages/Request";
 import Admin from "./pages/Admin";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 const About = () => <h1>About Us</h1>
 
@@ -25,6 +26,7 @@ const App = () =>
         <Route exact path="/about" component={About} />
         <Route component={NoMatch} />
       </Switch>
+      <Footer />
     </div>
   </Router>;
 
