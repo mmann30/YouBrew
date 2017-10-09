@@ -1,4 +1,7 @@
 module.exports = {
+    Batch: require("./batch"),
+    Customer: require("./customer"),
     Recipe: require("./recipe"),
-    Batch: require("./batch.js")
+    Sale: require("./sale"),
+    User: require("./user")
 };

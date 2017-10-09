@@ -1,8 +1,39 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
+import { Input, TextArea, FormBtn } from "../components/Form";
+
+import API from "../utils/API";
 
 class SignIn extends Component {
+
+state = {
+    name: "",
+    email: "",
+    password: "",
+    isAdmin: false
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.name && this.state.email && this.state.password) {
+      API.saveUser({
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password
+      })
+        .then(console.log("user saved!"))
+        .catch(err => console.log(err));
+    }
+  };
+            
   render() {
     return (
       <Container fluid>
@@ -10,12 +41,32 @@ class SignIn extends Component {
           <Col size="md-6">
             <h1>Welcome to YouBrew!</h1>
             <p>This is an application that helps commercial beer crafters to overview their stock and also brews in progress. Our app is the link between the brewer and the sales force and will help you with the following tasks.</p>
-            <ul>
-                <li>Real time view of available inventory</li>
-                <li>Overview of brews in progress</li>
-                <li>Live updates on executed sales</li>
-                <li>Sales overview</li>
-            </ul>
+            <form>
+              <Input
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="Name (required)"
+              />
+              <Input
+                value={this.state.email}
+                onChange={this.handleInputChange}
+                name="email"
+                placeholder="Email (required)"
+              />
+              <Input
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                name="password"
+                placeholder="password (required)"
+              />
+              <FormBtn
+                disabled={!(this.state.name && this.state.email && this.state.password)}
+                onClick={this.handleFormSubmit}
+              >
+                Submit User
+              </FormBtn>
+            </form>
             <img id="youbrewassets" className="img-responsive" src="../assets/images/youbrewassets.png" />
             <div className="assetsimage">
             </div>
