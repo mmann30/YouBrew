@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const booksController = require("../../controllers/batchController");
+const batchController = require("../../controllers/batchController");
 
 // Matches with "/api/batch"
 router.route("/")
