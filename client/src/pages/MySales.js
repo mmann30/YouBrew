@@ -5,28 +5,45 @@ import { Col, Row, Container } from "../components/Grid";
 class MySales extends Component {
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <h1>Welcome to YouBrew!</h1>
-            <p>This is an application that helps commercial beer crafters to overview their stock and also brews in progress. Our app is the link between the brewer and the sales force and will help you with the following tasks.</p>
-            <ul>
-                <li>Real time view of available inventory</li>
-                <li>Overview of brews in progress</li>
-                <li>Live updates on executed sales</li>
-                <li>Sales overview</li>
-            </ul>
-            <img id="youbrewassets" className="img-responsive" src="../assets/images/youbrewassets.png" />
-            <div className="assetsimage">
-            </div>
-          </Col>
-          <Col size="md-4">
-
-          </Col>
-        </Row>
-      </Container>
-    )
+      
+      <div>
+        <h1>My Sales</h1>
+        <div>
+          <table id="example" className="table table-striped table-bordered table-responsive" cellSpacing={0} width="100%">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Style</th>
+                <th>Quantity (Barrel)</th>
+                <th>Client</th>
+                <th>Sell date</th>
+              </tr>
+            </thead>
+            <tfoot>
+            </tfoot><tbody>
+              <tr>
+                <td>Beer xzy</td>
+                <td>Lager</td>
+                <td>4.5</td>
+                <td>Beer Shop</td>
+                <td>2017/04/25</td>
+              </tr>
+              <tr>
+                <td>XYZ BEER</td>
+                <td>Pilsen</td>
+                <td>5.3</td>
+                <td>Street Cafe</td>
+                <td>2017/07/16</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
   }
-}
+};
+  
+
+
 
 export default MySales;
