@@ -2,46 +2,37 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-//import Nav from "../components/Nav";
+//import { InprocessRow } from "../components/TableRow";
 
 
 class Availability extends Component {
-  // state = {
-  //   name: "",
-  //   style: "",
-  //   abv: "",
-  //   desc: "",
-  //   brewTime: "",
-  //   production: "",
-  //   notes: ""
-  // };
-  //
-  // componentDidMount() {
-  //   this.loadRecipes();
-  // }
-  //
-  // loadRecipes = () => {
-  //   API.getRecipes()
-  //     .then(res =>
-  //       this.setState({
-  //         name: res.name,
-  //         style: res.styles,
-  //         abv: res.abv,
-  //         desc: res.desc,
-  //         brewTime: res.brewTime,
-  //         production: res.production,
-  //         notes: res.notes
-  //       })
-  //     )
-  //   .catch(err => console.log(err));
-  // };
+  state = {
+		batches: [],
+    name: "",
+    
+  };
+  
+  componentDidMount() {
+    this.loadBatches();
+  }
+  
+  loadBatches = () => {
+    API.getBatches()
+      .then(res =>
+        this.setState({
+					batches: res.data,
+          name: ""
+        })
+      )
+    .catch(err => console.log(err));
+  };
 
   // Table sorting function
-  // $('#inventory').DataTable();
-  // $('select').addClass('mdb-select');
-  //
-  // $('#inProcess').DataTable();
-  // $('select').addClass('mdb-select');
+  /*$('#inventory').DataTable();
+  $('select').addClass('mdb-select');
+  
+  $('#inProcess').DataTable();
+  $('select').addClass('mdb-select'); */
 
 
   render() {
@@ -60,7 +51,7 @@ class Availability extends Component {
         					<th></th>
         				</tr>
         			</thead>
-            			<tfoot></tfoot>
+									<tfoot></tfoot>
         					<tbody>
         						<tr>
         							<td>Beer xzy</td>
@@ -95,7 +86,7 @@ class Availability extends Component {
         					</tr>
             		</thead>
           			<tfoot></tfoot>
-        				<tbody>
+								<tbody>
         					<tr>
         						<td>Beer xzy</td>
         						<td>Lager</td>
