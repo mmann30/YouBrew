@@ -141,17 +141,16 @@ h1 {
 	margin: 10px;
 }
 
+/* navbar */
 
 .navbar-default{
   background:transparent;
   background-image:none;
-  border-color:transparent;
   box-shadow:none;
 }
 
-/* navbar */
 .navbar-default {
-    background-color: transparent;
+    background-color: rgb(252,248,229);
     border-color: transparent;
 }
 

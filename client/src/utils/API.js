@@ -2,9 +2,9 @@ import axios from "axios";
 
 //Exports front end routes for api calls to the server
 export default {
-    
+
     // ** Batch API calls **
-    
+
     getBatches() {
         axios.get("api/batch");
     },
@@ -20,9 +20,9 @@ export default {
     deleteBatch(id) {
         axios.delete("api/batch/" + id);
     },
-    
+
     // ** Recipe API Calls **
-    
+
     getRecipes() {
         axios.get("api/recipe");
     },
@@ -40,7 +40,7 @@ export default {
     },
 
     // ** Sale API Calls **
-    
+
     getSales() {
         axios.get("api/sale");
     },
