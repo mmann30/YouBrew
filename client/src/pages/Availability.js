@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
+import { OrderBtn } from "../components/Buttons";
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
 import { ReactTableDefaults } from 'react-table'
@@ -12,21 +13,26 @@ Object.assign(ReactTableDefaults, {
   // etc...
 });
 
+
 const data = [{
   name: "Squanchpils",
   style: "Pilsner",
-  abv: "5.2"
+  abv: "5.2",
+  options: ""
 },
 {
   name: "Ipasquanch",
   style: "IPA",
-  abv: "5.5"
+  abv: "5.5",
+  options: ""
 },
 {
   name: "Hefesquanch",
   style: "Hefeweisen",
-  abv: "4.6"
+  abv: "4.6",
+  options: ""
 }];
+
 const columns = [{
   Header: "Name",
   accessor: "name"
@@ -38,6 +44,10 @@ const columns = [{
 {
   Header: "ABV",
   accessor: "abv"
+},
+{
+  Header: "Options",
+  accessor: "options"
 }];
 
 class Availability extends Component {

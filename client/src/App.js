@@ -26,7 +26,7 @@ const App = () =>
         <Route exact path="/about" component={About} />
         <Route component={NoMatch} />
       </Switch>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   </Router>;
 
