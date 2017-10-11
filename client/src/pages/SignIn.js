@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
-
 import API from "../utils/API";
+var Router = require('react-router');
+
+
 
 class SignIn extends Component {
 
@@ -11,7 +13,8 @@ state = {
     name: "",
     email: "",
     password: "",
-    isAdmin: false
+    isAdmin: false,
+    fireRedirect: false,
   };
 
   handleInputChange = event => {
@@ -24,17 +27,20 @@ state = {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.name && this.state.email && this.state.password) {
-      API.saveUser({
+      API.newUser({
         name: this.state.name,
         email: this.state.email,
         password: this.state.password
       })
-        .then(console.log("user saved!"))
+        .then(this.setState({ name: "", email: "", password: ""}))
         .catch(err => console.log(err));
+        Router.browserHistory.push('/mysales');
     }
+
   };
             
   render() {
+
     return (
       <Container fluid>
         <Row>
@@ -65,6 +71,7 @@ state = {
                 onClick={this.handleFormSubmit}
               >
                 Submit User
+
               </FormBtn>
             </form>
             <img id="youbrewassets" className="img-responsive" src="../assets/images/youbrewassets.png" />

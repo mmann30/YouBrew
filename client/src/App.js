@@ -17,7 +17,7 @@ const App = () =>
       <Nav />
       <Switch>
         <Route exact path="/" component={SignIn} />
-        <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/callback" component={SignIn} />
         <Route exact path="/availability" component={Availability} />
         <Route exact path="/mysales" component={MySales} />
         <Route exact path="/request" component={Request} />
