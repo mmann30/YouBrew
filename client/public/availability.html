@@ -43,40 +43,40 @@
 		<body>
 
      <div class="fullscreen-bg">
-		 <video loop muted autoplay class="fullscreen-bg__video">
-			<source src="assets/video/beer2.webm" type="video/webm">
-			<source src="assets/video/beer2.mp4" type="video/mp4">
-			<source src="assets/video/beer2.ogg" type="video/ogg">
-		 </video>
+			 <video loop muted autoplay class="fullscreen-bg__video">
+				<source src="assets/video/beer2.webm" type="video/webm">
+				<source src="assets/video/beer2.mp4" type="video/mp4">
+				<source src="assets/video/beer2.ogg" type="video/ogg">
+			 </video>
      </div>
 
-  <div class="container emptytop" id="emptytop"></div>
-     <nav class="navbar navbar-default navbar-fixed-top">
-		  <div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				  <span class="sr-only">Toggle navigation</span>
-				  <span class="icon-bar"></span>
-				  <span class="icon-bar"></span>
-				  <span class="icon-bar"></span>
-				</button>
-			<img id="logo" alt="YouBrew" src="assets/images/YouBrewv3.png">
-		  </div>
-		  <div id="navbar" class="navbar-collapse collapse col-lg-4 col-lg-offset-6">
-			<ul class="nav navbar-nav"></ul>
-				<ul class="nav navbar-nav navbar-right">
-				   <li><a href="index.html">Home</a></li>
-					<li class="active"><a href="availability.html">Availability<span class="sr-only">(current)</span></a></li>
-					<li><a href="mysales.html">My Sales</a></li>
-					<li><a href="request.html">Request</a></li>
-					<li><a href="administrator.html" class="administrator">Administrator</a></li>
-				</ul>
-		  </div>
+		 <div class="container emptytop" id="emptytop"></div>
+		 	<nav class="navbar navbar-default navbar-fixed-top">
+			  <div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+					<img id="logo" alt="YouBrew" src="assets/images/YouBrewv3.png">
+			  </div>
+			  <div id="navbar" class="navbar-collapse collapse col-lg-4 col-lg-offset-6">
+					<ul class="nav navbar-nav"></ul>
+					<ul class="nav navbar-nav navbar-right">
+					   <li><a href="index.html">Home</a></li>
+						<li class="active"><a href="availability.html">Availability<span class="sr-only">(current)</span></a></li>
+						<li><a href="mysales.html">My Sales</a></li>
+						<li><a href="request.html">Request</a></li>
+						<li><a href="administrator.html" class="administrator">Administrator</a></li>
+					</ul>
+			  </div>
       </nav>
 	</div>
 
-<div>
-<h1>Inventory</h1>
 	<div>
+		<h1>Inventory</h1>
+		<!-- <div> -->
 		<table id="inventory" class="table table-bordered table-responsive" cellspacing="0" width="100%">
 			<thead>
 				<tr>
@@ -106,67 +106,66 @@
 						</tr>
 					</tbody>
 		</table>
- 
-<h1>In process</h1>
-	<div>
-		<table id="inProcess" class="table table-bordered table-responsive" cellspacing="0" width="100%">
+
+		<h1>In process</h1>
+		<div>
+			<table id="inProcess" class="table table-bordered table-responsive" cellspacing="0" width="100%">
     		<thead>
-				<tr>
-					<th>Name</th>
-					<th>Style</th>
-					<th>Batch Volume</th>
-					<th>Volume Available</th>
-					<th>Ready by</th>
-					<th></th>
-					<th></th>
-				</tr>
+					<tr>
+						<th>Name</th>
+						<th>Style</th>
+						<th>Batch Volume</th>
+						<th>Volume Available</th>
+						<th>Ready by</th>
+						<th></th>
+						<th></th>
+					</tr>
     		</thead>
-    			<tfoot>
-    				<tbody>
-						<tr>
-							<td>Beer xzy</td>
-							<td>Lager</td>
-							<td>40</td>
-							<td>34</td>
-							<td>2017/04/25</td>
-							<td></td>
-							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#orderModal">Order</button></td>
-						</tr>
-
-						<tr>
-							<td>XYZ BEER</td>
-							<td>Pilsen</td>
-							<td>38</td>
-							<td>38</td>
-							<td>2017/07/16</td>
-							<td></td>
-							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#orderModal">Order</button></td>
-						</tr>
-    				</tbody>
-		</table>
-	</div>
+  			<tfoot>
+				<tbody>
+					<tr>
+						<td>Beer xzy</td>
+						<td>Lager</td>
+						<td>40</td>
+						<td>34</td>
+						<td>2017/04/25</td>
+						<td></td>
+						<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#orderModal">Order</button></td>
+					</tr>
+					<tr>
+						<td>XYZ BEER</td>
+						<td>Pilsen</td>
+						<td>38</td>
+						<td>38</td>
+						<td>2017/07/16</td>
+						<td></td>
+						<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#orderModal">Order</button></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		
-		<div id="editModal" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
+		<!-- </div> -->
 
-			<!-- Modal content-->
-			<div class="modal-content">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" id="selectedBeer">Edit</h4>
-			  </div>
-				<div class="form-group">
-    			<label for="Quantity">49 barrels</label>
-    			<input type="Quantity" class="form-control" id="availablequantity" placeholder="Put in the new available amount">
-  				</div>
-				  <div class="modal-footer">
-				   <button type="button" class="btn btn-success">Edit</button>
-				   <button type="button" class="btn btn-danger">Cancel</button>
+			<div id="editModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="selectedBeer">Edit</h4>
+				  </div>
+					<div class="form-group">
+	    			<label for="Quantity">49 barrels</label>
+	    			<input type="Quantity" class="form-control" id="availablequantity" placeholder="Put in the new available amount">
+	  				</div>
+					  <div class="modal-footer">
+					   <button type="button" class="btn btn-success">Edit</button>
+					   <button type="button" class="btn btn-danger">Cancel</button>
+					  </div>
 				  </div>
 			  </div>
-		  </div>
-		</div>
+			</div>
 		</div>
 				<div id="orderModal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
@@ -201,7 +200,7 @@
 			  </div>
 		  </div>
 		</div>
-  
+
 	  <footer class="footer" id="footer">
 		<div class="container">
 		  <p class="text-muted" id="footer">© Copyright 2017 - www.YouBrew.com - All rights reserved.</p>
@@ -215,7 +214,7 @@
     $('select').addClass('mdb-select');
 		});
 	</script>
-    
+
     <script>$(document).ready(function() {
     $('#inProcess').DataTable();
     $('select').addClass('mdb-select');
