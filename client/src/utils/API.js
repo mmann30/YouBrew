@@ -5,7 +5,7 @@ export default {
 
     // ** Batch API calls **
 
-    getBatches() {
+    getBatches: () => {
         axios.get("api/batch");
     },
     createBatch(batchData) {
@@ -23,8 +23,8 @@ export default {
 
     // ** Recipe API Calls **
 
-    getRecipes() {
-        axios.get("api/recipe");
+    getRecipes: function() {
+        return axios.get("api/recipe");
     },
     createRecipe(recipeData) {
         axios.post("api/recipe", recipeData);
