@@ -1,0 +1,262 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>YouBrew</title>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+			<link href="https://fonts.googleapis.com/css?family=Carter+One" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Carter+One|Viga" rel="stylesheet">
+			<link rel="stylesheet" href="assets/css/style.css">
+			<style type="text/css">
+			.emptytop {
+			}
+			</style>
+			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+			<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+			<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+			<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+			<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+			<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+		  </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/manifest.json">
+    <meta name="msapplication-TileColor" content="#5cc4ff">
+    <meta name="msapplication-TileImage" content="assets/images/ms-icon-144x144.png">
+    <meta name="theme-color" content="#5cc4ff">
+
+
+
+    <body>
+        
+          <div class="fullscreen-bg">
+    <video loop muted autoplay class="fullscreen-bg__video">
+        <source src="assets/video/beer2.webm" type="video/webm">
+        <source src="assets/video/beer2.mp4" type="video/mp4">
+        <source src="assets/video/beer2.ogg" type="video/ogg">
+    </video></div>
+        
+        <div class="container emptytop" id="emptytop">
+		</div>
+
+        <div class="container">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img id="logo" alt="YouBrew" src="assets/images/YouBrewv3.png">
+                </div>
+                
+                <div id="navbar" class="navbar-collapse collapse col-lg-4 col-lg-offset-6">
+                    <ul class="nav navbar-nav">
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="availability.html">Availability</a></li>
+                        <li><a href="mysales.html">My Sales</a></li>
+                        <li><a href="request.html">Request</a></li>
+                        <li class="active"><a href="administrator.html">Administrator<span class="sr-only">(current)</span></a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+		</div>
+		</div>
+          
+         <div>
+         	<h1>Access control</h1>
+	<div>
+		<table id="access" class="table table-bordered table-responsive" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Administrator</th>
+					<th></th>
+				</tr>
+			</thead>
+    			<tfoot>
+					<tbody>
+						<tr>
+							<td>Michael</td>
+							<td>michael@github.com</td>
+							<td><input type="checkbox" checked data-toggle="toggle"></td>
+							<td><button type="button" class="btn btn-danger">Delete</button></td>
+						</tr>
+
+						<tr>
+							<td>Andrew</td>
+							<td>andrew@gmail.com</td>
+							<td><input type="checkbox" checked data-toggle="toggle"></td>
+							<td><button type="button" class="btn btn-danger">Delete</button></td>
+						</tr>
+					</tbody>
+		</table>
+    </div>
+          
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUser">Add new user</button>
+          
+           		<div id="addUser" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" id="selectedBeer">Add new user</h4>
+			  </div>
+			  
+			  <div class="form-group">
+    			<label for="name">Name:</label>
+    			<input type="name" class="form-control" id="availablequantity" placeholder="Name">
+  				</div>
+  				
+  				<div class="form-group">
+    			<label for="email">Email:</label>
+    			<input type="email" class="form-control" id="availablequantity" placeholder="Email">
+  				</div>
+			  		
+				<div>
+					<p>Register as administrator?</p><input type="checkbox" checked data-toggle="toggle">
+				</div>
+				  <div class="modal-footer">
+				   <button type="button" class="btn btn-success" id="save">Save</button>
+				   <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
+				  </div>
+			  </div>
+		  </div>
+		</div>
+          
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#startbatch">Start new batch</button>
+          
+          <div id="startbatch" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" id="startbatch">Start a new batch</h4>
+			  </div>
+			  
+			  <div class="btn-group">
+				  <button class="btn btn-mini">Select a beer to brew</button>
+				  <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				  </button>
+					  <ul class="dropdown-menu">
+						<li><a href="#">Beer 1</a></li>
+						<li><a href="#">Beer 2</a></li>
+					  </ul>
+			   </div>
+			  
+			  <div class="form-group">
+    			<label for="volume">Volume (Barrel)</label>
+    			<input type="volume" class="form-control" id="volume" placeholder="40">
+  				</div>
+  				
+  				<span class="glyphicon glyphicon-calendar" aria-hidden="true">Projected end date:</span>
+  				<p>Date imput</p>
+  			
+				  <div class="modal-footer">
+				   <button type="button" class="btn btn-success" id="Brew">Brew</button>
+				   <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
+				  </div>
+			  </div>
+		  </div>
+		</div>
+          
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRecipe">Add new recipe</button>
+          
+           		<div id="addRecipe" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" id="selectedBeer">Add new recipe</h4>
+			  </div>
+			  
+			  <div class="form-group">
+    			<label for="name">Name:</label>
+    			<input type="name" class="form-control" id="name" placeholder="Name">
+  				</div>
+  				
+  				<div class="form-group">
+    			<label for="style">Style:</label>
+    			<input type="style" class="form-control" id="style" placeholder="Style">
+  				</div>
+  				
+  				<div class="form-group">
+    			<label for="abv">ABV:</label>
+    			<input type="abv" class="form-control" id="abv" placeholder="ABV">
+  				</div>
+  				
+  				<div class="form-group">
+    			<label for="description">Description:</label>
+    			<input type="description" class="form-control" id="description" placeholder="Description">
+  				</div>
+  				
+  				<div class="form-group">
+    			<label for="brewtime">Brew Time (weeks):</label>
+    			<input type="brewtime" class="form-control" id="brewtime" placeholder="Brew time">
+  				</div>
+  				
+  				<div class="form-group">
+    			<label for="production">Production:</label>
+    			<input type="production" class="form-control" id="production" placeholder="Production">
+  				</div>
+  				
+  				<div class="form-group">
+    			<label for="notes">Notes:</label>
+    			<input type="notes" class="form-control" id="notes" placeholder="Notes">
+  				</div>
+			  		
+				  <div class="modal-footer">
+				   <button type="button" class="btn btn-success" id="recipe">Add recipe</button>
+				   <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
+				  </div>
+			  </div>
+		  </div>
+		</div>
+         
+           
+<footer class="footer" id="footer">
+  <div class="container">
+    <p class="text-muted" id="footer">© Copyright 2017 - www.YouBrew.com - All rights reserved.</p>
+  </div>
+</footer>
+          
+<!--Table sorting function-->
+	<script>$(document).ready(function() {
+    $('#access').DataTable();
+    $('select').addClass('mdb-select');
+		});
+	</script>
+       
+    </body>
+
+    </html>
