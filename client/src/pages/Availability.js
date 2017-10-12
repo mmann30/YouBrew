@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-import { OrderBtn } from "../components/Buttons";
+import { OrderBtn, EditBtn } from "../components/Buttons";
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
 import { ReactTableDefaults } from 'react-table'
@@ -33,22 +33,6 @@ const data = [{
   options: ""
 }];
 
-const columns = [{
-  Header: "Name",
-  accessor: "name"
-},
-{
-  Header: "Style",
-  accessor: "style"
-},
-{
-  Header: "ABV",
-  accessor: "abv"
-},
-{
-  Header: "Options",
-  accessor: "options"
-}];
 
 class Availability extends Component {
 
@@ -60,7 +44,28 @@ class Availability extends Component {
             <h1>Inventory</h1>
             <ReactTable className="-striped -highlight"
               data={data}
-              columns={columns}
+              columns={[{
+                Header: "Name",
+                accessor: "name"
+              },
+              {
+                Header: "Style",
+                accessor: "style"
+              },
+              {
+                Header: "ABV",
+                accessor: "abv"
+              },
+              {
+                Header: "Options",
+                accessor: "options",
+                Cell: row => (
+                  <div>
+                    <EditBtn>Edit</EditBtn>
+                    <OrderBtn>Order</OrderBtn>
+                  </div>
+                ),
+              }]}
             />
           </Col>
         </Row>
@@ -69,7 +74,25 @@ class Availability extends Component {
             <h1>In process</h1>
             <ReactTable
               data={data}
-              columns={columns}
+              columns={[{
+                Header: "Name",
+                accessor: "name"
+              },
+              {
+                Header: "Style",
+                accessor: "style"
+              },
+              {
+                Header: "ABV",
+                accessor: "abv"
+              },
+              {
+                Header: "Options",
+                accessor: "options",
+                Cell: row => (
+                  <OrderBtn>Order</OrderBtn>
+                )
+              }]}
             />
           </Col>
         </Row>
