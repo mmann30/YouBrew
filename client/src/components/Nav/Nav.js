@@ -20,6 +20,7 @@ const Nav = () =>
         <li><a href="availability">Availability</a></li>
         <li><a href="mysales">My Sales</a></li>
         <li><a href="request">Request</a></li>
+		<li><a href="myrecipes">My Recipes</a></li>
         <li><a href="admin" className="administrator">Administrator</a></li>
       </ul>
     </div>
