@@ -8,6 +8,6 @@ const saleSchema = new Schema({
   client: [{ type: Schema.Types.ObjectId, ref: 'Client' }]
 });
 
-const Sale = mongoose.model("Sale", saleSchema);
+const Sale = mongoose.model("Sale", saleSchema, "Sale");
 
 module.exports = Sale;
