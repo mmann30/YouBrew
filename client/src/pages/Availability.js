@@ -86,12 +86,6 @@ class Availability extends Component {
       .catch(err => console.log(err));
   };
 
-  // loadRecipe = id => {
-  //   API.getBook(this.props.match.params.id)
-  //   .then(res => this.setState({ recipe: res.data }))
-  //   .catch(err => console.log(err));
-  // };
-
   loadBatches = () => {
     API.getBatches()
       .then(res => {
