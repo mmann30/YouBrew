@@ -15,14 +15,15 @@ Object.assign(ReactTableDefaults, {
   // etc...
 });
 
-const modalStyles = {
+// ============react-modal styles=================
+const orderModalStyles = {
   overlay : {
     position          : 'fixed',
     top               : 0,
     left              : 0,
     right             : 0,
     bottom            : 0,
-    backgroundColor   : 'rgba(255, 255, 255, 0.5)'
+    backgroundColor   : 'rgba(255, 255, 255, 0.3)'
   },
   content : {
     top               : '40%',
@@ -34,33 +35,39 @@ const modalStyles = {
   }
 };
 
+const editModalStyles = {
+  overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(255, 255, 255, 0.3)'
+  },
+  content : {
+    top               : '40%',
+    left              : '50%',
+    right             : 'auto',
+    bottom            : 'auto',
+    marginRight       : '-50%',
+    transform         : 'translate(-50%, -50%)'
+  }
+};
+// ===================================================
+
 class Availability extends Component {
 
   state = {
     recipes: [],
     name: "",
     style: "",
-    quantity: ""
+    quantity: "",
+    modalIsOpen: false
   };
 
-  // componentDidMount() {
-  //   this.loadRecipes();
-  // }
-  //
-  // loadRecipes = () => {
-  //   API.getRecipes()
-  //     .then(res =>
-  //       this.setState({ recipes: res.data, name: "", style: "", quantity: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
-
+  // =========react-modal related functionality=========
   constructor() {
     super();
-
-    this.state = {
-      modalIsOpen: false
-    };
 
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -79,6 +86,7 @@ class Availability extends Component {
   closeModal() {
     this.setState({modalIsOpen: false});
   }
+  // =============================================
 
   render() {
     return (
@@ -122,18 +130,36 @@ class Availability extends Component {
                 accessor: "options",
                 Cell: row => (
                   <div>
-                    <EditBtn>Edit</EditBtn>
+                    <EditBtn onClick={this.openModal}>Edit</EditBtn>
+                    <Modal
+                      isOpen={this.state.modalIsOpen}
+                      onAfterOpen={this.afterOpenModal}
+                      onRequestClose={this.closeModal}
+                      style={editModalStyles}
+                      contentLabel="Edit Button Modal"
+                    >
+                    <h2>Edit Modal</h2>
+                    <button onClick={this.closeModal}>close</button>
+                    <div>I'm a modal breh</div>
+                    <form>
+                      <input />
+                      <button>tab navigation</button>
+                      <button>stays</button>
+                    </form>
+                    </Modal>
+
+
                     <OrderBtn onClick={this.openModal}>Order</OrderBtn>
                     <Modal
                       isOpen={this.state.modalIsOpen}
                       onAfterOpen={this.afterOpenModal}
                       onRequestClose={this.closeModal}
-                      style={modalStyles}
-                      contentLabel="Example Modal"
+                      style={orderModalStyles}
+                      contentLabel="Order Button Modal"
                     >
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+                    <h2>Order Modal</h2>
                     <button onClick={this.closeModal}>close</button>
-                    <div>I am a modal</div>
+                    <div>I'm a modal breh</div>
                     <form>
                       <input />
                       <button>tab navigation</button>
