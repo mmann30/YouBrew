@@ -5,8 +5,8 @@ export default {
 
     // ** Batch API calls **
 
-    getBatches: () => {
-        axios.get("api/batch");
+    getBatches: function() {
+        return axios.get("api/batch");
     },
     createBatch(batchData) {
         axios.post("api/batch", batchData);
