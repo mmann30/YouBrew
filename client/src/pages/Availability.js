@@ -67,6 +67,11 @@ class Availability extends Component {
     modalIsOpen: false
   };
 
+  componentWillMount() {
+    this.loadRecipes();
+    this.loadBatches();
+  }
+
   componentDidMount() {
     this.loadRecipes();
     this.loadBatches();
@@ -80,6 +85,12 @@ class Availability extends Component {
       })
       .catch(err => console.log(err));
   };
+
+  // loadRecipe = id => {
+  //   API.getBook(this.props.match.params.id)
+  //   .then(res => this.setState({ recipe: res.data }))
+  //   .catch(err => console.log(err));
+  // };
 
   loadBatches = () => {
     API.getBatches()
@@ -97,6 +108,7 @@ class Availability extends Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
+
 
   openModal() {
     this.setState({modalIsOpen: true});
@@ -143,24 +155,23 @@ class Availability extends Component {
                 accessor: "options",
                 Cell: row => (
                   <div>
-                    <EditBtn onClick={this.openModal}>Edit</EditBtn>
+                    {/* <EditBtn onClick={this.openModal}>Edit</EditBtn>
                     <Modal
-                      isOpen={this.state.modalIsOpen}
-                      onAfterOpen={this.afterOpenModal}
-                      onRequestClose={this.closeModal}
-                      style={editModalStyles}
-                      contentLabel="Edit Button Modal"
-                    >
-                    <h2>Edit Modal</h2>
-                    <button onClick={this.closeModal}>close</button>
-                    <div>I'm a modal breh</div>
-                    <form>
-                      <input />
-                      <button>tab navigation</button>
-                      <button>stays</button>
-                    </form>
-                    </Modal>
-
+                        isOpen={this.state.modalIsOpen}
+                        onAfterOpen={this.afterOpenModal}
+                        onRequestClose={this.closeModal}
+                        style={editModalStyles}
+                        contentLabel="Edit Button Modal"
+                      >
+                      <h2>Edit Modal</h2>
+                      <button onClick={this.closeModal}>close</button>
+                      <div>I'm a modal breh</div>
+                      <form>
+                        <input />
+                        <button>tab navigation</button>
+                        <button>stays</button>
+                      </form>
+                    </Modal> */}
 
                     <OrderBtn onClick={this.openModal}>Order</OrderBtn>
                     <Modal
@@ -170,14 +181,15 @@ class Availability extends Component {
                       style={orderModalStyles}
                       contentLabel="Order Button Modal"
                     >
-                    <h2>Order Modal</h2>
-                    <button onClick={this.closeModal}>close</button>
-                    <div>I'm a modal breh</div>
+                    <h2>**Name of beer here**</h2>
+
+                    <p>Available quantity: <span>**quantity here**</span></p>
                     <form>
-                      <input />
-                      <button>tab navigation</button>
-                      <button>stays</button>
+                      <p>Buyer name: <input /></p><br />
+                      <p>Amount requested(barrels): <input /></p><br />
                     </form>
+                    <button onClick={this.closeModal}>Cancel</button>
+                    <button onClick={this.closeModal}>Submit</button>
                     </Modal>
                   </div>
                 ),
@@ -189,7 +201,6 @@ class Availability extends Component {
           <Col size="md-10">
             <h1>In process</h1>
             <ReactTable
-              data={[recipes]}
               data={batches}
               columns={[{
                 Header: "Name",
