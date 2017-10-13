@@ -109,10 +109,24 @@ class Availability extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
+  // vvvvvvvv this openModal function should be the way we get our specific beer data in the modal
+  // openModal() {
+  //   API.getRecipe(/*WHAT GOES HERE?*/)
+  //   .then(res =>
+  //     this.setState({
+  //     modalIsOpen: true,
+  //     name: res.data.name,
+  //   }));
+  // }
 
+  // vvvvvvv Keeping this one alive so it works in the mean time
   openModal() {
-    this.setState({modalIsOpen: true});
-  }
+    this.setState({
+      modalIsOpen: true,
+      name: "**Dummy name(see Availability.js line 126)**",
+      quantity: "**Dummy quantity(see Availability.js line 127)**"
+    });
+  };
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -179,11 +193,11 @@ class Availability extends Component {
                       onAfterOpen={this.afterOpenModal}
                       onRequestClose={this.closeModal}
                       style={orderModalStyles}
-                      contentLabel="Order Button Modal"
+                      contentLabel="order"
                     >
-                    <h2>**Name of beer here**</h2>
+                    <h2>{this.state.name}</h2>
 
-                    <p>Available quantity: <span>**quantity here**</span></p>
+                    <p>Available quantity: <span>{this.state.quantity}</span></p>
                     <form>
                       <p>Buyer name: <input /></p><br />
                       <p>Amount requested(barrels): <input /></p><br />
