@@ -1,152 +1,153 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
+import { EditBtn } from "../components/Buttons";
+import ReactTable from 'react-table';
+import Modal from 'react-modal';
+import "react-table/react-table.css";
+import { ReactTableDefaults } from 'react-table'
 
-class Admin extends Component {
-  render() {
-    return (
-      
-          
-   
-      <div>
-        <h1>Access control</h1>
-        <div>
-          <table id="access" className="table table-bordered table-responsive" cellSpacing={0} width="100%">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Administrator</th>
-                <th />
-              </tr>
-            </thead>
-            <tfoot>
-            </tfoot><tbody>
-              <tr>
-                <td>Michael</td>
-                <td>michael@github.com</td>
-                <td><input type="checkbox" defaultChecked data-toggle="toggle" /></td>
-                <td><button type="button" className="btn btn-danger">Delete</button></td>
-              </tr>
-              <tr>
-                <td>Andrew</td>
-                <td>andrew@gmail.com</td>
-                <td><input type="checkbox" defaultChecked data-toggle="toggle" /></td>
-                <td><button type="button" className="btn btn-danger">Delete</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addUser">Add new user</button>
-        <div id="addUser" className="modal fade" role="dialog">
-          <div className="modal-dialog">
-            {/* Modal content*/}
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="close" data-dismiss="modal">×</button>
-                <h4 className="modal-title" id="selectedBeer">Add new user</h4>
-              </div>
-              <div className="form-group">
-                <label htmlFor="name">Name:</label>
-                <input type="name" className="form-control" id="availablequantity" placeholder="Name" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email:</label>
-                <input type="email" className="form-control" id="availablequantity" placeholder="Email" />
-              </div>
-              <div>
-                <p>Register as administrator?</p><input type="checkbox" defaultChecked data-toggle="toggle" />
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-success" id="save">Save</button>
-                <button type="button" className="btn btn-danger" id="cancel">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#startbatch">Start new batch</button>
-        <div id="startbatch" className="modal fade" role="dialog">
-          <div className="modal-dialog">
-            {/* Modal content*/}
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="close" data-dismiss="modal">×</button>
-                <h4 className="modal-title" id="startbatch">Start a new batch</h4>
-              </div>
-              <div className="btn-group">
-                <button className="btn btn-mini">Select a beer to brew</button>
-                <button className="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-                  <span className="caret" />
-                </button>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Beer 1</a></li>
-                  <li><a href="#">Beer 2</a></li>
-                </ul>
-              </div>
-              <div className="form-group">
-                <label htmlFor="volume">Volume (Barrel)</label>
-                <input type="volume" className="form-control" id="volume" placeholder={40} />
-              </div>
-              <span className="glyphicon glyphicon-calendar" aria-hidden="true">Projected end date:</span>
-              <p>Date imput</p>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-success" id="Brew">Brew</button>
-                <button type="button" className="btn btn-danger" id="cancel">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addRecipe">Add new recipe</button>
-        <div id="addRecipe" className="modal fade" role="dialog">
-          <div className="modal-dialog">
-            {/* Modal content*/}
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="close" data-dismiss="modal">×</button>
-                <h4 className="modal-title" id="selectedBeer">Add new recipe</h4>
-              </div>
-              <div className="form-group">
-                <label htmlFor="name">Name:</label>
-                <input type="name" className="form-control" id="name" placeholder="Name" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="style">Style:</label>
-                <input type="style" className="form-control" id="style" placeholder="Style" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="abv">ABV:</label>
-                <input type="abv" className="form-control" id="abv" placeholder="ABV" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="description">Description:</label>
-                <input type="description" className="form-control" id="description" placeholder="Description" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="brewtime">Brew Time (weeks):</label>
-                <input type="brewtime" className="form-control" id="brewtime" placeholder="Brew time" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="production">Production:</label>
-                <input type="production" className="form-control" id="production" placeholder="Production" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="notes">Notes:</label>
-                <input type="notes" className="form-control" id="notes" placeholder="Notes" />
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-success" id="recipe">Add recipe</button>
-                <button type="button" className="btn btn-danger" id="cancel">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+// this is a react-table feature that allows us to override some defaults
+Object.assign(ReactTableDefaults, {
+  defaultPageSize: 5,
+  minRows: 3,
+  // etc...
+});
+
+const modalStyles = {
+  overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(255, 255, 255, 0.5)'
+  },
+  content : {
+    top               : '40%',
+    left              : '50%',
+    right             : 'auto',
+    bottom            : 'auto',
+    marginRight       : '-50%',
+    transform         : 'translate(-50%, -50%)'
   }
 };
-     
 
+class Admin extends Component {
 
+  state = {
+    name: "",
+    email: "",
+    administrator: ""
+  };
 
+  // componentDidMount() {
+  //   this.loadRecipes();
+  // }
+  //
+  // loadRecipes = () => {
+  //   API.getRecipes()
+  //     .then(res =>
+  //       this.setState({ recipes: res.data, name: "", style: "", quantity: "" })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
+
+  constructor() {
+    super();
+
+    this.state = {
+      modalIsOpen: false
+    };
+
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+  render() {
+    return (
+      <Container>
+        <Row>
+          <Col size="md-10">
+            <h1>Access Control</h1>
+            <ReactTable className="-striped -highlight"
+              data={[{
+                name: "Florian Hutter",
+                email: "florian.hutter.montreux@gmail.com",
+                Administrator: "",
+                options: ""
+              },
+              {
+                name: "Florian Hutter",
+                email: "florian.hutter.montreux@gmail.com",
+                Administrator: "",
+                options: ""
+              },
+              {
+                name: "Florian Hutter",
+                email: "florian.hutter.montreux@gmail.com",
+                Administrator: "",
+                options: ""
+              }]}
+              columns={[{
+                Header: "Name",
+                accessor: "name"
+              },
+              {
+                Header: "Email",
+                accessor: "email"
+              },
+              {
+                Header: "Administrator",
+                accessor: "administrator"
+              },
+              {
+                Header: "Options",
+                accessor: "options",
+                Cell: row => (
+                  <div>
+                    <EditBtn onClick={this.openModal}>Edit</EditBtn>
+                    <Modal
+                      isOpen={this.state.modalIsOpen}
+                      onAfterOpen={this.afterOpenModal}
+                      onRequestClose={this.closeModal}
+                      style={modalStyles}
+                      contentLabel="Example Modal"
+                    >
+                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+                    <button onClick={this.closeModal}>close</button>
+                    <div>I am a modal</div>
+                    <form>
+                      <input />
+                      <button>tab navigation</button>
+                      <button>stays</button>
+                    </form>
+                    </Modal>
+                  </div>
+                ),
+              }]}
+            />
+          </Col>
+        </Row>
+
+      </Container>
+    )
+  }
+}
 
 export default Admin;
