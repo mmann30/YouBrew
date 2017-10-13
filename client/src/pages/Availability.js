@@ -39,6 +39,7 @@ class Availability extends Component {
 
   state = {
     recipes: [],
+    batches: [],
     name: "",
     style: "",
     quantity: ""
@@ -46,12 +47,22 @@ class Availability extends Component {
 
   componentDidMount() {
     this.loadRecipes();
+    this.loadBatches();
   }
   
   loadRecipes = () => {
     API.getRecipes()
       .then(res => {
-        this.setState({ recipes: res.data, name: "", style: "", quantity: "" })
+        this.setState({ recipes: res.data, name: "", style: "", quantity: "" });
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  loadBatches = () => {
+    API.getBatches()
+      .then(res => {
+        this.setState({ batches: res.data });
         console.log(res.data);
       })
       .catch(err => console.log(err));
@@ -84,6 +95,7 @@ class Availability extends Component {
 
   render() {
     const recipes = this.state.recipes;
+    const batches = this.state.batches;
     return (
       <Container>
         <Row>
@@ -102,6 +114,10 @@ class Availability extends Component {
               {
                 Header: "ABV",
                 accessor: "abv"
+              },
+              {
+                Header: "Inventory",
+                accessor: "availVol"
               },
               {
                 Header: "Options",
@@ -136,24 +152,7 @@ class Availability extends Component {
           <Col size="md-10">
             <h1>In process</h1>
             <ReactTable
-              data={[{
-                name: "Squanchpils",
-                style: "Pilsner",
-                abv: "5.2",
-                options: ""
-              },
-              {
-                name: "Ipasquanch",
-                style: "IPA",
-                abv: "5.5",
-                options: ""
-              },
-              {
-                name: "Hefesquanch",
-                style: "Hefeweisen",
-                abv: "4.6",
-                options: ""
-              }]}
+              data={batches}
               columns={[{
                 Header: "Name",
                 accessor: "name"
@@ -163,8 +162,12 @@ class Availability extends Component {
                 accessor: "style"
               },
               {
-                Header: "ABV",
-                accessor: "abv"
+                Header: "Batch Vol",
+                accessor: "totalVol"
+              },
+              {
+                Header: "Available Vol",
+                accessor: "availVol",
               },
               {
                 Header: "Options",
