@@ -8,17 +8,17 @@ export default {
     getBatches: function() {
         return axios.get("api/batch");
     },
-    createBatch(batchData) {
-        axios.post("api/batch", batchData);
+    createBatch: function(batchData) {
+       return axios.post("api/batch", batchData);
     },
-    getBatch(id) {
-        axios.get("api/batch/" + id);
+    getBatch: function(id) {
+        return axios.get("api/batch/" + id);
     },
-    updateBatch(id) {
-        axios.put("api/batch/" + id);
+    updateBatch: function(id) {
+        return axios.put("api/batch/" + id);
     },
-    deleteBatch(id) {
-        axios.delete("api/batch/" + id);
+    deleteBatch: function(id) {
+        return axios.delete("api/batch/" + id);
     },
 
     // ** Recipe API Calls **
@@ -26,70 +26,70 @@ export default {
     getRecipes: function() {
         return axios.get("api/recipe");
     },
-    createRecipe(recipeData) {
-        axios.post("api/recipe", recipeData);
+    createRecipe: function(recipeData) {
+       return axios.post("api/recipe", recipeData);
     },
-    getRecipe(id) {
-        axios.get("api/recipe/" + id);
+    getRecipe: function(id) {
+        return axios.get("api/recipe/" + id);
     },
-    updateRecipe(id) {
-        axios.put("api/recipe/" + id);
+    updateRecipe: function(id) {
+       return axios.put("api/recipe/" + id);
     },
-    deleteRecipe(id) {
-        axios.delete("api/recipe/" + id);
+    deleteRecipe: function(id) {
+       return axios.delete("api/recipe/" + id);
     },
 
     // ** Sale API Calls **
 
-    getSales() {
-        axios.get("api/sale");
+    getSales: function() {
+        return axios.get("api/sale");
     },
-    createSale(saleData) {
-        axios.post("api/sale", saleData);
+    createSale: function(saleData) {
+        return axios.post("api/sale", saleData);
     },
-    getSale(id) {
-        axios.get("api/sale/" + id);
+    getSale: function(id) {
+        return axios.get("api/sale/" + id);
     },
-    updateSale(id) {
-        axios.put("api/sale/" + id);
+    updateSale: function(id) {
+        return axios.put("api/sale/" + id);
     },
-    deleteSale(id) {
-        axios.delete("api/sale/" + id);
+    deleteSale: function(id) {
+        return axios.delete("api/sale/" + id);
     },
 
     // User API Calls
 
-    getUsers() {
-        axios.get("api/user");
+    getUsers: function() {
+        return axios.get("api/user");
     },
-    createUser(userData) {
-        axios.post("api/user/", userData);
+    createUser: function(userData) {
+        return axios.post("api/user/", userData);
     },
-    getUser(id) {
-        axios.get("api/user/" + id);
+    getUser: function(id) {
+        return axios.get("api/user/" + id);
     },
-    updateUser(id) {
-        axios.put("api/user/" + id);
+    updateUser: function(id) {
+        return axios.put("api/user/" + id);
     },
-    deleteUser(id) {
-        axios.delete("api/user" + id);
+    deleteUser: function(id) {
+        return axios.delete("api/user" + id);
     },
 
     // Customer API Calls
 
-    getCustomers() {
-        axios.get("api/customer");
+    getCustomers: function() {
+        return axios.get("api/customer");
     },
-    createCustomer(customerData) {
-        axios.post("api/customer", customerData);
+    createCustomer: function(customerData) {
+        return axios.post("api/customer", customerData);
     },
-    getCustomer(id) {
-        axios.get("api/customer" + id);
+    getCustomer: function(id) {
+        return axios.get("api/customer" + id);
     },
-    updateCustomer(id) {
-        axios.put("api/customer" + id);
+    updateCustomer: function(id) {
+        return axios.put("api/customer" + id);
     },
-    deleteCustomer(id) {
-        axios.delete("api/customer" + id);
+    deleteCustomer: function(id) {
+        return axios.delete("api/customer" + id);
     },
 };
