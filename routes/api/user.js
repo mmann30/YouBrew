@@ -21,7 +21,7 @@ router.post('/signup', function(req, res) {
       if (err) {
         return res.json({success: false, msg: 'Username already exists.'});
       }
-      res.json({success: true, msg: 'Successful created new user.'});
+      res.json({success: true, msg: 'Successfully created new user.'});
     });
   }
 });

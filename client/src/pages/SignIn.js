@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import API from "../utils/API";
-var Router = require('react-router');
+import { Redirect } from 'react-router';
 
 
 
@@ -14,7 +14,7 @@ state = {
     email: "",
     password: "",
     isAdmin: false,
-    fireRedirect: false,
+    // fireRedirect: false,
   };
 
   handleInputChange = event => {
@@ -33,13 +33,16 @@ state = {
         password: this.state.password
       })
         .then(this.setState({ name: "", email: "", password: ""}))
+        // .then(this.setState({ fireRedirect: true }))
+        .then(this.props.history.push("/availability"))
         .catch(err => console.log(err));
-        Router.browserHistory.push('/mysales');
     }
 
   };
             
   render() {
+    // const { from } = this.props.location.state || '/'
+    // const { fireRedirect } = this.state
 
     return (
       <Container fluid>
@@ -73,6 +76,7 @@ state = {
                 Submit User
 
               </FormBtn>
+              
             </form>
             <img id="youbrewassets" className="img-responsive" src="../assets/images/youbrewassets.png" />
             <div className="assetsimage">
@@ -87,4 +91,7 @@ state = {
   }
 }
 
-export default SignIn;
+export default withRouter(SignIn);
+
+// {fireRedirect && (
+//           <Redirect to={from || '/availability'}/>)}

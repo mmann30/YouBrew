@@ -1,4 +1,5 @@
 import axios from "axios";
+import { push } from 'react-router-redux';
 
 export default {
   // Gets all books
@@ -15,6 +16,15 @@ export default {
   },
   // Saves a book to the database
   newUser: function(userData) {
-    return axios.post("/api/user/signup", userData);
+    return axios.post("/api/user/signup", userData).then(function (response) {
+    console.log(response);
+  }).then(res => {
+
+       push('/availability') /* dispatch an action that changes the browser history */ 
+
+      })
+  .catch(function (error) {
+    console.log(error);
+  });;
   }
 };
