@@ -152,15 +152,18 @@ class Availability extends Component {
               },
               {
                 Header: "ABV",
-                accessor: "abv"
+                accessor: "abv",
+				maxWidth: 60,
               },
               {
                 Header: "Inventory",
-                accessor: "availVol"
+                accessor: "availVol",
+				maxWidth: 100,
               },
               {
                 Header: "Options",
                 accessor: "options",
+				maxWidth: 130,
                 Cell: row => (
                   <div>
                     {/* <EditBtn onClick={this.openModal}>Edit</EditBtn>
@@ -220,15 +223,18 @@ class Availability extends Component {
               },
               {
                 Header: "Batch Vol",
-                accessor: "totalVol"
+                accessor: "totalVol",
+				maxWidth: 100,
               },
               {
                 Header: "Available Vol",
                 accessor: "availVol",
+				maxWidth: 100,
               },
               {
                 Header: "Options",
                 accessor: "options",
+				maxWidth: 70,
                 Cell: row => (
                   <OrderBtn>Order</OrderBtn>
                 )
