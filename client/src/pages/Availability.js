@@ -60,11 +60,13 @@ class Availability extends Component {
 
   state = {
     recipes: [],
+    recipeID: "",
     batches: [],
     name: "",
     style: "",
     quantity: "",
-    modalIsOpen: false
+    modalIsOpen: false,
+    selectedRecipeId: ""
   };
 
   componentWillMount() {
@@ -86,6 +88,13 @@ class Availability extends Component {
       .catch(err => console.log(err));
   };
 
+  loadRecipe = () => {
+    API.getRecipe()
+    .then(res => {
+      this.setState({ recipes: res.data._id})
+    })
+  }
+
   loadBatches = () => {
     API.getBatches()
       .then(res => {
@@ -103,7 +112,6 @@ class Availability extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-
   openModal(obj) {
     this.setState({
       modalIsOpen: true,
@@ -111,6 +119,7 @@ class Availability extends Component {
       quantity: obj.availVol
     });
   };
+
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -146,7 +155,8 @@ class Availability extends Component {
             <h1>Inventory</h1>
             <ReactTable className="-striped -highlight"
               data={recipes}
-              columns={[{
+              columns={[
+              {
                 Header: "Name",
                 accessor: "name"
               },
@@ -157,17 +167,17 @@ class Availability extends Component {
               {
                 Header: "ABV",
                 accessor: "abv",
-				maxWidth: 60,
+				        maxWidth: 60,
               },
               {
                 Header: "Inventory",
                 accessor: "availVol",
-				maxWidth: 100,
+				        maxWidth: 100,
               },
               {
                 Header: "Options",
                 accessor: "options",
-				maxWidth: 130,
+	              maxWidth: 130,
                 Cell: row => (
                   <div>
                     {/* <EditBtn onClick={this.openModal}>Edit</EditBtn>
