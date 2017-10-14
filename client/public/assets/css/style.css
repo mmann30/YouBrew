@@ -45,6 +45,11 @@ h1 {
 	border-radius: 10px;	
 }
 
+#recipeinput {
+	width: 100%;
+}
+
+
 #editrecipe{
 	margin-top: 20px;
 }
