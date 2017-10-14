@@ -1,20 +1,18 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import API from "../utils/API";
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 
 
 
 class SignIn extends Component {
 
 state = {
-    name: "",
     email: "",
     password: "",
-    isAdmin: false,
-    // fireRedirect: false,
+    submitted: false,
   };
 
   handleInputChange = event => {
@@ -26,21 +24,27 @@ state = {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.email && this.state.password) {
-      API.newUser({
-        name: this.state.name,
+    this.setState({
+      submitted : true
+    })
+    if (this.state.email && this.state.password) {
+      API.signIn({
         email: this.state.email,
         password: this.state.password
       })
-        .then(this.setState({ name: "", email: "", password: ""}))
+        .then(this.setState({email: "", password: ""}))
         // .then(this.setState({ fireRedirect: true }))
-        .then(this.props.history.push("/availability"))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
     }
 
   };
             
   render() {
+    if (this.state.submitted) {
+      return (
+        <Redirect to="/availability"/>
+      )
+    }
     // const { from } = this.props.location.state || '/'
     // const { fireRedirect } = this.state
 
@@ -51,12 +55,6 @@ state = {
             <h1>Welcome to YouBrew!</h1>
             <p>This is an application that helps commercial beer crafters to overview their stock and also brews in progress. Our app is the link between the brewer and the sales force and will help you with the following tasks.</p>
             <form>
-              <Input
-                value={this.state.name}
-                onChange={this.handleInputChange}
-                name="name"
-                placeholder="Name (required)"
-              />
               <Input
                 value={this.state.email}
                 onChange={this.handleInputChange}
@@ -70,7 +68,7 @@ state = {
                 placeholder="password (required)"
               />
               <FormBtn
-                disabled={!(this.state.name && this.state.email && this.state.password)}
+                disabled={!(this.state.email && this.state.password)}
                 onClick={this.handleFormSubmit}
               >
                 Submit User
