@@ -106,7 +106,8 @@ class Admin extends Component {
               }]}
               columns={[{
                 Header: "Name",
-                accessor: "name"
+                accessor: "name",
+				maxWidth: 210,
               },
               {
                 Header: "Email",
@@ -114,11 +115,13 @@ class Admin extends Component {
               },
               {
                 Header: "Administrator",
-                accessor: "administrator"
+                accessor: "administrator",
+				maxWidth: 100,
               },
               {
                 Header: "Options",
                 accessor: "options",
+				maxWidth: 60,
                 Cell: row => (
                   <div>
                     <EditBtn onClick={this.openModal}>Edit</EditBtn>

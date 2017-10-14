@@ -117,7 +117,7 @@ class Availability extends Component {
     this.setState({
       modalIsOpen: true,
       name: obj.name,
-      quantity: obj.availVol,
+      quantity: obj.availVol
     });
   };
 
@@ -129,6 +129,10 @@ class Availability extends Component {
 
   closeModal() {
     this.setState({modalIsOpen: false});
+  }
+
+  handleOrder(name, vol) {
+    // Do something
   }
   // =============================================
 
@@ -142,10 +146,7 @@ class Availability extends Component {
             <h1>Inventory</h1>
             <ReactTable className="-striped -highlight"
               data={recipes}
-              columns={[{
-                Header: "RecipeId",
-                accessor: "_id"
-              },
+              columns={[
               {
                 Header: "Name",
                 accessor: "name"
@@ -156,15 +157,18 @@ class Availability extends Component {
               },
               {
                 Header: "ABV",
-                accessor: "abv"
+                accessor: "abv",
+				        maxWidth: 60,
               },
               {
                 Header: "Inventory",
-                accessor: "availVol"
+                accessor: "availVol",
+				        maxWidth: 100,
               },
               {
                 Header: "Options",
                 accessor: "options",
+	              maxWidth: 130,
                 Cell: row => (
                   <div>
                     {/* <EditBtn onClick={this.openModal}>Edit</EditBtn>
@@ -185,28 +189,8 @@ class Availability extends Component {
                       </form>
                     </Modal> */}
 
-                    <OrderBtn
-                      onClick={this.openModal}
-                    >Order</OrderBtn>
-                    {console.log(`>>>>>>>>>>> ${JSON.stringify(row.original.name)}`)}
-                    <Modal
-                      isOpen={this.state.modalIsOpen}
-                      recipeId={row.original._id}
-                      onAfterOpen={this.afterOpenModal}
-                      onRequestClose={this.closeModal}
-                      style={orderModalStyles}
-                      contentLabel="order"
-                    >
-                    <h2>{row.original.name}</h2>
+                    <OrderBtn onClick={() => this.openModal(row.original)}>Order</OrderBtn>
 
-                    <p>Available quantity: <span>{this.state.quantity}</span></p>
-                    <form>
-                      <p>Buyer name: <input /></p><br />
-                      <p>Amount requested(barrels): <input /></p><br />
-                    </form>
-                    <button onClick={this.closeModal}>Cancel</button>
-                    <button onClick={this.closeModal}>Submit</button>
-                    </Modal>
                   </div>
                 ),
               }]}
@@ -228,15 +212,18 @@ class Availability extends Component {
               },
               {
                 Header: "Batch Vol",
-                accessor: "totalVol"
+                accessor: "totalVol",
+				        maxWidth: 100,
               },
               {
                 Header: "Available Vol",
                 accessor: "availVol",
+				        maxWidth: 100,
               },
               {
                 Header: "Options",
                 accessor: "options",
+				        maxWidth: 70,
                 Cell: row => (
                   <OrderBtn>Order</OrderBtn>
                 )
@@ -244,6 +231,27 @@ class Availability extends Component {
             />
           </Col>
         </Row>
+
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={orderModalStyles}
+          contentLabel="order"
+        >
+          <h2>{this.state.name}</h2>
+
+          <p>Available quantity: <span>{this.state.quantity}</span></p>
+
+          <form>
+            <p>Buyer name: <input /></p><br />
+            <p>Amount requested(barrels): <input /></p><br />
+          </form>
+
+          <button onClick={this.closeModal}>Cancel</button>
+          <button onClick={this.closeModal}>Submit</button>
+        </Modal>
+
       </Container>
     )
   }

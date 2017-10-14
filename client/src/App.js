@@ -4,6 +4,7 @@ import SignIn from "./pages/SignIn";
 import Availability from "./pages/Availability";
 import MySales from "./pages/MySales";
 import Request from "./pages/Request";
+import MyRecipes from "./pages/MyRecipes";
 import Admin from "./pages/Admin";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
@@ -22,11 +23,12 @@ const App = () =>
         <Route exact path="/availability" component={Availability} />
         <Route exact path="/mysales" component={MySales} />
         <Route exact path="/request" component={Request} />
+		<Route exact path="/myrecipes" component={MyRecipes} />
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/about" component={About} />
         <Route component={NoMatch} />
       </Switch>
-      {/* <Footer /> */}
+      {/*<Footer />*/}
     </div>
   </Router>;
 

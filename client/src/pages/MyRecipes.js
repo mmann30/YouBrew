@@ -7,16 +7,16 @@ class MyRecipes extends Component {
     return (
       
       <div>
-        <div className="container">
+        <div className="containermyrecipes">
           <div className="row">
             <div id="recipeHeader" className="text-center">Recipe xyz</div>
-            <button type="button" className="btn btn-danger center-block" data-toggle="modal" data-target="#editrecipe" id>Edit</button>
             <p id="style" className="text-center">Style</p>
             <p id="abv" className="text-center">6.4%</p>
             <p id="recipe" className="text-center">As our only year-round lager, Unseasonal Lager transcends all seasons. A beer outside of all traditional style guidelines, it creates a style of its own.  Our flagship lager was specially crafted by the team at Arches Brewing to be a lager that calls Atlanta home.  A simple American grain bill is treated with old-world techniques creating a distinct color and body which is light enough for summer and strong enough for winter.  All noble hops provide a classic mild and spicy bitterness.</p>
             <p id="brewtime" className="text-center">6 weeks</p>
             <p id="season" className="text-center">March - April</p>
             <p id="notes" className="text-center">bla bla bla...</p>
+			<button type="button" className="btn btn-danger center-block" data-toggle="modal" data-target="#editrecipe" id="editrecipe">Edit</button>
           </div>
         </div>
         <div id="editrecipe" className="modal fade" role="dialog">
@@ -65,7 +65,11 @@ class MyRecipes extends Component {
       </div>
     );
   }
-});
+};
+
+var containermyrecipes = {
+        
+      };
   
 
 
