@@ -1,4 +1,6 @@
 import axios from "axios";
+import { push } from 'react-router-redux';
+var sessionStorage = require('web-storage')().sessionStorage;
 
 //Exports front end routes for api calls to the server
 export default {
@@ -62,12 +64,31 @@ export default {
     getUsers: function() {
         return axios.get("api/user");
     },
-    createUser: function(userData) {
-        return axios.post("api/user/", userData);
+    signIn: function(userData) {
+        return axios.post("/api/user/signin", userData).then(function(response) {
+                console.log(response);
+                sessionStorage.set("access_token", response.data.token);
+                if (response.data.user.isAdmin === true) {
+                    sessionStorage.set("admin_token", response.data.user.isAdmin)
+                };
+            })
+
+            .catch(function(error) {
+                console.log(error);
+            });
     },
-    getUser: function(id) {
-        return axios.get("api/user/" + id);
-    },
+    newUser: function(userData) {
+        return axios.post("/api/user/signup", userData).then(function(response) {
+                console.log(response);
+            }).then(res => {
+
+                push('/availability') /* dispatch an action that changes the browser history */
+
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
     updateUser: function(id) {
         return axios.put("api/user/" + id);
     },
@@ -93,3 +114,4 @@ export default {
         return axios.delete("api/customer" + id);
     },
 };
+
