@@ -60,11 +60,13 @@ class Availability extends Component {
 
   state = {
     recipes: [],
+    recipeID: "",
     batches: [],
     name: "",
     style: "",
     quantity: "",
-    modalIsOpen: false
+    modalIsOpen: false,
+    selectedRecipeId: ""
   };
 
   componentWillMount() {
@@ -86,6 +88,13 @@ class Availability extends Component {
       .catch(err => console.log(err));
   };
 
+  loadRecipe = () => {
+    API.getRecipe()
+    .then(res => {
+      this.setState({ recipes: res.data._id})
+    })
+  }
+
   loadBatches = () => {
     API.getBatches()
       .then(res => {
@@ -103,24 +112,15 @@ class Availability extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  // vvvvvvvv this openModal function should be the way we get our specific beer data in the modal
-  // openModal() {
-  //   API.getRecipe(/*WHAT GOES HERE?*/)
-  //   .then(res =>
-  //     this.setState({
-  //     modalIsOpen: true,
-  //     name: res.data.name,
-  //   }));
-  // }
-
   // vvvvvvv Keeping this one alive so it works in the mean time
-  openModal() {
+  openModal(obj) {
     this.setState({
       modalIsOpen: true,
-      name: "**Dummy name(see Availability.js line 126)**",
-      quantity: "**Dummy quantity(see Availability.js line 127)**"
+      name: obj.name,
+      quantity: obj.availVol,
     });
   };
+
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -143,6 +143,10 @@ class Availability extends Component {
             <ReactTable className="-striped -highlight"
               data={recipes}
               columns={[{
+                Header: "RecipeId",
+                accessor: "_id"
+              },
+              {
                 Header: "Name",
                 accessor: "name"
               },
@@ -181,15 +185,19 @@ class Availability extends Component {
                       </form>
                     </Modal> */}
 
-                    <OrderBtn onClick={this.openModal}>Order</OrderBtn>
+                    <OrderBtn
+                      onClick={this.openModal}
+                    >Order</OrderBtn>
+                    {console.log(`>>>>>>>>>>> ${JSON.stringify(row.original.name)}`)}
                     <Modal
                       isOpen={this.state.modalIsOpen}
+                      recipeId={row.original._id}
                       onAfterOpen={this.afterOpenModal}
                       onRequestClose={this.closeModal}
                       style={orderModalStyles}
                       contentLabel="order"
                     >
-                    <h2>{this.state.name}</h2>
+                    <h2>{row.original.name}</h2>
 
                     <p>Available quantity: <span>{this.state.quantity}</span></p>
                     <form>
