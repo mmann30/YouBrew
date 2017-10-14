@@ -112,7 +112,6 @@ class Availability extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  // vvvvvvv Keeping this one alive so it works in the mean time
   openModal(obj) {
     this.setState({
       modalIsOpen: true,
@@ -131,9 +130,19 @@ class Availability extends Component {
     this.setState({modalIsOpen: false});
   }
 
-  handleOrder(name, vol) {
-    // Do something
+  handleOrder = event => {
+    event.preventDefault();
+    const buyer = document.getElementById("buyer_name");
+    const availVol = document.getElementById("availVol")
+    const amount = document.getElementById("amount_req");
+    const newVol = availVol - amount;
+    API.updateRecipe({
+      quantity: newVol //<<<<<this is where we need to give it an id
+    }) //then somewhere down here we tell it what to update
+      .then(res => this.loadRecipes())
+      .catch(err => console.log(err));
   }
+
   // =============================================
 
   render() {
@@ -241,15 +250,15 @@ class Availability extends Component {
         >
           <h2>{this.state.name}</h2>
 
-          <p>Available quantity: <span>{this.state.quantity}</span></p>
+          <p>Available quantity: <span id="availVol">{this.state.quantity}</span></p>
 
           <form>
-            <p>Buyer name: <input /></p><br />
-            <p>Amount requested(barrels): <input /></p><br />
+            <p>Buyer name: <input id="buyer_name" /></p><br />
+            <p>Amount requested(barrels): <input id="amount_req" /></p><br />
           </form>
 
           <button onClick={this.closeModal}>Cancel</button>
-          <button onClick={this.closeModal}>Submit</button>
+          <button onClick={this.handleOrder}>Submit</button>
         </Modal>
 
       </Container>
