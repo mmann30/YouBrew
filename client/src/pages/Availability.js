@@ -104,8 +104,8 @@ class Availability extends Component {
   }
 
   // vvvvvvvv this openModal function should be the way we get our specific beer data in the modal
-  // openModal() {
-  //   API.getRecipe(/*WHAT GOES HERE?*/)
+  // openModal(id) {
+  //   API.getRecipe(id)
   //   .then(res =>
   //     this.setState({
   //     modalIsOpen: true,
@@ -114,11 +114,11 @@ class Availability extends Component {
   // }
 
   // vvvvvvv Keeping this one alive so it works in the mean time
-  openModal() {
+  openModal(obj) {
     this.setState({
       modalIsOpen: true,
-      name: "**Dummy name(see Availability.js line 126)**",
-      quantity: "**Dummy quantity(see Availability.js line 127)**"
+      name: obj.name,
+      quantity: obj.availVol
     });
   };
 
@@ -129,6 +129,10 @@ class Availability extends Component {
 
   closeModal() {
     this.setState({modalIsOpen: false});
+  }
+
+  handleOrder(name, vol) {
+    // Do something
   }
   // =============================================
 
@@ -181,24 +185,8 @@ class Availability extends Component {
                       </form>
                     </Modal> */}
 
-                    <OrderBtn onClick={this.openModal}>Order</OrderBtn>
-                    <Modal
-                      isOpen={this.state.modalIsOpen}
-                      onAfterOpen={this.afterOpenModal}
-                      onRequestClose={this.closeModal}
-                      style={orderModalStyles}
-                      contentLabel="order"
-                    >
-                    <h2>{this.state.name}</h2>
+                    <OrderBtn onClick={() => this.openModal(row.original)}>Order</OrderBtn>
 
-                    <p>Available quantity: <span>{this.state.quantity}</span></p>
-                    <form>
-                      <p>Buyer name: <input /></p><br />
-                      <p>Amount requested(barrels): <input /></p><br />
-                    </form>
-                    <button onClick={this.closeModal}>Cancel</button>
-                    <button onClick={this.closeModal}>Submit</button>
-                    </Modal>
                   </div>
                 ),
               }]}
@@ -236,6 +224,27 @@ class Availability extends Component {
             />
           </Col>
         </Row>
+
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={orderModalStyles}
+          contentLabel="order"
+        >
+          <h2>{this.state.name}</h2>
+
+          <p>Available quantity: <span>{this.state.quantity}</span></p>
+
+          <form>
+            <p>Buyer name: <input /></p><br />
+            <p>Amount requested(barrels): <input /></p><br />
+          </form>
+
+          <button onClick={this.closeModal}>Cancel</button>
+          <button onClick={this.closeModal}>Submit</button>
+        </Modal>
+
       </Container>
     )
   }
