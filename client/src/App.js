@@ -4,9 +4,12 @@ import SignIn from "./pages/SignIn";
 import Availability from "./pages/Availability";
 import MySales from "./pages/MySales";
 import Request from "./pages/Request";
+import MyRecipes from "./pages/MyRecipes";
 import Admin from "./pages/Admin";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+
 var sessionStorage = require('web-storage')().sessionStorage;
 
 var auth = false;
@@ -49,6 +52,7 @@ const AdminPrivateRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
+
 const About = () => <h1>About Us</h1>
 
 const App = () =>
@@ -58,13 +62,16 @@ const App = () =>
       <Nav />
       <Switch>
         <Route exact path="/" component={SignIn} />
+        <Route exact path="/signin" component={SignIn} />
         <PrivateRoute exact path="/availability" component={Availability} />
         <PrivateRoute exact path="/mysales" component={MySales} />
         <PrivateRoute exact path="/request" component={Request} />
         <AdminPrivateRoute exact path="/admin" component={Admin} />
+        <PrivateRoute exact path="/myrecipes" component={MyRecipes} />
         <Route exact path="/about" component={About} />
         <Route component={NoMatch} />
       </Switch>
+      {/*<Footer />*/}
     </div>
   </Router>;
 

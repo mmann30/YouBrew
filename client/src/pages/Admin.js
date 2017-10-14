@@ -1,29 +1,153 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
+import { EditBtn } from "../components/Buttons";
+import ReactTable from 'react-table';
+import Modal from 'react-modal';
+import "react-table/react-table.css";
+import { ReactTableDefaults } from 'react-table'
+
+// this is a react-table feature that allows us to override some defaults
+Object.assign(ReactTableDefaults, {
+  defaultPageSize: 5,
+  minRows: 3,
+  // etc...
+});
+
+const modalStyles = {
+  overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(255, 255, 255, 0.5)'
+  },
+  content : {
+    top               : '40%',
+    left              : '50%',
+    right             : 'auto',
+    bottom            : 'auto',
+    marginRight       : '-50%',
+    transform         : 'translate(-50%, -50%)'
+  }
+};
 
 class Admin extends Component {
+
+  state = {
+    name: "",
+    email: "",
+    administrator: ""
+  };
+
+  // componentDidMount() {
+  //   this.loadRecipes();
+  // }
+  //
+  // loadRecipes = () => {
+  //   API.getRecipes()
+  //     .then(res =>
+  //       this.setState({ recipes: res.data, name: "", style: "", quantity: "" })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
+
+  constructor() {
+    super();
+
+    this.state = {
+      modalIsOpen: false
+    };
+
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
   render() {
     return (
-      <Container fluid>
+      <Container>
         <Row>
-          <Col size="md-6">
-            <h1>Welcome to YouBrew!</h1>
-            <p>This is an application that helps commercial beer crafters to overview their stock and also brews in progress. Our app is the link between the brewer and the sales force and will help you with the following tasks.</p>
-            <ul>
-                <li>Real time view of available inventory</li>
-                <li>Overview of brews in progress</li>
-                <li>Live updates on executed sales</li>
-                <li>Sales overview</li>
-            </ul>
-            <img id="youbrewassets" className="img-responsive" src="../assets/images/youbrewassets.png" />
-            <div className="assetsimage">
-            </div>
-          </Col>
-          <Col size="md-4">
-
+          <Col size="md-10">
+            <h1>Access Control</h1>
+            <ReactTable className="-striped -highlight"
+              data={[{
+                name: "Florian Hutter",
+                email: "florian.hutter.montreux@gmail.com",
+                Administrator: "",
+                options: ""
+              },
+              {
+                name: "Florian Hutter",
+                email: "florian.hutter.montreux@gmail.com",
+                Administrator: "",
+                options: ""
+              },
+              {
+                name: "Florian Hutter",
+                email: "florian.hutter.montreux@gmail.com",
+                Administrator: "",
+                options: ""
+              }]}
+              columns={[{
+                Header: "Name",
+                accessor: "name",
+				maxWidth: 210,
+              },
+              {
+                Header: "Email",
+                accessor: "email"
+              },
+              {
+                Header: "Administrator",
+                accessor: "administrator",
+				maxWidth: 100,
+              },
+              {
+                Header: "Options",
+                accessor: "options",
+				maxWidth: 60,
+                Cell: row => (
+                  <div>
+                    <EditBtn onClick={this.openModal}>Edit</EditBtn>
+                    <Modal
+                      isOpen={this.state.modalIsOpen}
+                      onAfterOpen={this.afterOpenModal}
+                      onRequestClose={this.closeModal}
+                      style={modalStyles}
+                      contentLabel="Example Modal"
+                    >
+                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+                    <button onClick={this.closeModal}>close</button>
+                    <div>I am a modal</div>
+                    <form>
+                      <input />
+                      <button>tab navigation</button>
+                      <button>stays</button>
+                    </form>
+                    </Modal>
+                  </div>
+                ),
+              }]}
+            />
           </Col>
         </Row>
+
       </Container>
     )
   }

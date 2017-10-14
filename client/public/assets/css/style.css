@@ -35,6 +35,25 @@ h1 {
 	color: #30231d;
 }
 
+.containermyrecipes {
+	background: rgba(48,48,48,0.22);
+	max-width: 100%;
+	padding: 30px;
+	position: relative;
+	margin-left: 20%;
+	margin-right: 20%;
+	border-radius: 10px;	
+}
+
+#editrecipe{
+	margin-top: 20px;
+}
+
+#recipeHeader{
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+
 #login.btn{
 	background-color: #ffbd36;
 	border-color: #30231d;
@@ -141,17 +160,16 @@ h1 {
 	margin: 10px;
 }
 
+/* navbar */
 
 .navbar-default{
   background:transparent;
   background-image:none;
-  border-color:transparent;
   box-shadow:none;
 }
 
-/* navbar */
 .navbar-default {
-    background-color: transparent;
+    background-color: rgb(252,248,229);
     border-color: transparent;
 }
 
