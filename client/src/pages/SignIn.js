@@ -29,23 +29,20 @@ state = {
         email: this.state.email,
         password: this.state.password
       })
-        .then(this.setState({submitted : true, email: "", password: ""}))
-        // .then(this.setState({ fireRedirect: true }))
+        .then(console.log(this.state))
         .catch(err => console.log(err))
-        .then(this.state.submitted:true)
-    }
+
+    };
+    this.setState({submitted : true, email: "", password: ""})
 
   };
             
   render() {
-    if (this.state.submitted) {
+    if (this.state.submitted === true) {
       return (
         <Redirect to="/availability"/>
       )
     }
-    // const { from } = this.props.location.state || '/'
-    // const { fireRedirect } = this.state
-
     return (
       <Container fluid>
         <Row>
@@ -88,6 +85,3 @@ state = {
 }
 
 export default withRouter(SignIn);
-
-// {fireRedirect && (
-//           <Redirect to={from || '/availability'}/>)}
