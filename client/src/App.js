@@ -19,11 +19,13 @@ if (!sessionStorage.get("access_token"))
 {auth = false
 }
 else {auth = true};
+console.log("auth: " + auth);
 
-if (sessionStorage.get("admin_token") === false)
+if (!sessionStorage.get("admin_token"))
 {admin = false
 }
 else {admin = true};
+console.log("admin: "+ admin)
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => (

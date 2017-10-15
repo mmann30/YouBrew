@@ -88,7 +88,7 @@ export default {
             .catch(function(error) {
                 console.log(error);
             });
-    }
+    },
     updateUser: function(id) {
         return axios.put("api/user/" + id);
     },

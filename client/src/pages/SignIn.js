@@ -24,17 +24,15 @@ state = {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    this.setState({
-      submitted : true
-    })
     if (this.state.email && this.state.password) {
       API.signIn({
         email: this.state.email,
         password: this.state.password
       })
-        .then(this.setState({email: "", password: ""}))
+        .then(this.setState({submitted : true, email: "", password: ""}))
         // .then(this.setState({ fireRedirect: true }))
         .catch(err => console.log(err))
+        .then(this.state.submitted:true)
     }
 
   };
