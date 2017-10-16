@@ -1,6 +1,6 @@
 import axios from "axios";
 import { push } from 'react-router-redux';
-var sessionStorage = require('web-storage')().sessionStorage;
+var sessionStorage = require('web-storage');
 
 //Exports front end routes for api calls to the server
 export default {
@@ -117,4 +117,3 @@ export default {
         return axios.delete("api/customer" + id);
     },
 };
-
