@@ -8,9 +8,9 @@ const db = require("../models");
 function seedUser() {
     const userSeed = [
         {
-            name: "Test User",
-            email: "test@email.com",
-            password: "password",
+            name: "user",
+            email: "user@email.com",
+            password: "$2a$10$oIh.l/PLHSkSsw3IS9TEy.gHcIiPTk7dlwjbFbk8PKJk5.AO1yrAe",
             isAdmin: true,
         }
     ];
