@@ -35,24 +35,6 @@ const orderModalStyles = {
   }
 };
 
-const editModalStyles = {
-  overlay : {
-    position          : 'fixed',
-    top               : 0,
-    left              : 0,
-    right             : 0,
-    bottom            : 0,
-    backgroundColor   : 'rgba(255, 255, 255, 0.3)'
-  },
-  content : {
-    top               : '40%',
-    left              : '50%',
-    right             : 'auto',
-    bottom            : 'auto',
-    marginRight       : '-50%',
-    transform         : 'translate(-50%, -50%)'
-  }
-};
 // ===================================================
 
 class Availability extends Component {
@@ -176,21 +158,25 @@ class Availability extends Component {
               },
               {
                 Header: "Style",
-                accessor: "style"
+                accessor: "style",
+                maxWidth: 200,
+
               },
               {
                 Header: "ABV",
-                accessor: "abv"
+                accessor: "abv",
+                maxWidth: 70,
               },
               {
-                Header: "Inventory",
-                accessor: "availVol"
+                Header: "Barrels",
+                accessor: "availVol",
+                maxWidth: 70,
               },
               {
                 Header: "Options",
                 accessor: "options",
 
-	              maxWidth: 130,
+	              maxWidth: 80,
                 Cell: row => (
                   <div> 
                     <OrderBtn onClick={() => this.openModal(row.original)}>Order</OrderBtn>
@@ -211,27 +197,47 @@ class Availability extends Component {
               },
               {
                 Header: "Style",
-                accessor: "style"
+                accessor: "style",
+                maxWidth: 200,
               },
               {
-                Header: "Batch Vol",
-                accessor: "totalVol"
+                Header: "Barrels",
+                accessor: "totalVol",
+                maxWidth: 70,
               },
-              {
-                Header: "Available Vol",
-                accessor: "availVol",
-              },
-			  {
+			        {
                 Header: "Progress",
                 accessor: "progressBar",
-				maxWidth: 100,
+				        maxWidth: 200,
+                Cell: row => (
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              backgroundColor: '#dadada',
+              borderRadius: '2px'
+            }}
+          >
+            <div
+              style={{
+                width: `${row.value}%`,
+                height: '100%',
+                backgroundColor: row.value > 66 ? '#85cc00'
+                  : row.value > 33 ? '#ffbf00'
+                  : '#ff2e00',
+                borderRadius: '2px',
+                transition: 'all .2s ease-out'
+              }}
+            />
+          </div>
+        )
               },	   
               {
-                Header: "Options",
-                accessor: "options",
-                Cell: row => (
-                  <OrderBtn>Order</OrderBtn>
-                )
+                Header: "Ready by",
+                accessor: "endDate",
+                maxWidth: 125,
+     
+                
               }]}
             />
           </Col>
