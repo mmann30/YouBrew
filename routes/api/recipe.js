@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const recipeController = require("../../controllers/recipeController");
 
-// Matches with "/api/recipe"
+// Matches with "/api/sale"
 router.route("/")
   .get(recipeController.findAll)
   .post(recipeController.create);
 
-// Matches with "/api/recipe/:id"
+// Matches with "/api/sale/:id"
 router
   .route("/:id")
   .get(recipeController.findById)

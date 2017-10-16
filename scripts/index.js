@@ -15,6 +15,9 @@ mongoose.connect(
     }
 );
 
+// Seed each colleciton separately
+// Need to comment out each one as you complete it
+// Should be in a Promise to run all at same time...
 seedBatch();
 console.log("Batch seeded")
 seedRecipe();
