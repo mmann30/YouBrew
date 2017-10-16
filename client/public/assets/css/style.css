@@ -35,6 +35,16 @@ h1 {
 	color: #30231d;
 }
 
+.btn-warning{
+  margin-top: -8px;
+  margin-left: -20px;
+}
+
+#adminBtn{
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
 .containermyrecipes {
 	background: rgba(48,48,48,0.22);
 	max-width: 100%;
