@@ -88,8 +88,8 @@ class Admin extends Component {
       <Container>
 
                     <AddRecipeBtn onClick={this.openModal}>Add new recipe</AddRecipeBtn>
-                    <AddUserBtn onClick={this.openModal}>Add new user</AddRecipeBtn>
-                    <AddBatchBtn onClick={this.openModal}>Add recipe</AddRecipeBtn>
+                    <AddUserBtn onClick={this.openModal}>Add new user</AddUserBtn>
+                    <AddBatchBtn onClick={this.openModal}>Add recipe</AddBatchBtn>
                    
         <Row>
           <Col size="md-10">
