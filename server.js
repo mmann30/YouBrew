@@ -25,8 +25,8 @@ const PORT = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// // Serve up static assets
-// app.use(express.static("client/build"));
+// Serve up static assets
+app.use(express.static("client/build"));
 
 // Add routes
 app.use(routes);

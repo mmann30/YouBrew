@@ -32,9 +32,17 @@
     "passport-jwt": "^3.0.0",
     "react-modal": "^3.0.0",
     "react-modal-bootstrap": "^1.1.1",
+<<<<<<< HEAD
     "react-router-dom": "^4.1.2",
     "react-router-redux": "^4.0.8",
     "react-table": "^6.6.0",
     "web-storage": "^1.0.0"
+=======
+    "react-table": "^6.6.0",
+    "bcrypt-nodejs": "^0.0.3",
+    "moragn": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0"
+>>>>>>> master
   }
 }
