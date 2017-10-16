@@ -86,10 +86,7 @@ class Admin extends Component {
 
 
       <Container>
-
-                    <AddRecipeBtn onClick={this.openModal}>Add new recipe</AddRecipeBtn>
-                    <AddUserBtn onClick={this.openModal}>Add new user</AddRecipeBtn>
-                    <AddBatchBtn onClick={this.openModal}>Add recipe</AddRecipeBtn>
+                  
                    
         <Row>
           <Col size="md-10">
@@ -156,6 +153,10 @@ class Admin extends Component {
             />
           </Col>
         </Row>
+
+        <AddBatchBtn onClick={this.openModal}>Add new batch</AddBatchBtn>
+        <AddRecipeBtn onClick={this.openModal}>Add new recipe</AddRecipeBtn>
+        <AddUserBtn onClick={this.openModal}>Add new user</AddUserBtn>
 
       </Container>
     )
