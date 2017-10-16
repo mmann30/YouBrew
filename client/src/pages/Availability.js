@@ -136,7 +136,7 @@ class Availability extends Component {
     
     this.closeModal();
   }
-
+  
   // Converts order amount to the negative value to 
   // subtract from the available volume in the database
   // using the mongodb $inc operator
