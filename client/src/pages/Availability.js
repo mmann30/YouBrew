@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-//import { InprocessRow } from "../components/TableRow";
 import { OrderBtn, EditBtn } from "../components/Buttons";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
@@ -93,7 +92,7 @@ class Availability extends Component {
     .then(res => {
       this.setState({ recipes: res.data._id})
     })
-  }
+  };
 
   loadBatches = () => {
     API.getBatches()
@@ -112,12 +111,13 @@ class Availability extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  // vvvvvvv Keeping this one alive so it works in the mean time
+
   openModal(obj) {
     this.setState({
       modalIsOpen: true,
+      _id: obj._id,
       name: obj.name,
-      quantity: obj.availVol
+      availVol: obj.availVol
     });
   };
 
@@ -131,8 +131,31 @@ class Availability extends Component {
     this.setState({modalIsOpen: false});
   }
 
-  handleOrder(name, vol) {
-    // Do something
+
+  handleFormSubmit = event => {
+    const id = document.getElementById("id").value;  
+    const orderSize = document.getElementById("orderSize").value;
+    const invUpdate = this.returnNeg(orderSize);
+    
+    event.preventDefault();  
+
+    // Update available volume in the Recipe collection
+    API.updateRecipeVol(id, invUpdate)
+      // Refresh the Inventory and InProcess tables
+      .then(res => this.loadRecipes())
+      .then(res => this.loadBatches())
+      .catch(err => console.log(err));;
+    
+    this.closeModal();
+  }
+  
+  // Converts order amount to the negative value to 
+  // subtract from the available volume in the database
+  // using the mongodb $inc operator
+  returnNeg = num => {
+    num = Math.abs(num);
+    num = -num;
+    return num;
   }
   // =============================================
 
@@ -157,40 +180,20 @@ class Availability extends Component {
               },
               {
                 Header: "ABV",
-                accessor: "abv",
-				maxWidth: 60,
+                accessor: "abv"
               },
               {
                 Header: "Inventory",
-                accessor: "availVol",
-				maxWidth: 100,
+                accessor: "availVol"
               },
               {
                 Header: "Options",
                 accessor: "options",
+
 	              maxWidth: 130,
                 Cell: row => (
-                  <div>
-                    {/* <EditBtn onClick={this.openModal}>Edit</EditBtn>
-                    <Modal
-                        isOpen={this.state.modalIsOpen}
-                        onAfterOpen={this.afterOpenModal}
-                        onRequestClose={this.closeModal}
-                        style={editModalStyles}
-                        contentLabel="Edit Button Modal"
-                      >
-                      <h2>Edit Modal</h2>
-                      <button onClick={this.closeModal}>close</button>
-                      <div>I'm a modal breh</div>
-                      <form>
-                        <input />
-                        <button>tab navigation</button>
-                        <button>stays</button>
-                      </form>
-                    </Modal> */}
-
+                  <div> 
                     <OrderBtn onClick={() => this.openModal(row.original)}>Order</OrderBtn>
-
                   </div>
                 ),
               }]}
@@ -212,13 +215,11 @@ class Availability extends Component {
               },
               {
                 Header: "Batch Vol",
-                accessor: "totalVol",
-				maxWidth: 100,
+                accessor: "totalVol"
               },
               {
                 Header: "Available Vol",
                 accessor: "availVol",
-				maxWidth: 100,
               },
 			  {
                 Header: "Progress",
@@ -228,7 +229,6 @@ class Availability extends Component {
               {
                 Header: "Options",
                 accessor: "options",
-				maxWidth: 70,
                 Cell: row => (
                   <OrderBtn>Order</OrderBtn>
                 )
@@ -246,15 +246,19 @@ class Availability extends Component {
         >
           <h2>{this.state.name}</h2>
 
-          <p>Available quantity: <span>{this.state.quantity}</span></p>
+          <p>Available Barrels: <span>{this.state.availVol}</span></p>
 
           <form>
-            <p>Buyer name: <input /></p><br />
-            <p>Amount requested(barrels): <input /></p><br />
+            <p>Buyer name: <input name="buyer"/></p>
+            <br />
+            <p>Barrels Ordered: <input name="orderSize" id="orderSize"/></p>
+            <br />
+            <input type="hidden" id="id" name="id" value={this.state._id}/>
           </form>
 
           <button onClick={this.closeModal}>Cancel</button>
-          <button onClick={this.closeModal}>Submit</button>
+          <button onClick={this.handleFormSubmit}>Submit</button>
+
         </Modal>
 
       </Container>

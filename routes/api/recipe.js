@@ -13,4 +13,9 @@ router
   .put(recipeController.update)
   .delete(recipeController.remove);
 
+// Matches with "/api/recipe/:id/:vol"
+router
+  .route("/:id/:vol")
+  .put(recipeController.updateVol);
+
 module.exports = router;
