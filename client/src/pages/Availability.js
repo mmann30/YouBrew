@@ -93,7 +93,7 @@ class Availability extends Component {
     .then(res => {
       this.setState({ recipes: res.data._id})
     })
-  }
+  };
 
   loadBatches = () => {
     API.getBatches()

@@ -9,6 +9,7 @@ import Admin from "./pages/Admin";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import { Input, TextArea, FormBtn } from "./components/Form"
 
 var sessionStorage = require('web-storage')().sessionStorage;
 
@@ -27,6 +28,18 @@ if (!sessionStorage.get("admin_token"))
 else {admin = true};
 console.log("admin: "+ admin)
 
+const ReRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    auth?  (
+      <Redirect to={{
+        pathname: '/availability',
+        state: { from: props.location }
+      }}/>
+    ): (
+      <Component {...props}/>
+    )
+  )}/>
+)
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -55,6 +68,7 @@ const AdminPrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 
+
 const About = () => <h1>About Us</h1>
 
 const App = () =>
@@ -63,8 +77,8 @@ const App = () =>
     <div>
       <Nav />
       <Switch>
-        <Route exact path="/" component={SignIn} />
-        <Route exact path="/signin" component={SignIn} />
+        <ReRoute exact path="/" component={SignIn} />
+        <ReRoute exact path="/signin" component={SignIn} />
         <PrivateRoute exact path="/availability" component={Availability} />
         <PrivateRoute exact path="/mysales" component={MySales} />
         <PrivateRoute exact path="/request" component={Request} />
