@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-import { EditBtn } from "../components/Buttons";
+import { EditBtn , AddRecipeBtn , AddUserBtn , AddBatchBtn } from "../components/Buttons";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
 import "react-table/react-table.css";
@@ -82,7 +82,15 @@ class Admin extends Component {
 
   render() {
     return (
+                  
+
+
       <Container>
+
+                    <AddRecipeBtn onClick={this.openModal}>Add new recipe</AddRecipeBtn>
+                    <AddUserBtn onClick={this.openModal}>Add new user</AddRecipeBtn>
+                    <AddBatchBtn onClick={this.openModal}>Add recipe</AddRecipeBtn>
+                   
         <Row>
           <Col size="md-10">
             <h1>Access Control</h1>
@@ -108,7 +116,7 @@ class Admin extends Component {
               columns={[{
                 Header: "Name",
                 accessor: "name",
-				maxWidth: 210,
+				        maxWidth: 210,
               },
               {
                 Header: "Email",
@@ -117,12 +125,12 @@ class Admin extends Component {
               {
                 Header: "Administrator",
                 accessor: "administrator",
-				maxWidth: 100,
+				        maxWidth: 100,
               },
               {
                 Header: "Options",
                 accessor: "options",
-				maxWidth: 60,
+				        maxWidth: 60,
                 Cell: row => (
                   <div>
                     <EditBtn onClick={this.openModal}>Edit</EditBtn>
