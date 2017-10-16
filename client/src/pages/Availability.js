@@ -136,9 +136,7 @@ class Availability extends Component {
     const availVol = document.getElementById("availVol")
     const amount = document.getElementById("amount_req");
     const newVol = availVol - amount;
-    API.updateRecipe({
-      quantity: newVol //<<<<<this is where we need to give it an id
-    }) //then somewhere down here we tell it what to update
+    API.updateRecipe({}) 
       .then(res => this.loadRecipes())
       .catch(err => console.log(err));
   }
