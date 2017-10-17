@@ -149,7 +149,7 @@ class Availability extends Component {
     const batches = this.state.batches;
     const customers = this.state.customers;
     return (
-      <Container>
+      <Container style="backgroundColor: blue">
         <Row>
           <Col size="md-10">
             <h1>Inventory</h1>
