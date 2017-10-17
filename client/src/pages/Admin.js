@@ -40,7 +40,12 @@ class Admin extends Component {
   state = {
     name: "",
     email: "",
-    administrator: ""
+    administrator: "",
+    modalIsOpen: false,
+    editModalOpen: false,
+    userModalOpen: false,
+    batchModalOpen: false,
+    recipeModalOpen: false
   };
 
   // componentDidMount() {
@@ -59,17 +64,65 @@ class Admin extends Component {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      editModalOpen: false,
+      userModalOpen: false,
+      batchModalOpen: false,
+      recipeModalOpen: false
     };
 
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.openEditModal = this.openEditModal.bind(this);
+    this.openUserModal = this.openUserModal.bind(this);
+    this.openBatchModal = this.openBatchModal.bind(this);
+    this.openRecipeModal = this.openRecipeModal.bind(this);
   }
 
   openModal() {
     this.setState({modalIsOpen: true});
   }
+
+  openEditModal() {
+    this.setState({
+      editModalOpen: true,
+      batchModalOpen: false,
+      recipeModalOpen: false,
+      userModalOpen: false
+    });
+    this.openModal();
+  };
+
+  openUserModal() {
+    this.setState({
+      userModalOpen: true,
+      editModalOpen: false,
+      batchModalOpen: false,
+      recipeModalOpen: false
+    });
+    this.openModal();
+  };
+
+  openBatchModal() {
+    this.setState({
+        batchModalOpen: true,
+        editModalOpen: false,
+        recipeModalOpen: false,
+        userModalOpen: false
+      });
+    this.openModal();
+  };
+
+  openRecipeModal() {
+    this.setState({
+      recipeModalOpen: true,
+      editModalOpen: false,
+      batchModalOpen: false,
+      userModalOpen: false
+    });
+    this.openModal();
+  };
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -129,7 +182,7 @@ class Admin extends Component {
 				        maxWidth: 60,
                 Cell: row => (
                   <div>
-                    <EditBtn onClick={this.openModal}>Edit</EditBtn>
+                    <EditBtn onClick={this.openEditModal}>Edit</EditBtn>
                     <Modal
                       isOpen={this.state.modalIsOpen}
                       onAfterOpen={this.afterOpenModal}
@@ -137,6 +190,17 @@ class Admin extends Component {
                       style={modalStyles}
                       contentLabel="Example Modal"
                     >
+                    {this.state.editModalOpen ?
+                      console.log("EDIT")
+                      : this.state.userModalOpen ?
+                      console.log("USER")
+                      : this.state.batchModalOpen ?
+                      console.log("BATCH")
+                      : this.state.recipeModalOpen ?
+                      console.log("RECIPE")
+                      :
+                      console.log("nah")
+                    }
                     <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
                     <button onClick={this.closeModal}>close</button>
                     <div>I am a modal</div>
@@ -153,9 +217,9 @@ class Admin extends Component {
           </Col>
         </Row>
 
-        <AddBatchBtn onClick={this.openModal}>Add new batch</AddBatchBtn>
-        <AddRecipeBtn onClick={this.openModal}>Add new recipe</AddRecipeBtn>
-        <AddUserBtn onClick={this.openModal}>Add new user</AddUserBtn>
+        <AddBatchBtn onClick={this.openBatchModal}>Add new batch</AddBatchBtn>
+        <AddRecipeBtn onClick={this.openRecipeModal}>Add new recipe</AddRecipeBtn>
+        <AddUserBtn onClick={this.openUserModal}>Add new user</AddUserBtn>
 
       </Container>
     )
