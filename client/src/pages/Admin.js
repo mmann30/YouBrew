@@ -25,7 +25,7 @@ const modalStyles = {
     left              : 0,
     right             : 0,
     bottom            : 0,
-    backgroundColor   : 'rgba(255, 255, 255, 0.5)'
+    backgroundColor   : 'rgba(77,68,41,0.57)'
   },
   content : {
     top               : '40%',
@@ -33,7 +33,9 @@ const modalStyles = {
     right             : 'auto',
     bottom            : 'auto',
     marginRight       : '-50%',
-    transform         : 'translate(-50%, -50%)'
+    transform         : 'translate(-50%, -50%)',
+	backgroundColor   : 'rgba(255,230,153,1.00)',
+	borderRadius      : '10px',
   }
 };
 
@@ -219,7 +221,7 @@ class Admin extends Component {
             </p>
             <p>
               <input type="checkbox" name="isAdmin" id="isAdmin"/>
-              Give administrative privileges
+               &zwnj; &zwnj; Give administrative privileges
             </p>
             <button onClick={this.closeModal}>Add user</button>
             <button onClick={this.closeModal}>Cancel</button>
@@ -274,7 +276,7 @@ class Admin extends Component {
               </p>
               <br />
               <p>Description:
-                <input name="description" id="description"/>
+                <textarea call="form-control" name="description" id="description" rows="3"/>
               </p>
               <br />
               <p>Brew Time(weeks):

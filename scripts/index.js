@@ -27,4 +27,4 @@ console.log("Customer seeded")
 seedSale();
 console.log("Sale seeded")
 seedUser();
-console.log("User seeded")
+yarconsole.log("User seeded")

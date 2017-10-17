@@ -25,7 +25,7 @@ const orderModalStyles = {
     left              : 0,
     right             : 0,
     bottom            : 0,
-    backgroundColor   : 'rgba(255, 255, 255, 0.3)'
+    backgroundColor   : 'rgba(77,68,41,0.57)'
   },
   content : {
     top               : '40%',
@@ -33,7 +33,9 @@ const orderModalStyles = {
     right             : 'auto',
     bottom            : 'auto',
     marginRight       : '-50%',
-    transform         : 'translate(-50%, -50%)'
+    transform         : 'translate(-50%, -50%)',
+	backgroundColor   : 'rgba(255,230,153,1.00)',
+	borderRadius      : '10px',
   }
 };
 
