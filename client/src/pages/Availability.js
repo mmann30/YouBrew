@@ -42,45 +42,45 @@ class Availability extends Component {
 
   state = {
     recipes: [],
-    recipeID: "",
     batches: [],
-    name: "",
-    style: "",
-    quantity: "",
+    customers: [],
     modalIsOpen: false,
-    selectedRecipeId: ""
   };
 
   componentWillMount() {
     this.loadRecipes();
     this.loadBatches();
+    this.loadCustomers();
   }
 
   componentDidMount() {
     this.loadRecipes();
     this.loadBatches();
+    this.loadCustomers();
   }
 
   loadRecipes = () => {
     API.getRecipes()
       .then(res => {
-        this.setState({ recipes: res.data, name: "", style: "", quantity: "" });
+        this.setState({ recipes: res.data });
         console.log(res.data);
       })
       .catch(err => console.log(err));
   };
 
-  loadRecipe = () => {
-    API.getRecipe()
-    .then(res => {
-      this.setState({ recipes: res.data._id})
-    })
-  };
-
   loadBatches = () => {
     API.getBatches()
       .then(res => {
-        this.setState({ batches: res.data, name: "", style: "", quantity: "" });
+        this.setState({ batches: res.data });
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  loadCustomers = () => {
+    API.getCustomers()
+      .then(res => {
+        this.setState({ customers: res.data });
         console.log(res.data);
       })
       .catch(err => console.log(err));
@@ -95,19 +95,19 @@ class Availability extends Component {
   }
 
 
-  openModal(obj) {
+  openModal(obj, arr) {
     this.setState({
       modalIsOpen: true,
       _id: obj._id,
       name: obj.name,
-      availVol: obj.availVol
+      availVol: obj.availVol,
+      customers: arr,
     });
   };
-
-
+  
+  
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
   }
 
   closeModal() {
@@ -144,7 +144,8 @@ class Availability extends Component {
 
   render() {
     const recipes = this.state.recipes;
-    const batches = this.state.batches;
+    const batches = this.state.batches;    
+
     return (
       <Container>
         <Row>
@@ -257,9 +258,13 @@ class Availability extends Component {
           <p>Available Barrels: <span>{this.state.availVol}</span></p>
 
           <form>
-            <p>Buyer name: <input name="buyer"/></p>
+            <p>Customer: 
+              <select id="selectCustomer"></select>
+            </p>
             <br />
-            <p>Barrels Ordered: <input name="orderSize" id="orderSize"/></p>
+            <p>Barrels Ordered: 
+              <input name="orderSize" id="orderSize"/>
+            </p>
             <br />
             <input type="hidden" id="id" name="id" value={this.state._id}/>
           </form>
