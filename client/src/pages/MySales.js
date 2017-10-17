@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import ReactTable from 'react-table';
+import Modal from 'react-modal';
+import "react-table/react-table.css";
+import { ReactTableDefaults } from 'react-table';
+import Switch from 'react-toggle-switch';
+
 
 var sessionStorage = require('web-storage')().sessionStorage;
 
@@ -9,7 +14,7 @@ var sessionStorage = require('web-storage')().sessionStorage;
 class MySales extends Component {
   render() {
     return (
-      
+
  <Container>
 
         <Row>
@@ -50,13 +55,13 @@ class MySales extends Component {
               {
                 Header: "Sell Date",
                 accessor: "options",
-              
+
               }]}
             />
           </Col>
         </Row>
 
-        
+
 
       </Container>
     )

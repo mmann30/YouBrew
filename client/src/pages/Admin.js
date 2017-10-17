@@ -52,31 +52,19 @@ class Admin extends Component {
     recipeModalOpen: false
   };
 
-  // componentDidMount() {
-  //   this.loadRecipes();
-  // }
-  //
-  // loadRecipes = () => {
-  //   API.getRecipes()
-  //     .then(res =>
-  //       this.setState({ recipes: res.data, name: "", style: "", quantity: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
-
   constructor() {
     super();
 
-    this.state = {
-      name: "",
-      email: "",
-      administrator: "",
-      modalIsOpen: false,
-      editModalOpen: false,
-      userModalOpen: false,
-      batchModalOpen: false,
-      recipeModalOpen: false
-    };
+    // this.state = {
+    //   name: "",
+    //   email: "",
+    //   administrator: "",
+    //   modalIsOpen: false,
+    //   editModalOpen: false,
+    //   userModalOpen: false,
+    //   batchModalOpen: false,
+    //   recipeModalOpen: false
+    // };
 
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
