@@ -91,11 +91,11 @@ class MyRecipes extends Component {
                     <form>
                       <p>Recipe: <input id="recipeinput"/></p><br />
                       <p>Style: <input id="recipeinput"/></p><br />
-					  <p>ABV: <input id="recipeinput"/></p><br />
-					  <p>Description: <textarea rows="4" id="recipeinput"/></p><br />
-					  <p>Brewtime: <input id="recipeinput"/></p><br />
-					  <p>Season: <input id="recipeinput"/></p><br />
-					  <p>Notes: <input id="recipeinput"/></p><br />
+					            <p>ABV: <input id="recipeinput"/></p><br />
+					            <p>Description: <textarea rows="4" id="recipeinput"/></p><br />
+          					  <p>Brewtime: <input id="recipeinput"/></p><br />
+          					  <p>Season: <input id="recipeinput"/></p><br />
+          					  <p>Notes: <input id="recipeinput"/></p><br />
                     </form>
                     <button onClick={this.closeModal}>Cancel</button>
                     <button onClick={this.closeModal}>Submit</button>
