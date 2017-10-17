@@ -12,7 +12,7 @@ router.post('/signup', function(req, res) {
     if (!req.body.name || !req.body.password || !req.body.email) {
         res.json({ success: false, msg: 'Please pass username and password.' });
     } else {
-        var newUser = new user({
+        var newUser = new User({
             name: req.body.name,
             email: req.body.email,
             password: req.body.password
@@ -34,7 +34,7 @@ router.post('/signin', function(req, res) {
         if (err) throw err;
 
         if (!user) {
-            res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
+            res.status(401).send('Authentication failed. User not found.' );
         } else {
           var admin = user.isAdmin;
             // check if password matches
@@ -53,14 +53,9 @@ router.post('/signin', function(req, res) {
                         expires: expires,
                         user: user.toJSON()
                     });
-                    // // sessionStorage.set("access_token", 'Bearer ' + token)
-                    // localStorage.setItem('access_token', 'Bearer ' + token);
-                    // // sessionStorage.set("admin_token", admin)
-                    // localStorage.setItem('admin_token', admin);
-                    // console.log("access token: " + localStorage.getItem("access_token"));
-                    // console.log("admin_token: " + localStorage.getItem("admin_token"));
+
                 } else {
-                    res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
+                    res.status(401).send('Authentication failed. Wrong password.' );
                 }
             });
         }

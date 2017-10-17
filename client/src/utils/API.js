@@ -77,7 +77,7 @@ export default {
             })
 
             .catch(function(error) {
-                console.log(error);
+                console.log(error.request.response);
             });
     },
     newUser: function(userData) {

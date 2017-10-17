@@ -12,6 +12,8 @@ class SignIn extends Component {
       email: "",
       password: "",
       submitted: false,
+      error:"",
+      errorType:"",
 
     };
 
@@ -27,7 +29,7 @@ class SignIn extends Component {
         if (this.state.email && this.state.password) {
             var self = this;
             return axios.post("/api/user/signin", ({
-                    email: this.state.email,
+                    email: this.state.email.trim(),
                     password: this.state.password,
                 })).then(function(response) {
                     console.log(response);
@@ -37,14 +39,16 @@ class SignIn extends Component {
                         sessionStorage.set("admin_token", response.data.user.isAdmin);
                         console.log("admin stored");
                     };
-                    self.setState({ email: "", password: "", submitted: true });
-                    <Redirect to="/availability"/>
+                    self.setState({ email: "", password: "", submitted: true, error: "You are logged in!", errorType: "success" });
+                    
 
 
                 })
 
                 .catch(function(error) {
-                    console.log(error);
+                    console.log(error.request.response);
+                    self.setState({error:error.request.response});
+                    self.setState({errorType:"danger"})
                 });
 
 
@@ -53,8 +57,7 @@ class SignIn extends Component {
             // API.signIn({
             //   email: this.state.email,
             //   password: this.state.password,
-            // }).then((response) => console.log(`this is the response: ${response}`))
-            //   .catch(err => console.log(err))
+            // }).catch(err => console.log("this is the err " + err))
 
         };
 
@@ -65,13 +68,6 @@ class SignIn extends Component {
 
     render() {
         console.log(this.state);
-       if (this.state.submitted) {
-        console.log("tried to route...")
-      return (
-        <Redirect to="/availability"/>
-      )
-    }
-
         return (
       <Container fluid>
         <Row>
@@ -82,35 +78,38 @@ class SignIn extends Component {
             <p>This is an application that helps commercial beer crafters to overview their stock and also brews in progress. Our app is the link between the brewer and the sales force and will help you with the following tasks.</p>
             <form>
               <Input
+              type="email"
                 value={this.state.email}
                 onChange={this.handleInputChange}
                 name="email"
                 placeholder="Email (required)"
               />
               <Input
+                type="password"
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
-                placeholder="password (required)"
+                placeholder="Password (required)"
               />
+
+          {this.state.errorType === "danger" ? (<div className="alert alert-danger col-md-10">{this.state.error}</div>) : (<div />)}
+          {this.state.errorType === "success" ? (<div className="alert alert-success col-md-10">{this.state.error}</div>) : (<div />)}
+              
               <FormBtn
                 disabled={!(this.state.email && this.state.password)}
-                onClick={this.handleFormSubmit}
-              >
+                onClick={this.handleFormSubmit}>
                 Submit User
-
               </FormBtn>
               
             </form>
-            <img id="youbrewassets" className="img-responsive" src="../assets/images/youbrewassets.png" />
-            <div className="assetsimage">
-            </div>
+            
           </Col>
 <Col size="md-3">
         </Col>
         </Row>
       </Container>
     )
+
   }
 }
 
