@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { EditBtn , AddRecipeBtn , AddUserBtn , AddBatchBtn } from "../components/Buttons";
+// import NewRecipeModalContent from "../components/Modal";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
 import "react-table/react-table.css";
@@ -194,22 +195,78 @@ class Admin extends Component {
                     {this.state.editModalOpen ?
                       console.log("EDIT")
                       : this.state.userModalOpen ?
-                      console.log("USER")
+                      <div>
+                        <h2>Add a new user</h2>
+                        <p>Name:
+                          <input name="userName" id="userName"/>
+                        </p>
+                        <p>Email:
+                          <input name="userEmail" id="userEmail"/>
+                        </p>
+                        <p>
+                          <input type="checkbox" name="isAdmin" id="isAdmin"/>
+                          Give administrative privileges
+                        </p>
+                        <button onClick={this.closeModal}>Add user</button>
+                        <button onClick={this.closeModal}>Cancel</button>
+                      </div>
                       : this.state.batchModalOpen ?
-                      console.log("BATCH")
+                      <div>
+                        <h2>Start a batch</h2>
+                        <p>Select a beer to brew:
+                          <select>
+                            <option value="beer1">Beer1</option>
+                            <option value="beer2">Beer2</option>
+                            <option value="beer3">Beer3</option>
+                            <option value="beer4">Beer4</option>
+                          </select>
+                        </p>
+                        <p>Volume(barrel):
+                          <input name="volume" id="volume"/>
+                        </p>
+                        <button onClick={this.closeModal}>Brew</button>
+                        <button onClick={this.closeModal}>Cancel</button>
+                      </div>
                       : this.state.recipeModalOpen ?
-                      console.log("RECIPE")
+                      <div>
+                        <h2>New Recipe</h2>
+                        <form>
+                          <p>Name:
+                            <input name="beerName" id="beerName"/>
+                          </p>
+                          <br />
+                          <p>Style:
+                            <input name="style" id="style"/>
+                          </p>
+                          <br />
+                          <p>ABV:
+                            <input name="abv" id="abv"/>
+                          </p>
+                          <br />
+                          <p>Description:
+                            <input name="description" id="description"/>
+                          </p>
+                          <br />
+                          <p>Brew Time(weeks):
+                            <input name="time" id="time"/>
+                          </p>
+                          <br />
+                          <p>Production:
+                            <input name="production" id="production"/>
+                          </p>
+                          <br />
+                          <p>Notes:
+                            <input name="notes" id="notes"/>
+                          </p>
+                          <br />
+                        </form>
+
+                        <button onClick={this.closeModal}>Add Recipe</button>
+                        <button onClick={this.closeModal}>Cancel</button>
+                      </div>
                       :
                       console.log("nah")
                     }
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-                    <button onClick={this.closeModal}>close</button>
-                    <div>I am a modal</div>
-                    <form>
-                      <input />
-                      <button>tab navigation</button>
-                      <button>stays</button>
-                    </form>
                     </Modal>
                   </div>
                 ),
