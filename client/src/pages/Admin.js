@@ -66,6 +66,9 @@ class Admin extends Component {
     super();
 
     this.state = {
+      name: "",
+      email: "",
+      administrator: "",
       modalIsOpen: false,
       editModalOpen: false,
       userModalOpen: false,
@@ -86,12 +89,15 @@ class Admin extends Component {
     this.setState({modalIsOpen: true});
   }
 
-  openEditModal() {
+  openEditModal(obj) {
     this.setState({
+      name: obj.name,
+      email: obj.email,
+      administrator: obj.administrator,
       editModalOpen: true,
       batchModalOpen: false,
       recipeModalOpen: false,
-      userModalOpen: false
+      userModalOpen: false,
     });
     this.openModal();
   };
@@ -184,90 +190,8 @@ class Admin extends Component {
 				        maxWidth: 60,
                 Cell: row => (
                   <div>
-                    <EditBtn onClick={this.openEditModal}>Edit</EditBtn>
-                    <Modal
-                      isOpen={this.state.modalIsOpen}
-                      onAfterOpen={this.afterOpenModal}
-                      onRequestClose={this.closeModal}
-                      style={modalStyles}
-                      contentLabel="Example Modal"
-                    >
-                    {this.state.editModalOpen ?
-                      console.log("EDIT")
-                      : this.state.userModalOpen ?
-                      <div>
-                        <h2>Add a new user</h2>
-                        <p>Name:
-                          <input name="userName" id="userName"/>
-                        </p>
-                        <p>Email:
-                          <input name="userEmail" id="userEmail"/>
-                        </p>
-                        <p>
-                          <input type="checkbox" name="isAdmin" id="isAdmin"/>
-                          Give administrative privileges
-                        </p>
-                        <button onClick={this.closeModal}>Add user</button>
-                        <button onClick={this.closeModal}>Cancel</button>
-                      </div>
-                      : this.state.batchModalOpen ?
-                      <div>
-                        <h2>Start a batch</h2>
-                        <p>Select a beer to brew:
-                          <select>
-                            <option value="beer1">Beer1</option>
-                            <option value="beer2">Beer2</option>
-                            <option value="beer3">Beer3</option>
-                            <option value="beer4">Beer4</option>
-                          </select>
-                        </p>
-                        <p>Volume(barrel):
-                          <input name="volume" id="volume"/>
-                        </p>
-                        <button onClick={this.closeModal}>Brew</button>
-                        <button onClick={this.closeModal}>Cancel</button>
-                      </div>
-                      : this.state.recipeModalOpen ?
-                      <div>
-                        <h2>New Recipe</h2>
-                        <form>
-                          <p>Name:
-                            <input name="beerName" id="beerName"/>
-                          </p>
-                          <br />
-                          <p>Style:
-                            <input name="style" id="style"/>
-                          </p>
-                          <br />
-                          <p>ABV:
-                            <input name="abv" id="abv"/>
-                          </p>
-                          <br />
-                          <p>Description:
-                            <input name="description" id="description"/>
-                          </p>
-                          <br />
-                          <p>Brew Time(weeks):
-                            <input name="time" id="time"/>
-                          </p>
-                          <br />
-                          <p>Production:
-                            <input name="production" id="production"/>
-                          </p>
-                          <br />
-                          <p>Notes:
-                            <input name="notes" id="notes"/>
-                          </p>
-                          <br />
-                        </form>
+                    <EditBtn onClick={() => this.openEditModal(row.original)}>Edit</EditBtn>
 
-                        <button onClick={this.closeModal}>Add Recipe</button>
-                        <button onClick={this.closeModal}>Cancel</button>
-                      </div>
-                      :
-                      console.log("nah")
-                    }
-                    </Modal>
                   </div>
                 ),
               }]}
@@ -278,7 +202,103 @@ class Admin extends Component {
         <AddBatchBtn onClick={this.openBatchModal}>Add new batch</AddBatchBtn>
         <AddRecipeBtn onClick={this.openRecipeModal}>Add new recipe</AddRecipeBtn>
         <AddUserBtn onClick={this.openUserModal}>Add new user</AddUserBtn>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={modalStyles}
+          contentLabel="Example Modal"
+        >
+        {this.state.editModalOpen ?
+          <div>
+            <h2>Edit a user</h2>
+            <p>Name:
+              <input size="50" name="editName" id="editName" value={this.state.name}/>
+            </p>
+            <p>Email:
+              <input size="50" name="editEmail" id="editEmail" value={this.state.email}/>
+            </p>
+            <p>
+              <input type="checkbox" name="isAdmin" id="isAdmin"/>
+              Give administrative privileges
+            </p>
+            <button onClick={this.closeModal}>Add user</button>
+            <button onClick={this.closeModal}>Cancel</button>
+          </div>
+          : this.state.userModalOpen ?
+          <div>
+            <h2>Add a new user</h2>
+            <p>Name:
+              <input name="userName" id="userName"/>
+            </p>
+            <p>Email:
+              <input name="userEmail" id="userEmail"/>
+            </p>
+            <p>
+              <input type="checkbox" name="isAdmin" id="isAdmin"/>
+              Give administrative privileges
+            </p>
+            <button onClick={this.closeModal}>Add user</button>
+            <button onClick={this.closeModal}>Cancel</button>
+          </div>
+          : this.state.batchModalOpen ?
+          <div>
+            <h2>Start a batch</h2>
+            <p>Select a beer to brew:
+              <select>
+                <option value="beer1">Beer1</option>
+                <option value="beer2">Beer2</option>
+                <option value="beer3">Beer3</option>
+                <option value="beer4">Beer4</option>
+              </select>
+            </p>
+            <p>Volume(barrel):
+              <input name="volume" id="volume"/>
+            </p>
+            <button onClick={this.closeModal}>Brew</button>
+            <button onClick={this.closeModal}>Cancel</button>
+          </div>
+          : this.state.recipeModalOpen ?
+          <div>
+            <h2>New Recipe</h2>
+            <form>
+              <p>Name:
+                <input name="beerName" id="beerName"/>
+              </p>
+              <br />
+              <p>Style:
+                <input name="style" id="style"/>
+              </p>
+              <br />
+              <p>ABV:
+                <input name="abv" id="abv"/>
+              </p>
+              <br />
+              <p>Description:
+                <input name="description" id="description"/>
+              </p>
+              <br />
+              <p>Brew Time(weeks):
+                <input name="time" id="time"/>
+              </p>
+              <br />
+              <p>Production:
+                <input name="production" id="production"/>
+              </p>
+              <br />
+              <p>Notes:
+                <input name="notes" id="notes"/>
+              </p>
+              <br />
+            </form>
 
+            <button onClick={this.closeModal}>Add Recipe</button>
+            <button onClick={this.closeModal}>Cancel</button>
+          </div>
+          :
+          console.log("nah")
+        }
+        </Modal>
       </Container>
     )
   }
