@@ -165,7 +165,11 @@ h1 {
 }
 }
 
-
+.editRec{
+  float: right;
+  position: absolute;
+  right: 150px;
+}
 
 #logo{
 	height:40px;

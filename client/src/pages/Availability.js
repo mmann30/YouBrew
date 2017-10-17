@@ -7,6 +7,7 @@ import ReactTable from 'react-table';
 import Modal from 'react-modal';
 import "react-table/react-table.css";
 import { ReactTableDefaults } from 'react-table'
+var sessionStorage = require('web-storage')().sessionStorage;
 
 // this is a react-table feature that allows us to override some defaults
 Object.assign(ReactTableDefaults, {
@@ -41,45 +42,45 @@ class Availability extends Component {
 
   state = {
     recipes: [],
-    recipeID: "",
     batches: [],
-    name: "",
-    style: "",
-    quantity: "",
+    customers: [],
     modalIsOpen: false,
-    selectedRecipeId: ""
   };
 
   componentWillMount() {
     this.loadRecipes();
     this.loadBatches();
+    this.loadCustomers();
   }
 
   componentDidMount() {
     this.loadRecipes();
     this.loadBatches();
+    this.loadCustomers();
   }
 
   loadRecipes = () => {
     API.getRecipes()
       .then(res => {
-        this.setState({ recipes: res.data, name: "", style: "", quantity: "" });
+        this.setState({ recipes: res.data });
         console.log(res.data);
       })
       .catch(err => console.log(err));
-  };
-
-  loadRecipe = () => {
-    API.getRecipe()
-    .then(res => {
-      this.setState({ recipes: res.data._id})
-    })
   };
 
   loadBatches = () => {
     API.getBatches()
       .then(res => {
         this.setState({ batches: res.data });
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  loadCustomers = () => {
+    API.getCustomers()
+      .then(res => {
+        this.setState({ customers: res.data });
         console.log(res.data);
       })
       .catch(err => console.log(err));
@@ -94,19 +95,19 @@ class Availability extends Component {
   }
 
 
-  openModal(obj) {
+  openModal(obj, arr) {
     this.setState({
       modalIsOpen: true,
       _id: obj._id,
       name: obj.name,
-      availVol: obj.availVol
+      availVol: obj.availVol,
+      customers: arr,
     });
   };
-
-
+  
+  
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
   }
 
   closeModal() {
@@ -115,11 +116,11 @@ class Availability extends Component {
 
 
   handleFormSubmit = event => {
-    const id = document.getElementById("id").value;  
+    const id = document.getElementById("id").value;
     const orderSize = document.getElementById("orderSize").value;
     const invUpdate = this.returnNeg(orderSize);
-    
-    event.preventDefault();  
+
+    event.preventDefault();
 
     // Update available volume in the Recipe collection
     API.updateRecipeVol(id, invUpdate)
@@ -127,11 +128,11 @@ class Availability extends Component {
       .then(res => this.loadRecipes())
       .then(res => this.loadBatches())
       .catch(err => console.log(err));;
-    
+
     this.closeModal();
   }
-  
-  // Converts order amount to the negative value to 
+
+  // Converts order amount to the negative value to
   // subtract from the available volume in the database
   // using the mongodb $inc operator
   returnNeg = num => {
@@ -143,7 +144,8 @@ class Availability extends Component {
 
   render() {
     const recipes = this.state.recipes;
-    const batches = this.state.batches;
+    const batches = this.state.batches;    
+
     return (
       <Container>
         <Row>
@@ -178,7 +180,7 @@ class Availability extends Component {
 
 	              maxWidth: 80,
                 Cell: row => (
-                  <div> 
+                  <div>
                     <OrderBtn onClick={() => this.openModal(row.original)}>Order</OrderBtn>
                   </div>
                 ),
@@ -189,9 +191,10 @@ class Availability extends Component {
         <Row>
           <Col size="md-10">
             <h1>In process</h1>
-            <ReactTable
+            <ReactTable className="-striped -highlight"
               data={batches}
-              columns={[{
+              columns={[
+              {
                 Header: "Name",
                 accessor: "name"
               },
@@ -231,13 +234,13 @@ class Availability extends Component {
             />
           </div>
         )
-              },	   
+              },
               {
                 Header: "Ready by",
                 accessor: "endDate",
                 maxWidth: 125,
-     
-                
+
+
               }]}
             />
           </Col>
@@ -255,9 +258,13 @@ class Availability extends Component {
           <p>Available Barrels: <span>{this.state.availVol}</span></p>
 
           <form>
-            <p>Buyer name: <input name="buyer"/></p>
+            <p>Customer: 
+              <select id="selectCustomer"></select>
+            </p>
             <br />
-            <p>Barrels Ordered: <input name="orderSize" id="orderSize"/></p>
+            <p>Barrels Ordered: 
+              <input name="orderSize" id="orderSize"/>
+            </p>
             <br />
             <input type="hidden" id="id" name="id" value={this.state._id}/>
           </form>

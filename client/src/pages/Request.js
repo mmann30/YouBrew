@@ -5,7 +5,7 @@ import ReactTable from 'react-table';
 import { RequestBtn } from "../components/Buttons";
 import "react-table/react-table.css";
 import { ReactTableDefaults } from 'react-table'
-
+var sessionStorage = require('web-storage')().sessionStorage;
 
 
 class Request extends Component {

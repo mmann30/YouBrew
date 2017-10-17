@@ -13,7 +13,7 @@ function seedBatch() {
             availVol: 20,
             totalVol: 20,
             date: Date.now(),
-            endDate: Date.now() + 604800000,
+            endDate: Date.now() + 6000,
             isReady: false
         },
         {

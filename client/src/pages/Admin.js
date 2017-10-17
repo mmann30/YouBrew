@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { EditBtn , AddRecipeBtn , AddUserBtn , AddBatchBtn } from "../components/Buttons";
+// import NewRecipeModalContent from "../components/Modal";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
 import "react-table/react-table.css";
 import { ReactTableDefaults } from 'react-table';
 import Switch from 'react-toggle-switch';
+var sessionStorage = require('web-storage')().sessionStorage;
 
 // this is a react-table feature that allows us to override some defaults
 Object.assign(ReactTableDefaults, {
@@ -40,7 +42,12 @@ class Admin extends Component {
   state = {
     name: "",
     email: "",
-    administrator: ""
+    administrator: "",
+    modalIsOpen: false,
+    editModalOpen: false,
+    userModalOpen: false,
+    batchModalOpen: false,
+    recipeModalOpen: false
   };
 
   // componentDidMount() {
@@ -59,17 +66,71 @@ class Admin extends Component {
     super();
 
     this.state = {
-      modalIsOpen: false
+      name: "",
+      email: "",
+      administrator: "",
+      modalIsOpen: false,
+      editModalOpen: false,
+      userModalOpen: false,
+      batchModalOpen: false,
+      recipeModalOpen: false
     };
 
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.openEditModal = this.openEditModal.bind(this);
+    this.openUserModal = this.openUserModal.bind(this);
+    this.openBatchModal = this.openBatchModal.bind(this);
+    this.openRecipeModal = this.openRecipeModal.bind(this);
   }
 
   openModal() {
     this.setState({modalIsOpen: true});
   }
+
+  openEditModal(obj) {
+    this.setState({
+      name: obj.name,
+      email: obj.email,
+      administrator: obj.administrator,
+      editModalOpen: true,
+      batchModalOpen: false,
+      recipeModalOpen: false,
+      userModalOpen: false,
+    });
+    this.openModal();
+  };
+
+  openUserModal() {
+    this.setState({
+      userModalOpen: true,
+      editModalOpen: false,
+      batchModalOpen: false,
+      recipeModalOpen: false
+    });
+    this.openModal();
+  };
+
+  openBatchModal() {
+    this.setState({
+        batchModalOpen: true,
+        editModalOpen: false,
+        recipeModalOpen: false,
+        userModalOpen: false
+      });
+    this.openModal();
+  };
+
+  openRecipeModal() {
+    this.setState({
+      recipeModalOpen: true,
+      editModalOpen: false,
+      batchModalOpen: false,
+      userModalOpen: false
+    });
+    this.openModal();
+  };
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -129,23 +190,7 @@ class Admin extends Component {
 				        maxWidth: 60,
                 Cell: row => (
                   <div>
-                    <EditBtn onClick={this.openModal}>Edit</EditBtn>
-                    <Modal
-                      isOpen={this.state.modalIsOpen}
-                      onAfterOpen={this.afterOpenModal}
-                      onRequestClose={this.closeModal}
-                      style={modalStyles}
-                      contentLabel="Example Modal"
-                    >
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-                    <button onClick={this.closeModal}>close</button>
-                    <div>I am a modal</div>
-                    <form>
-                      <input />
-                      <button>tab navigation</button>
-                      <button>stays</button>
-                    </form>
-                    </Modal>
+                    <EditBtn onClick={() => this.openEditModal(row.original)}>Edit</EditBtn>
                   </div>
                 ),
               }]}
@@ -153,10 +198,106 @@ class Admin extends Component {
           </Col>
         </Row>
 
-        <AddBatchBtn onClick={this.openModal}>Add new batch</AddBatchBtn>
-        <AddRecipeBtn onClick={this.openModal}>Add new recipe</AddRecipeBtn>
-        <AddUserBtn onClick={this.openModal}>Add new user</AddUserBtn>
+        <AddBatchBtn onClick={this.openBatchModal}>Add new batch</AddBatchBtn>
+        <AddRecipeBtn onClick={this.openRecipeModal}>Add new recipe</AddRecipeBtn>
+        <AddUserBtn onClick={this.openUserModal}>Add new user</AddUserBtn>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={modalStyles}
+          contentLabel="Example Modal"
+        >
+        {this.state.editModalOpen ?
+          <div>
+            <h2>Edit a user</h2>
+            <p>Name:
+              <input size="50" name="editName" id="editName" value={this.state.name}/>
+            </p>
+            <p>Email:
+              <input size="50" name="editEmail" id="editEmail" value={this.state.email}/>
+            </p>
+            <p>
+              <input type="checkbox" name="isAdmin" id="isAdmin"/>
+              Give administrative privileges
+            </p>
+            <button onClick={this.closeModal}>Add user</button>
+            <button onClick={this.closeModal}>Cancel</button>
+          </div>
+          : this.state.userModalOpen ?
+          <div>
+            <h2>Add a new user</h2>
+            <p>Name:
+              <input name="userName" id="userName"/>
+            </p>
+            <p>Email:
+              <input name="userEmail" id="userEmail"/>
+            </p>
+            <p>
+              <input type="checkbox" name="isAdmin" id="isAdmin"/>
+              Give administrative privileges
+            </p>
+            <button onClick={this.closeModal}>Add user</button>
+            <button onClick={this.closeModal}>Cancel</button>
+          </div>
+          : this.state.batchModalOpen ?
+          <div>
+            <h2>Start a batch</h2>
+            <p>Select a beer to brew:
+              <select>
+                <option value="beer1">Beer1</option>
+                <option value="beer2">Beer2</option>
+                <option value="beer3">Beer3</option>
+                <option value="beer4">Beer4</option>
+              </select>
+            </p>
+            <p>Volume(barrel):
+              <input name="volume" id="volume"/>
+            </p>
+            <button onClick={this.closeModal}>Brew</button>
+            <button onClick={this.closeModal}>Cancel</button>
+          </div>
+          : this.state.recipeModalOpen ?
+          <div>
+            <h2>New Recipe</h2>
+            <form>
+              <p>Name:
+                <input name="beerName" id="beerName"/>
+              </p>
+              <br />
+              <p>Style:
+                <input name="style" id="style"/>
+              </p>
+              <br />
+              <p>ABV:
+                <input name="abv" id="abv"/>
+              </p>
+              <br />
+              <p>Description:
+                <input name="description" id="description"/>
+              </p>
+              <br />
+              <p>Brew Time(weeks):
+                <input name="time" id="time"/>
+              </p>
+              <br />
+              <p>Production:
+                <input name="production" id="production"/>
+              </p>
+              <br />
+              <p>Notes:
+                <input name="notes" id="notes"/>
+              </p>
+              <br />
+            </form>
 
+            <button onClick={this.closeModal}>Add Recipe</button>
+            <button onClick={this.closeModal}>Cancel</button>
+          </div>
+          :
+          console.log("nah")
+        }
+        </Modal>
       </Container>
     )
   }
