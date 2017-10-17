@@ -5,7 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.Customer
       .find(req.query)
-      .sort({ busName: -1 })
+      .sort({ busName: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
