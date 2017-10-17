@@ -7,6 +7,14 @@ h1 {
 	font-family: 'Carter One', cursive;
 }
 
+.submit{
+  float: left;
+  position: relative;
+}
+.cancel{
+  float: right;
+  position:relative;
+}
 .administrator{
 	margin-right: 20px;
 }

@@ -96,6 +96,7 @@ class SignIn extends Component {
           {this.state.errorType === "success" ? (<div className="alert alert-success col-md-10">{this.state.error}</div>) : (<div />)}
               
               <FormBtn
+              className="btn btn-success"
                 disabled={!(this.state.email && this.state.password)}
                 onClick={this.handleFormSubmit}>
                 Submit User

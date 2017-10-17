@@ -9,6 +9,8 @@ import Modal from 'react-modal';
 import "react-table/react-table.css";
 import { ReactTableDefaults } from 'react-table';
 import Switch from 'react-toggle-switch';
+import { Input, TextArea, FormBtn } from "../components/Form";
+import axios from "axios";
 var sessionStorage = require('web-storage')().sessionStorage;
 
 // this is a react-table feature that allows us to override some defaults
@@ -44,13 +46,63 @@ class Admin extends Component {
   state = {
     name: "",
     email: "",
-    administrator: "",
+    isAdmin: "",
+    password: "",
     modalIsOpen: false,
     editModalOpen: false,
     userModalOpen: false,
     batchModalOpen: false,
     recipeModalOpen: false
   };
+
+   handleInputChange = event => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.email && this.state.password && this.state.name) {
+            var self = this;
+            return axios.post("/api/user/signin", ({
+                    email: this.state.email.trim(),
+                    password: this.state.password,
+                })).then(function(response) {
+                    console.log(response);
+                    sessionStorage.set("access_token", response.data.token);
+                    console.log("acces stored");
+                    if (response.data.user.isAdmin === true) {
+                        sessionStorage.set("admin_token", response.data.user.isAdmin);
+                        console.log("admin stored");
+                    };
+                    self.setState({ email: "", password: "", submitted: true, error: "You are logged in!", errorType: "success" });
+                    
+
+
+                })
+
+                .catch(function(error) {
+                    console.log(error.request.response);
+                    self.setState({error:error.request.response});
+                    self.setState({errorType:"danger"})
+                });
+
+
+
+
+            // API.signIn({
+            //   email: this.state.email,
+            //   password: this.state.password,
+            // }).catch(err => console.log("this is the err " + err))
+
+        };
+
+
+    };
 
   constructor() {
     super();
@@ -217,18 +269,48 @@ class Admin extends Component {
           : this.state.userModalOpen ?
           <div>
             <h2>Add a new user</h2>
-            <p>Name:
-              <input name="userName" id="userName"/>
-            </p>
-            <p>Email:
-              <input name="userEmail" id="userEmail"/>
-            </p>
-            <p>
-              <input type="checkbox" name="isAdmin" id="isAdmin"/>
-              Give administrative privileges
-            </p>
-            <button onClick={this.closeModal}>Add user</button>
-            <button onClick={this.closeModal}>Cancel</button>
+
+              <Input
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="Name (required)"
+              />
+              <Input
+              type="email"
+                value={this.state.email}
+                onChange={this.handleInputChange}
+                name="email"
+                placeholder="Email (required)"
+              />
+            <Input
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                name="password"
+                placeholder="Password (required)"
+              />
+              <p>
+              <input type="checkbox" name="isAdmin" value={this.state.email} onChange={this.handleInputChange} onClick={console.log(this.state)}/>
+              Give admin privileges?
+              </p>
+              <div className="form-group">
+              <FormBtn
+              className="cancel btn btn-danger"
+                onClick={this.closeModal}>
+                Cancel
+              </FormBtn>
+
+            <FormBtn
+            className="submit btn btn-success"
+                disabled={!(this.state.email && this.state.password && this.state.password)}
+                onClick={(event) => { this.closeModal; this.handleFormSubmit;}}>
+                Add New User
+              </FormBtn>
+
+              </div>
+
+
+
           </div>
           : this.state.batchModalOpen ?
           <div>
