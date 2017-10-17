@@ -3,5 +3,5 @@ module.exports = {
     Customer: require("./customer"),
     Recipe: require("./recipe"),
     Sale: require("./sale"),
-    User: require("./user")
+    users: require("./user")
 };
