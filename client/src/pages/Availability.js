@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { OrderBtn, EditBtn } from "../components/Buttons";
+import { Select, SelectItem } from "../components/Select";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
 import "react-table/react-table.css";
@@ -95,13 +96,12 @@ class Availability extends Component {
   }
 
 
-  openModal(obj, arr) {
+  openModal(obj) {
     this.setState({
       modalIsOpen: true,
       _id: obj._id,
       name: obj.name,
       availVol: obj.availVol,
-      customers: arr,
     });
   };
   
@@ -145,7 +145,7 @@ class Availability extends Component {
   render() {
     const recipes = this.state.recipes;
     const batches = this.state.batches;    
-
+    const customers = this.state.customers;
     return (
       <Container>
         <Row>
@@ -258,9 +258,14 @@ class Availability extends Component {
           <p>Available Barrels: <span>{this.state.availVol}</span></p>
 
           <form>
-            <p>Customer: 
-              <select id="selectCustomer"></select>
-            </p>
+            <p>Customer: </p>
+            <Select>
+              {this.state.customers.map(customer => (
+                <SelectItem key={customer._id}>
+                  {customer.busName}
+                </SelectItem>
+              ))}
+            </Select> 
             <br />
             <p>Barrels Ordered: 
               <input name="orderSize" id="orderSize"/>
