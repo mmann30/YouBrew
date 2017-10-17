@@ -7,6 +7,7 @@ import "react-table/react-table.css";
 import { ReactTableDefaults } from 'react-table';
 import Switch from 'react-toggle-switch';
 
+
 var sessionStorage = require('web-storage')().sessionStorage;
 
 

@@ -11,6 +11,10 @@ h1 {
 	margin-right: 20px;
 }
 
+#arches{
+	height: 30px;
+}
+
 #emptytop{
 	height: 100px;
 }
@@ -106,7 +110,7 @@ h1 {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */

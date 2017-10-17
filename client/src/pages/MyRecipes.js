@@ -29,8 +29,9 @@ const modalStyles = {
     bottom            : 'auto',
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
-	background        : '#FF13C2',
-	inputwidth		  : '100%'
+	background        : 'rgba(255,230,153,1.00)',
+	inputwidth		  : '100%',
+	borderRadius      : '10px',
   }
 };
 // ===================================================
