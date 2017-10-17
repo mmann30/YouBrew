@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const express = require("express");
+const userController = require("../../controllers/userController");
 var mongoose = require('mongoose');
 var passport = require('passport');
 var config = require('../../config/config');
@@ -74,5 +75,8 @@ getToken = function(headers) {
         return null;
     }
 };
+
+router.route("/")
+    .get(userController.findAll);
 
 module.exports = router;
