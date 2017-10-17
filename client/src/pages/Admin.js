@@ -155,19 +155,19 @@ class Admin extends Component {
               data={[{
                 name: "Florian Hutter",
                 email: "florian.hutter.montreux@gmail.com",
-                Administrator: "",
+                Administrator: "Yes",
                 options: ""
               },
               {
                 name: "Florian Hutter",
                 email: "florian.hutter.montreux@gmail.com",
-                Administrator: "",
+                Administrator: "No",
                 options: ""
               },
               {
                 name: "Florian Hutter",
                 email: "florian.hutter.montreux@gmail.com",
-                Administrator: "",
+                Administrator: "Yes",
                 options: ""
               }]}
               columns={[{

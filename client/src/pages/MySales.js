@@ -1,49 +1,66 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
+
 var sessionStorage = require('web-storage')().sessionStorage;
+
 
 class MySales extends Component {
   render() {
     return (
       
-      <div>
-        <h1>My Sales</h1>
-        <div>
-          <table id="example" className="table table-striped table-bordered table-responsive" cellSpacing={0} width="100%">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Style</th>
-                <th>Quantity (Barrel)</th>
-                <th>Client</th>
-                <th>Sell date</th>
-              </tr>
-            </thead>
-            <tfoot>
-            </tfoot><tbody>
-              <tr>
-                <td>Beer xzy</td>
-                <td>Lager</td>
-                <td>4.5</td>
-                <td>Beer Shop</td>
-                <td>2017/04/25</td>
-              </tr>
-              <tr>
-                <td>XYZ BEER</td>
-                <td>Pilsen</td>
-                <td>5.3</td>
-                <td>Street Cafe</td>
-                <td>2017/07/16</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    );
+ <Container>
+
+        <Row>
+          <Col size="md-10">
+            <h1>My Sales</h1>
+            <ReactTable className="-striped -highlight"
+              data={[{
+                name: "Beer XYZ",
+                style: "Lager",
+                quantity: "40 barrels",
+                selldate: ""
+              },
+              {
+                name: "Bud Light",
+                style: "Weizen",
+                Quantity: "20 barrels",
+                selldate: ""
+              },
+              {
+                name: "Feldschlösschen",
+                style: "Lager",
+                quantity: "10 barrels",
+                selldate: ""
+              }]}
+              columns={[{
+                Header: "Name",
+                accessor: "name",
+              },
+              {
+                Header: "Style",
+                accessor: "style"
+              },
+              {
+                Header: "Quantity",
+                accessor: "quantity",
+                maxWidth: 100,
+              },
+              {
+                Header: "Sell Date",
+                accessor: "options",
+              
+              }]}
+            />
+          </Col>
+        </Row>
+
+        
+
+      </Container>
+    )
   }
-};
-  
+}
 
 
 
