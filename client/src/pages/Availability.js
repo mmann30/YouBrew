@@ -45,7 +45,7 @@ class Availability extends Component {
     recipes: [],
     batches: [],
     customers: [],
-    modalIsOpen: false,
+    modalIsOpen: false
   };
 
   componentWillMount() {
@@ -104,8 +104,8 @@ class Availability extends Component {
       availVol: obj.availVol,
     });
   };
-  
-  
+
+
   afterOpenModal() {
     // references are now sync'd and can be accessed.
   }
@@ -144,7 +144,7 @@ class Availability extends Component {
 
   render() {
     const recipes = this.state.recipes;
-    const batches = this.state.batches;    
+    const batches = this.state.batches;
     const customers = this.state.customers;
     return (
       <Container>
@@ -265,9 +265,9 @@ class Availability extends Component {
                   {customer.busName}
                 </SelectItem>
               ))}
-            </Select> 
+            </Select>
             <br />
-            <p>Barrels Ordered: 
+            <p>Barrels Ordered:
               <input name="orderSize" id="orderSize"/>
             </p>
             <br />
