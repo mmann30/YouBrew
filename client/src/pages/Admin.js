@@ -8,6 +8,7 @@ import Modal from 'react-modal';
 import "react-table/react-table.css";
 import { ReactTableDefaults } from 'react-table';
 import Switch from 'react-toggle-switch';
+var sessionStorage = require('web-storage')().sessionStorage;
 
 // this is a react-table feature that allows us to override some defaults
 Object.assign(ReactTableDefaults, {

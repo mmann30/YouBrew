@@ -5,7 +5,9 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Modal from 'react-modal';
 import { EditBtn } from "../components/Buttons";
+var sessionStorage = require('web-storage')().sessionStorage;
 
+const isAdmin = sessionStorage.get("admin_token");
 // ============react-modal styles=================
 
 
@@ -89,6 +91,7 @@ class MyRecipes extends Component {
             <List>
               {this.state.recipes.map(recipe => (
                 <ListItem key={recipe._id}>
+                    {isAdmin === true ? (<EditBtn class="editRec" onClick={this.openModal}>Edit</EditBtn>) : (<div />)}
                     <p id="recipeHeader" className="text-center">{recipe.name}</p>
                     <p id="style" className="text-center">{recipe.style}</p>
                     <p id="abv" className="text-center">{recipe.abv}</p>
@@ -96,7 +99,6 @@ class MyRecipes extends Component {
                     <p id="brewtime" className="text-center">{recipe.brewTime} weeks</p>
                     <p id="season" className="text-center">{recipe.production}</p>
                     <p id="notes" className="text-center">{recipe.notes}</p>
-                    <EditBtn onClick={this.openModal}>Edit</EditBtn> 
                 </ListItem>
               ))}
             </List>
