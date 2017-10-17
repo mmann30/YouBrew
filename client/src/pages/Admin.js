@@ -191,7 +191,6 @@ class Admin extends Component {
                 Cell: row => (
                   <div>
                     <EditBtn onClick={() => this.openEditModal(row.original)}>Edit</EditBtn>
-
                   </div>
                 ),
               }]}
