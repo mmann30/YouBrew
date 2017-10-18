@@ -54,6 +54,13 @@ class Admin extends Component {
     isAdmin: false,
     password: "",
     error: "",
+    recipeName:"",
+    style: "",
+    abv: "",
+    recipeDesc: "",
+    brewTime: "",
+    production: "",
+    recipeNotes: "",
     modalIsOpen: false,
     editModalOpen: false,
     userModalOpen: false,
@@ -62,55 +69,65 @@ class Admin extends Component {
   };
 
 
-   handleInputChange = event => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-        this.setState({
-            [name]: value
-        });
-    };
+  handleInputChange = event => {
+  const target = event.target;
+  const value = target.type === 'checkbox' ? target.checked : target.value;
+  const name = target.name;
+      this.setState({
+          [name]: value
+      });
+  };
 
-    handleFormSubmit = event => {
-        event.preventDefault();
-        if (this.state.email && this.state.password && this.state.name) {
-          console.log("making new user");
-            var self = this;
-            return axios.post("/api/user/signup", ({
-                    name: this.state.name.trim(),
-                    email: this.state.email.trim(),
-                    password: this.state.password,
-                    isAdmin: this.state.isAdmin
-                })).then(function(response) {
-                    console.log(response.request); 
-                    self.setState({ name: "", email: "", password: "", isAdmin: "", error: "" });
+  handleUserFormSubmit = event => {
+      event.preventDefault();
+      if (this.state.email && this.state.password && this.state.name) {
+        console.log("making new user");
+          var self = this;
+          return axios.post("/api/user/signup", ({
+                  name: this.state.name.trim(),
+                  email: this.state.email.trim(),
+                  password: this.state.password,
+                  isAdmin: this.state.isAdmin
+              })).then(function(response) {
+                  console.log(response.request); 
+                  self.setState({ name: "", email: "", password: "", isAdmin: "", error: "" });
+              })
+              .catch(function(error) {
+                  console.log(error.request.response);
+                  self.setState({error:error.request.response});
+              });
 
-                    
+      //     API.newUser({
 
+      //       name: this.state.name,
+      //       email: this.state.email,
+      //       password: this.state.password,
+      //       isAdmin: this.state.isAdmin,
 
-                })
+      //     }).catch(err => console.log(err))
 
-                .catch(function(error) {
-                    console.log(error.request.response);
-                    self.setState({error:error.request.response});
-                });
-
-
-
-
-        //     API.newUser({
-  
-        //       name: this.state.name,
-        //       email: this.state.email,
-        //       password: this.state.password,
-        //       isAdmin: this.state.isAdmin,
-
-        //     }).catch(err => console.log(err))
-
-        };
+      };
 
 
-    };
+  };
+
+  handleRecipeFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.recipeName && this.state.style) {
+    // Update available volume in the Recipe collection
+      API.createRecipe({
+        name: this.state.recipeName,
+        style: this.state.style,
+        abv: this.state.abv,
+        desc: this.state.recipeDesc,
+        brewTime: this.state.brewTime,
+        production: this.state.production,
+        notes: this.state.recipeNotes
+      })
+      .catch(err => console.log(err));
+    }
+    this.closeModal();
+  }
 
   componentWillMount() {
     this.loadUsers();
@@ -306,7 +323,7 @@ class Admin extends Component {
             <FormBtn
             className="submit btn btn-success"
                 disabled={!(this.state.email && this.state.password && this.state.password)}
-                onClick={this.handleFormSubmit}>
+                onClick={this.handleUserFormSubmit}>
                 Add New User
               </FormBtn>
             </div>
@@ -338,36 +355,62 @@ class Admin extends Component {
             <h2>New Recipe</h2>
             <form>
               <p>Name:
-                <input name="beerName" id="beerName"/>
+                <Input
+                value={this.state.recipeName}
+                onChange={this.handleInputChange}
+                name="recipeName"
+                placeholder="Recipe Name (required)"
+                />
               </p>
-              <br />
               <p>Style:
-                <input name="style" id="style"/>
+                <Input
+                  value={this.state.style}
+                  onChange={this.handleInputChange}
+                  name="style"
+                  placeholder="Style (required)"
+                />
               </p>
-              <br />
               <p>ABV:
-                <input name="abv" id="abv"/>
+                <Input
+                  value={this.state.abv}
+                  onChange={this.handleInputChange}
+                  name="abv"
+                  placeholder="ABV (required)"
+                />
               </p>
-              <br />
               <p>Description:
-                <textarea call="form-control" name="description" id="description" rows="3"/>
+                <Input
+                  value={this.state.recipeDesc}
+                  onChange={this.handleInputChange}
+                  name="recipeDesc"
+                />
               </p>
-              <br />
               <p>Brew Time(weeks):
-                <input name="time" id="time"/>
+                <Input
+                  value={this.state.brewTime}
+                  onChange={this.handleInputChange}
+                  name="brewTime"
+                  placeholder="(required)"
+                />
               </p>
-              <br />
               <p>Production:
-                <input name="production" id="production"/>
+                <select value={this.state.production}>
+                  <option value="Year-Round">Year-Round</option>
+                  <option value="Seasonal">Seasonal</option>
+                  <option value="Limited">Limited</option>
+                  <option value="Specailty">Specailty</option>
+                </select>
               </p>
-              <br />
               <p>Notes:
-                <input name="notes" id="notes"/>
+                <Input
+                  value={this.state.recipeNotes}
+                  onChange={this.handleInputChange}
+                  name="recipeNotes"
+                />
               </p>
-              <br />
             </form>
 
-            <button onClick={this.closeModal}>Add Recipe</button>
+            <button onClick={this.handleRecipeFormSubmit}>Add Recipe</button>
             <button onClick={this.closeModal}>Cancel</button>
           </div>
           :
