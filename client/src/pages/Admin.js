@@ -47,8 +47,9 @@ class Admin extends Component {
     users: [],
     name: "",
     email: "",
-    isAdmin: "",
+    isAdmin: false,
     password: "",
+    error: "",
     modalIsOpen: false,
     editModalOpen: false,
     userModalOpen: false,
@@ -69,19 +70,17 @@ class Admin extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.email && this.state.password && this.state.name) {
+          console.log("making new user");
             var self = this;
-            return axios.post("/api/user/signin", ({
+            return axios.post("/api/user/signup", ({
+                    name: this.state.name.trim(),
                     email: this.state.email.trim(),
                     password: this.state.password,
+                    isAdmin: this.state.isAdmin
                 })).then(function(response) {
-                    console.log(response);
-                    sessionStorage.set("access_token", response.data.token);
-                    console.log("acces stored");
-                    if (response.data.user.isAdmin === true) {
-                        sessionStorage.set("admin_token", response.data.user.isAdmin);
-                        console.log("admin stored");
-                    };
-                    self.setState({ email: "", password: "", submitted: true, error: "You are logged in!", errorType: "success" });
+                    console.log(response.request); 
+                    self.setState({ name: "", email: "", password: "", isAdmin: "", error: "" });
+
                     
 
 
@@ -90,16 +89,19 @@ class Admin extends Component {
                 .catch(function(error) {
                     console.log(error.request.response);
                     self.setState({error:error.request.response});
-                    self.setState({errorType:"danger"})
                 });
 
 
 
 
-            // API.signIn({
-            //   email: this.state.email,
-            //   password: this.state.password,
-            // }).catch(err => console.log("this is the err " + err))
+        //     API.newUser({
+  
+        //       name: this.state.name,
+        //       email: this.state.email,
+        //       password: this.state.password,
+        //       isAdmin: this.state.isAdmin,
+
+        //     }).catch(err => console.log(err))
 
         };
 
@@ -118,7 +120,8 @@ class Admin extends Component {
     API.getUsers()
       .then(res => {
         this.setState({ users: res.data });
-        console.log("loadUsers Response >>>>>> " + res.data);
+        console.log("user response...");
+        console.log(res.data);
       })
       .catch(err => console.log(err));
   };
@@ -189,7 +192,8 @@ class Admin extends Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({modalIsOpen: false, name:"", email:"", password: "", isAdmin: false, error:""});
+    this.forceUpdate();
   }
 
   render() {
@@ -215,8 +219,9 @@ class Admin extends Component {
                 accessor: "email"
               },
               {
+                id: 'isThisAnAdmin',
                 Header: "Administrator",
-                accessor: "isAdmin",
+                accessor: d => JSON.stringify(d.isAdmin),
 				        maxWidth: 100,
               },
               {
@@ -247,13 +252,13 @@ class Admin extends Component {
           <div>
             <h2>Edit a user</h2>
             <p>Name:
-              <input size="50" name="editName" id="editName" value={this.state.name}/>
+              <input onChange={this.handleInputChange} size="50" name="editName" id="editName" value={this.state.name}/>
             </p>
             <p>Email:
-              <input size="50" name="editEmail" id="editEmail" value={this.state.email}/>
+              <input onChange={this.handleInputChange} size="50" name="editEmail" id="editEmail" value={this.state.email}/>
             </p>
             <p>
-              <input type="checkbox" name="isAdmin" id="isAdmin"/>
+              <input onChange={this.handleInputChange} type="checkbox" name="isAdmin" id="isAdmin" value={this.state.isAdmin}/>
                &zwnj; &zwnj; Give administrative privileges
             </p>
             <button onClick={this.closeModal}>Add user</button>
@@ -283,28 +288,28 @@ class Admin extends Component {
                 placeholder="Password (required)"
               />
               <p>
-              <input type="checkbox" name="isAdmin" value={this.state.email} onChange={this.handleInputChange} onClick={console.log(this.state)}/>
+              <input type="checkbox" name="isAdmin" value={this.state.isAdmin} onChange={this.handleInputChange} onClick={console.log(this.state)}/>
               Give admin privileges?
               </p>
               <div className="form-group">
               <FormBtn
               className="cancel btn btn-danger"
                 onClick={this.closeModal}>
-                Cancel
+                Close
               </FormBtn>
-
             <FormBtn
             className="submit btn btn-success"
                 disabled={!(this.state.email && this.state.password && this.state.password)}
-                onClick={(event) => { this.closeModal; this.handleFormSubmit;}}>
+                onClick={this.handleFormSubmit}>
                 Add New User
               </FormBtn>
-
-              </div>
-
-
+            </div>
+            <br/>
+            <br/>
+          {this.state.error != "" ? (<div className="alert alert-danger">{this.state.error}</div>) : (<div />)}              
 
           </div>
+
           : this.state.batchModalOpen ?
           <div>
             <h2>Start a batch</h2>
