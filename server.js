@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Serve up static assets
-app.use(express.static("client/build"));
+app.use(express.static("./client/build"));
 
 // Add routes
 app.use(routes);
@@ -36,7 +36,7 @@ app.use(passport.initialize());
 mongoose.Promise = Promise;
 // Connect to MongoDB
 mongoose.connect(
-    process.env.MONGOD_UR || "mongodb://localhost/youbrew",
+    "mongodb://ds121955.mlab.com:21955/heroku_tdqqc3x2" || "mongodb://localhost/youbrew",
     {
         useMongoClient: true
     }

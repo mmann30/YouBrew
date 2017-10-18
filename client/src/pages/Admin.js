@@ -44,6 +44,7 @@ const modalStyles = {
 class Admin extends Component {
 
   state = {
+    users: [],
     name: "",
     email: "",
     isAdmin: "",
@@ -54,6 +55,7 @@ class Admin extends Component {
     batchModalOpen: false,
     recipeModalOpen: false
   };
+
 
    handleInputChange = event => {
     const target = event.target;
@@ -104,19 +106,26 @@ class Admin extends Component {
 
     };
 
+  componentWillMount() {
+    this.loadUsers();
+  }
+
+  componentDidMount() {
+    this.loadUsers();
+  }
+
+  loadUsers = () => {
+    API.getUsers()
+      .then(res => {
+        this.setState({ users: res.data });
+        console.log("loadUsers Response >>>>>> " + res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+
   constructor() {
     super();
-
-    // this.state = {
-    //   name: "",
-    //   email: "",
-    //   administrator: "",
-    //   modalIsOpen: false,
-    //   editModalOpen: false,
-    //   userModalOpen: false,
-    //   batchModalOpen: false,
-    //   recipeModalOpen: false
-    // };
 
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -184,6 +193,7 @@ class Admin extends Component {
   }
 
   render() {
+    const users = this.state.users;
     return (
 
 
@@ -194,24 +204,7 @@ class Admin extends Component {
           <Col size="md-10">
             <h1>Access Control</h1>
             <ReactTable className="-striped -highlight"
-              data={[{
-                name: "Florian Hutter",
-                email: "florian.hutter.montreux@gmail.com",
-                Administrator: "Yes",
-                options: ""
-              },
-              {
-                name: "Florian Hutter",
-                email: "florian.hutter.montreux@gmail.com",
-                Administrator: "No",
-                options: ""
-              },
-              {
-                name: "Florian Hutter",
-                email: "florian.hutter.montreux@gmail.com",
-                Administrator: "Yes",
-                options: ""
-              }]}
+              data={users}
               columns={[{
                 Header: "Name",
                 accessor: "name",
@@ -223,7 +216,7 @@ class Admin extends Component {
               },
               {
                 Header: "Administrator",
-                accessor: "administrator",
+                accessor: "isAdmin",
 				        maxWidth: 100,
               },
               {
