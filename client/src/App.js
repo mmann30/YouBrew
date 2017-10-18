@@ -68,7 +68,7 @@ const AdminPrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 // const bodyStyle = {
-//   backgroundColor: rgb(52,12,13)
+//   backgroundColor: "rgb(52,12,13)"
 // }
 
 
