@@ -4,6 +4,7 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { EditBtn , AddRecipeBtn , AddUserBtn , AddBatchBtn } from "../components/Buttons";
 // import NewRecipeModalContent from "../components/Modal";
+import { Select, SelectItem } from "../components/Select";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
 import "react-table/react-table.css";
@@ -49,6 +50,7 @@ class Admin extends Component {
 
   state = {
     users: [],
+    recipes: [],
     name: "",
     email: "",
     isAdmin: false,
@@ -61,6 +63,7 @@ class Admin extends Component {
     brewTime: "",
     production: "",
     recipeNotes: "",
+    batchVol: "",
     modalIsOpen: false,
     editModalOpen: false,
     userModalOpen: false,
@@ -76,6 +79,7 @@ class Admin extends Component {
       this.setState({
           [name]: value
       });
+  console.log(">>>>>>>>>>>> Production " + this.state.production)
   };
 
   handleUserFormSubmit = event => {
@@ -114,7 +118,6 @@ class Admin extends Component {
   handleRecipeFormSubmit = event => {
     event.preventDefault();
     if (this.state.recipeName && this.state.style) {
-    // Update available volume in the Recipe collection
       API.createRecipe({
         name: this.state.recipeName,
         style: this.state.style,
@@ -129,12 +132,29 @@ class Admin extends Component {
     this.closeModal();
   }
 
+  handleBatchFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.batchVol) {
+      // Need to populate style and endDate from selected recipe
+      API.createBatch({
+        name: this.state.batchName,
+        style: "",
+        endDate: "",
+        totalVol: this.state.batchVol
+      })
+      .catch(err => console.log(err));
+    }
+    this.closeModal();
+  }
+
   componentWillMount() {
     this.loadUsers();
+    this.loadRecipes();
   }
 
   componentDidMount() {
     this.loadUsers();
+    this.loadRecipes();
   }
 
   loadUsers = () => {
@@ -147,6 +167,14 @@ class Admin extends Component {
       .catch(err => console.log(err));
   };
 
+  loadRecipes = () => {
+    API.getRecipes()
+      .then(res => {
+        this.setState({ recipes: res.data });
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
 
   constructor() {
     super();
@@ -221,6 +249,7 @@ class Admin extends Component {
 
   render() {
     const users = this.state.users;
+    const recipes = this.state.recipes;
     return (
 
 
@@ -305,25 +334,33 @@ class Admin extends Component {
                 placeholder="Email (required)"
               />
             <Input
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                name="password"
-                placeholder="Password (required)"
-              />
-              <p>
-              <input type="checkbox" name="isAdmin" value={this.state.isAdmin} onChange={this.handleInputChange} onClick={console.log(this.state)}/>
+              value={this.state.password}
+              onChange={this.handleInputChange}
+              name="password"
+              placeholder="Password (required)"
+            />
+            <p>
+            <input 
+              type="checkbox" 
+              name="isAdmin" 
+              value={this.state.isAdmin} 
+              onChange={this.handleInputChange} 
+              onClick={console.log(this.state)}
+            />
               Give admin privileges?
-              </p>
-              <div className="form-group">
+            </p>
+            <div className="form-group">
               <FormBtn
-              className="cancel btn btn-danger"
-                onClick={this.closeModal}>
+                className="cancel btn btn-danger"
+                onClick={this.closeModal}
+              >
                 Close
               </FormBtn>
-            <FormBtn
-            className="submit btn btn-success"
+              <FormBtn
+                className="submit btn btn-success"
                 disabled={!(this.state.email && this.state.password && this.state.password)}
-                onClick={this.handleUserFormSubmit}>
+                onClick={this.handleUserFormSubmit}
+              >
                 Add New User
               </FormBtn>
             </div>
@@ -337,79 +374,79 @@ class Admin extends Component {
           <div>
             <h2>Start a batch</h2>
             <p>Select a beer to brew:
-              <select>
-                <option value="beer1">Beer1</option>
-                <option value="beer2">Beer2</option>
-                <option value="beer3">Beer3</option>
-                <option value="beer4">Beer4</option>
-              </select>
+            <Select>
+              {this.state.recipes.map(recipe => (
+                <SelectItem key={recipe._id}>
+                  {recipe.name}
+                </SelectItem>
+              ))}
+            </Select>
             </p>
             <p>Volume(barrel):
-              <input name="volume" id="volume"/>
+              <Input
+                value={this.state.batchVol}
+                onChange={this.handleInputChange}
+                name="batchVol"
+                placeholder="Number of Barrels (required)"
+              />
             </p>
-            <button onClick={this.closeModal}>Brew</button>
+            <button onClick={this.handleBatchFormSubmit}>Brew</button>
             <button onClick={this.closeModal}>Cancel</button>
           </div>
           : this.state.recipeModalOpen ?
           <div>
             <h2>New Recipe</h2>
-            <form>
-              <p>Name:
+              <p>Name: </p>
                 <Input
                 value={this.state.recipeName}
                 onChange={this.handleInputChange}
                 name="recipeName"
                 placeholder="Recipe Name (required)"
                 />
-              </p>
-              <p>Style:
+              <p>Style: </p>
                 <Input
                   value={this.state.style}
                   onChange={this.handleInputChange}
                   name="style"
                   placeholder="Style (required)"
                 />
-              </p>
-              <p>ABV:
+              <p>ABV: </p>
                 <Input
                   value={this.state.abv}
                   onChange={this.handleInputChange}
                   name="abv"
                   placeholder="ABV (required)"
                 />
-              </p>
-              <p>Description:
+              <p>Description: </p>
                 <Input
                   value={this.state.recipeDesc}
                   onChange={this.handleInputChange}
                   name="recipeDesc"
                 />
-              </p>
-              <p>Brew Time(weeks):
-                <Input
-                  value={this.state.brewTime}
-                  onChange={this.handleInputChange}
-                  name="brewTime"
-                  placeholder="(required)"
-                />
-              </p>
-              <p>Production:
-                <select value={this.state.production}>
-                  <option value="Year-Round">Year-Round</option>
-                  <option value="Seasonal">Seasonal</option>
-                  <option value="Limited">Limited</option>
-                  <option value="Specailty">Specailty</option>
-                </select>
-              </p>
-              <p>Notes:
-                <Input
-                  value={this.state.recipeNotes}
-                  onChange={this.handleInputChange}
-                  name="recipeNotes"
-                />
-              </p>
-            </form>
-
+              <p>Brew Time(weeks): </p>
+              <Input
+                value={this.state.brewTime}
+                onChange={this.handleInputChange}
+                name="brewTime"
+                placeholder="(required)"
+              />
+              <p>Production: </p>
+              <select 
+                defaultValue={this.state.production}
+                onChange={this.handleChange}
+              >
+                <option value="Year-Round">Year-Round</option>
+                <option value="Seasonal">Seasonal</option>
+                <option value="Limited">Limited</option>
+                <option value="Specailty">Specailty</option>
+              </select>
+              <p>Notes: </p>
+              <Input
+                value={this.state.recipeNotes}
+                onChange={this.handleInputChange}
+                name="recipeNotes"
+              />
+              
             <button onClick={this.handleRecipeFormSubmit}>Add Recipe</button>
             <button onClick={this.closeModal}>Cancel</button>
           </div>
