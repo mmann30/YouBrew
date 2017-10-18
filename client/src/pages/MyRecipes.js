@@ -4,7 +4,7 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Modal from 'react-modal';
-import { EditBtn } from "../components/Buttons";
+import { EditBtn, DeleteBtn } from "../components/Buttons";
 var sessionStorage = require('web-storage')().sessionStorage;
 
 const isAdmin = sessionStorage.get("admin_token");
@@ -60,6 +60,13 @@ class MyRecipes extends Component {
       .catch(err => console.log(err));
   };
 
+  deleteRecipe = id => {
+    console.log(">>>>>>>>>>> " + id);
+    API.deleteRecipe(id)
+      .then(res => this.loadRecipes())
+      .catch(err => console.log(err));
+  };
+
   constructor() {
     super();
 
@@ -92,7 +99,27 @@ class MyRecipes extends Component {
             <List>
               {this.state.recipes.map(recipe => (
                 <ListItem key={recipe._id}>
-                    {isAdmin === true ? (<EditBtn class="editRec" onClick={this.openModal}>Edit</EditBtn>) : (<div />)}
+                    {isAdmin === true ? 
+                      (
+                        <EditBtn 
+                          class="editRec" 
+                          onClick={this.openModal}>
+                            Edit
+                        </EditBtn>
+                      ) : (
+                        <div />
+                      )}
+                    {isAdmin === true ?
+                      (
+                        <DeleteBtn
+                          class="deleteRec"
+                          onClick={() => this.deleteRecipe(recipe._id)}
+                        >
+                          Delete
+                        </DeleteBtn>
+                      ) : (
+                        <div />
+                      )}
                     <p id="recipeHeader" className="text-center">{recipe.name}</p>
                     <p id="style" className="text-center">{recipe.style}</p>
                     <p id="abv" className="text-center">{recipe.abv}</p>
