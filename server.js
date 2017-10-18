@@ -20,7 +20,7 @@ app.use(session({
 
 // Sets the PORT
 const PORT = process.env.PORT || 3001;
-const mongoURL = process.env.MONGO_URI || "mongodb://localhost/youbrew";
+const mongoURL = process.env.MONGODB_URI || "mongodb://localhost/youbrew";
 
 // Configure body parser
 app.use(bodyParser.urlencoded({ extended: false }));
