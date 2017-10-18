@@ -8,7 +8,7 @@
     "client": "cd client && npm run start",
     "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
     "build": "cd client && npm run build",
-    "deploy": "npm run build && git add . && git commit -m \"Building for production\" && git push heroku master",
+    "deploy": "npm run build && git add . && git commit -m \"Building for production\" && git subtree push --prefix build heroku master",
     "seed": "node scripts/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,7 +28,6 @@
     "jsonwebtoken": "7.4.3",
     "mongoose": "^4.11.7",
     "morgan": "^1.9.0",
-    "nodemailer": "^4.2.0",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.0",
     "react-modal": "^3.0.0",
