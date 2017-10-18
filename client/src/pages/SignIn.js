@@ -40,7 +40,7 @@ class SignIn extends Component {
                         console.log("admin stored");
                     };
                     self.setState({ email: "", password: "", submitted: true, error: "You are logged in!", errorType: "success" });
-                    
+
 
 
                 })
@@ -94,16 +94,16 @@ class SignIn extends Component {
 
           {this.state.errorType === "danger" ? (<div className="alert alert-danger col-md-10">{this.state.error}</div>) : (<div />)}
           {this.state.errorType === "success" ? (<div className="alert alert-success col-md-10">{this.state.error}</div>) : (<div />)}
-              
+
               <FormBtn
               className="btn btn-success"
                 disabled={!(this.state.email && this.state.password)}
                 onClick={this.handleFormSubmit}>
                 Submit User
               </FormBtn>
-              
+
             </form>
-            
+
           </Col>
 <Col size="md-3">
         </Col>
