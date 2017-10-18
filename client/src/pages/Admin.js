@@ -41,6 +41,10 @@ const modalStyles = {
   }
 };
 
+const bodyStyle = {
+  backgroundColor: "rgb(52,12,13)"
+}
+
 class Admin extends Component {
 
   state = {
@@ -195,6 +199,8 @@ class Admin extends Component {
     this.setState({modalIsOpen: false, name:"", email:"", password: "", isAdmin: false, error:""});
     this.forceUpdate();
   }
+
+
 
   render() {
     const users = this.state.users;
