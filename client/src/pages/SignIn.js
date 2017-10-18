@@ -103,10 +103,7 @@ class SignIn extends Component {
 
               <div className="col-md-1">  </div>
           {this.state.errorType === "danger" ? (<div className="floatR alert alert-danger col-md-8 text-center">{this.state.error}</div>) : (<div />)}
-          {this.state.errorType === "success" ? (<div className="floatR alert alert-success col-md-8 text-center">{this.state.error}</div>) : (<div />)}
-
-
-
+          {this.state.errorType === "success" ? (<div className="floatR alert alert-success col-md-8 text-center">{this.state.error}</div>) : (<div />)}      
 </div>
 
             </form>
