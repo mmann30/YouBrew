@@ -1,0 +1,41 @@
+{
+  "name": "youbrew",
+  "version": "1.0.0",
+  "description": "Youbrew is a MERN stack application used to communicate production and avialable inventory to sales representatives of craft breweries",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "client": "cd client && npm run start",
+    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
+    "build": "cd client && npm run build",
+    "deploy": "npm run build && git add . && git commit -m \"Building for production\" && git push heroku master",
+    "seed": "node scripts/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tyler Finkle, Florian Hutter, Andrew Coleman, Michael Mann",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "auth0-js": "^8.10.1",
+    "axios": "^0.16.2",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "7.4.3",
+    "mongoose": "^4.11.7",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.2.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0",
+    "react-modal": "^3.0.0",
+    "react-modal-bootstrap": "^1.1.1",
+    "react-router-redux": "^4.0.8",
+    "react-table": "^6.6.0",
+    "react-toggle-switch": "^3.0.3",
+    "web-storage": "^1.0.0"
+  }
+}
