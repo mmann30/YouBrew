@@ -77,6 +77,7 @@ class SignIn extends Component {
             <h1>Welcome to YouBrew!</h1>
             <p>This is an application that helps commercial beer crafters to overview their stock and also brews in progress. Our app is the link between the brewer and the sales force and will help you with the following tasks.</p>
             <form>
+
               <Input
               type="email"
                 value={this.state.email}
@@ -91,17 +92,21 @@ class SignIn extends Component {
                 name="password"
                 placeholder="Password (required)"
               />
-
-          {this.state.errorType === "danger" ? (<div className="alert alert-danger col-md-10">{this.state.error}</div>) : (<div />)}
-          {this.state.errorType === "success" ? (<div className="alert alert-success col-md-10">{this.state.error}</div>) : (<div />)}
-
+<div>
               <FormBtn
-              className="btn btn-success"
+              className="btn btn-success submit"
                 disabled={!(this.state.email && this.state.password)}
                 onClick={this.handleFormSubmit}>
                 Submit User
               </FormBtn>
+              <div className="col-md-1">  </div>
+          {this.state.errorType === "danger" ? (<div className="floatR alert alert-danger col-md-8 text-center">{this.state.error}</div>) : (<div />)}
+          {this.state.errorType === "success" ? (<div className="floatR alert alert-success col-md-8 text-center">{this.state.error}</div>) : (<div />)}
 
+
+              
+</div>
+              
             </form>
 
           </Col>
