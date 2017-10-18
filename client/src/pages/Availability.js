@@ -8,7 +8,8 @@ import { Select, SelectItem } from "../components/Select";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
 import "react-table/react-table.css";
-import { ReactTableDefaults } from 'react-table'
+import { ReactTableDefaults } from 'react-table';
+var moment = require('moment');
 var sessionStorage = require('web-storage')().sessionStorage;
 
 
@@ -217,33 +218,33 @@ class Availability extends Component {
                 accessor: "progressBar",
 				        maxWidth: 200,
                 Cell: row => (
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundColor: '#dadada',
-              borderRadius: '2px'
-            }}
-          >
-            <div
-              style={{
-                width: `${row.value}%`,
-                height: '100%',
-                backgroundColor: row.value > 66 ? '#85cc00'
-                  : row.value > 33 ? '#ffbf00'
-                  : '#ff2e00',
-                borderRadius: '2px',
-                transition: 'all .2s ease-out'
-              }}
-            />
-          </div>
-        )
+                                <div
+                                  style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    backgroundColor: '#dadada',
+                                    borderRadius: '2px'
+                                  }}
+                                >
+                                  <div
+                                    style={{
+                                      width: `${row.value}%`,
+                                      height: '100%',
+                                      backgroundColor: row.value > 66 ? '#85cc00'
+                                        : row.value > 33 ? '#ffbf00'
+                                        : '#ff2e00',
+                                      borderRadius: '2px',
+                                      transition: 'all .2s ease-out'
+                                    }}
+                                  />
+                                </div>
+                              )
               },
               {
                 Header: "Ready by",
                 accessor: "endDate",
                 maxWidth: 125,
-
+                Cell: row => (moment(row.value).format('MMMM Do YYYY'))
 
               }]}
             />
