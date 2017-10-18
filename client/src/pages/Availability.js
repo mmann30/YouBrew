@@ -243,7 +243,7 @@ class Availability extends Component {
               {
                 Header: "Ready by",
                 accessor: "endDate",
-                maxWidth: 125,
+                maxWidth: 150,
                 Cell: row => (moment(row.value).format('MMMM Do YYYY'))
 
               }]}
