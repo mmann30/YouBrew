@@ -36,7 +36,7 @@ app.use(passport.initialize());
 mongoose.Promise = Promise;
 // Connect to MongoDB
 mongoose.connect(
-    process.env.MONGOD_URI || "mongodb://localhost/youbrew",
+    "mongodb://ds121955.mlab.com:21955/heroku_tdqqc3x2" || "mongodb://localhost/youbrew",
     {
         useMongoClient: true
     }
