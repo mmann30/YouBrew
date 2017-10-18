@@ -6,7 +6,10 @@ body{
 h1 {
 	font-family: 'Carter One', cursive;
 }
-
+.floatR{
+  float: right;
+  position: relative;
+}
 .submit{
   float: left;
   position: relative;

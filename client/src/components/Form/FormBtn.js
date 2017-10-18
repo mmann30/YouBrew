@@ -1,6 +1,6 @@
 import React from "react";
 
 export const FormBtn = props =>
-  <button {...props} style={{ float: "right" }} >
+  <button {...props}>
     {props.children}
   </button>;

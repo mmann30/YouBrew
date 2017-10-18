@@ -83,10 +83,6 @@ export default {
     newUser: function(userData) {
         return axios.post("/api/user/signup", userData).then(function(response) {
                 console.log(response);
-            }).then(res => {
-
-                push('/availability') /* dispatch an action that changes the browser history */
-
             })
             .catch(function(error) {
                 console.log(error);
