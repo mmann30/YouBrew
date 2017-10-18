@@ -20,6 +20,7 @@ app.use(session({
 
 // Sets the PORT
 const PORT = process.env.PORT || 3001;
+const mongoURL = process.env.MONGO_URI || "mongodb://localhost/youbrew";
 
 // Configure body parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,7 +37,7 @@ app.use(passport.initialize());
 mongoose.Promise = Promise;
 // Connect to MongoDB
 mongoose.connect(
-    "mongodb://ds121955.mlab.com:21955/heroku_tdqqc3x2" || "mongodb://localhost/youbrew",
+    mongoURL,
     {
         useMongoClient: true
     }
