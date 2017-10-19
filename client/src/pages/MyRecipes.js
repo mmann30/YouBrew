@@ -40,7 +40,8 @@ class MyRecipes extends Component {
 
   state = {
      modalIsOpen: false,
-     recipes: []
+     recipes: [],
+     name: "",
   };
 
   componentWillMount() {
@@ -76,7 +77,10 @@ class MyRecipes extends Component {
   }
 
   openModal() {
-    this.setState({ modalIsOpen: true});
+    this.setState({
+      modalIsOpen: true,
+      name: ""
+    });
   };
 
   afterOpenModal() {

@@ -359,17 +359,17 @@ class Admin extends Component {
             </p>
             <div className="form-group">
               <FormBtn
-                className="cancel btn btn-primary"
-                onClick={this.closeModal}
-              >
-                Close
-              </FormBtn>
-              <FormBtn
                 className="submit btn btn-primary"
                 disabled={!(this.state.email && this.state.password && this.state.password)}
                 onClick={this.handleUserFormSubmit}
               >
                 Add New User
+              </FormBtn>
+              <FormBtn
+                className="cancel btn btn-primary"
+                onClick={this.closeModal}
+              >
+                Close
               </FormBtn>
             </div>
             <br/>
