@@ -94,13 +94,19 @@ class Admin extends Component {
                   isAdmin: this.state.isAdmin
               })).then(function(response) {
                   console.log(response.request);
-                  self.setState({ name: "", email: "", password: "", isAdmin: "", error: "" });
+                  self.setState({
+                    name: "",
+                    email: "",
+                    password: "",
+                    isAdmin: "",
+                    modalIsOpen: false,
+                    error: "" });
               })
               .catch(function(error) {
                   console.log(error.request.response);
                   self.setState({error:error.request.response});
               });
-              
+
       //     API.newUser({
 
       //       name: this.state.name,
@@ -111,7 +117,7 @@ class Admin extends Component {
       //     }).catch(err => console.log(err))
 
       };
-
+      this.closeModal();
 
   };
 
