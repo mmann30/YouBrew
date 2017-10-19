@@ -100,7 +100,7 @@ class Admin extends Component {
                   console.log(error.request.response);
                   self.setState({error:error.request.response});
               });
-
+              
       //     API.newUser({
 
       //       name: this.state.name,
@@ -363,7 +363,7 @@ class Admin extends Component {
                 disabled={!(this.state.email && this.state.password && this.state.password)}
                 onClick={this.handleUserFormSubmit}
               >
-                Add New User
+                Add User
               </FormBtn>
               <FormBtn
                 className="cancel btn btn-primary"

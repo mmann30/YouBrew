@@ -108,7 +108,7 @@ class MyRecipes extends Component {
                         <EditBtn
                           class="editRec"
                           onClick={this.openModal}>
-                            Edit
+                          Edit
                         </EditBtn>
                       ) : (
                         <div />
@@ -119,7 +119,7 @@ class MyRecipes extends Component {
                           className="cancel btn btn-danger"
                           onClick={() => this.deleteRecipe(recipe._id)}
                         >
-                          Delete
+                        Delete
                         </DeleteBtn>
                       ) : (
                         <div />

@@ -80,9 +80,7 @@ h1 {
 	border-radius: 10px;
 }
 
-/*#recipeinput {
-	width: 50%;
-}*/
+
 
 #editrecipe{
 	margin-top: 20px;
@@ -141,7 +139,7 @@ h1 {
   margin-bottom: 0px;
   grid-row-start: 2;
   grid-row-end: 3;
-	
+
 }
 
 .text-muted {
