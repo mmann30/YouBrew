@@ -313,8 +313,16 @@ class Admin extends Component {
               <input onChange={this.handleInputChange} type="checkbox" name="isAdmin" id="isAdmin" value={this.state.isAdmin}/>
                &zwnj; &zwnj; Give administrative privileges
             </p>
-            <button onClick={this.closeModal}>Add user</button>
-            <button onClick={this.closeModal}>Cancel</button>
+            <FormBtn
+              className="cancel btn btn-primary"
+              onClick={this.closeModal}>
+              Add user
+            </FormBtn>
+            <FormBtn
+              className="cancel btn btn-primary"
+              onClick={this.closeModal}>
+              Cancel
+            </FormBtn>
           </div>
           : this.state.userModalOpen ?
           <div>
@@ -351,13 +359,13 @@ class Admin extends Component {
             </p>
             <div className="form-group">
               <FormBtn
-                className="cancel btn btn-danger"
+                className="cancel btn btn-primary"
                 onClick={this.closeModal}
               >
                 Close
               </FormBtn>
               <FormBtn
-                className="submit btn btn-success"
+                className="submit btn btn-primary"
                 disabled={!(this.state.email && this.state.password && this.state.password)}
                 onClick={this.handleUserFormSubmit}
               >
@@ -390,8 +398,16 @@ class Admin extends Component {
                 placeholder="Number of Barrels (required)"
               />
             </p>
-            <button onClick={this.handleBatchFormSubmit}>Brew</button>
-            <button onClick={this.closeModal}>Cancel</button>
+            <FormBtn
+              className="cancel btn btn-primary"
+              onClick={this.handleBatchFormSubmit}>
+              Brew
+            </FormBtn>
+            <FormBtn
+              className="cancel btn btn-primary"
+              onClick={this.closeModal}>
+              Cancel
+            </FormBtn>
           </div>
           : this.state.recipeModalOpen ?
           <div>

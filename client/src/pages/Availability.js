@@ -228,11 +228,9 @@ class Availability extends Component {
                                 >
                                   <div
                                     style={{
-                                      width: `${row.value}%`,
+                                      width: "75%",
                                       height: '100%',
-                                      backgroundColor: row.value > 66 ? '#85cc00'
-                                        : row.value > 33 ? '#ffbf00'
-                                        : '#ff2e00',
+                                      backgroundColor: '#85cc00',
                                       borderRadius: '2px',
                                       transition: 'all .2s ease-out'
                                     }}
