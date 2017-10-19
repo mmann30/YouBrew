@@ -174,7 +174,7 @@ class Availability extends Component {
       <Container>
         <Row>
           <Col size="md-14">
-            <h1><img id="logo" src="assets/images/inventorylogo.png" />Inventory</h1>
+            <h1>Inventory</h1>
             <ReactTable className="table-style -striped -highlight"
               data={recipes}
               columns={[
@@ -213,7 +213,7 @@ class Availability extends Component {
         </Row>
         <Row>
           <Col size="md-14">
-            <h1><img id="logo" src="assets/images/inprocesslogo.png" />In process</h1>
+            <h1>In process</h1>
             <ReactTable className="table-style -striped -highlight"
               data={batches}
               columns={[
