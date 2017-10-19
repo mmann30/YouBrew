@@ -93,7 +93,7 @@ class Admin extends Component {
                   password: this.state.password,
                   isAdmin: this.state.isAdmin
               })).then(function(response) {
-                  console.log(response.request); 
+                  console.log(response.request);
                   self.setState({ name: "", email: "", password: "", isAdmin: "", error: "" });
               })
               .catch(function(error) {
@@ -340,11 +340,11 @@ class Admin extends Component {
               placeholder="Password (required)"
             />
             <p>
-            <input 
-              type="checkbox" 
-              name="isAdmin" 
-              value={this.state.isAdmin} 
-              onChange={this.handleInputChange} 
+            <input
+              type="checkbox"
+              name="isAdmin"
+              value={this.state.isAdmin}
+              onChange={this.handleInputChange}
               onClick={console.log(this.state)}
             />
               Give admin privileges?
@@ -366,7 +366,7 @@ class Admin extends Component {
             </div>
             <br/>
             <br/>
-          {this.state.error != "" ? (<div className="alert alert-danger">{this.state.error}</div>) : (<div />)}              
+          {this.state.error != "" ? (<div className="alert alert-danger">{this.state.error}</div>) : (<div />)}
 
           </div>
 
@@ -431,7 +431,7 @@ class Admin extends Component {
                 placeholder="(required)"
               />
               <p>Production: </p>
-              <select 
+              <select
                 defaultValue={this.state.production}
                 onChange={this.handleChange}
               >
@@ -446,9 +446,16 @@ class Admin extends Component {
                 onChange={this.handleInputChange}
                 name="recipeNotes"
               />
-              
-            <button onClick={this.handleRecipeFormSubmit}>Add Recipe</button>
-            <button onClick={this.closeModal}>Cancel</button>
+              <FormBtn
+                className="cancel btn btn-primary"
+                onClick={this.handleRecipeFormSubmit}>
+                Add Recipe
+              </FormBtn>
+              <FormBtn
+                className="cancel btn btn-primary"
+                onClick={this.closeModal}>
+                Cancel
+              </FormBtn>
           </div>
           :
           console.log("nah")
