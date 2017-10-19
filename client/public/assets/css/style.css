@@ -1,10 +1,19 @@
 body{
 	color: #30231d;
 	font-family: 'Viga', sans-serif;
+	margin-bottom: 30px;
+	background-color: rgb(252,248,229);
 }
 
 h1 {
 	font-family: 'Carter One', cursive;
+	font-size: 30px;
+}
+
+h2 {
+	font-family: 'Carter One', cursive;
+	font-size: 30px;
+	margin-left: 20%;
 }
 
 ul.nav.navbar-nav.navbar-right{
@@ -105,10 +114,8 @@ li.list-group-item{
 	margin-top: 20px;
 }
 
-#recipeHeader{
-	font-size: 30px;
-	margin-bottom: 20px;
-	margin-top: 20px;
+.recipeheader{
+	margin-left: 40%
 }
 
 #login.btn{

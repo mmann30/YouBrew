@@ -45,6 +45,7 @@ class Request extends Component {
 =======
       <Container fluid id="requestform">
 		<Container id="requestcontainer">
+		<h1><img id="logo" src="assets/images/requestlogo.png" />Request</h1>
         <form>
         <div className="form-group">
           <label htmlFor="exampleFormControlInput1">Name</label>
