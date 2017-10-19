@@ -100,7 +100,7 @@ class MyRecipes extends Component {
 
       <Container className="containermyrecipes">
 
-        <h2><img id="logo" src="assets/images/myrecipes.png" />My Recipes</h2>
+        <h2><img id="logo" src="assets/images/myrecipes.png" />Recipes</h2>
           {this.state.recipes.length ? (
             <List>
               {this.state.recipes.map(recipe => (
