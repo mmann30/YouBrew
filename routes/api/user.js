@@ -11,18 +11,13 @@ var sessionStorage = require('web-storage')().sessionStorage;
 var nodemailer = require('nodemailer');
 var emailsend = "";
 
-            var transport = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com", // hostname
-    secureConnection: false, // TLS requires secureConnection to be false
-    port: 587, // port for secure SMTP
-    auth: {
-        user: "youbrewapp@outlook.com",
-        pass: "99bottlesofbeer"
-    },
-    tls: {
-        ciphers:'SSLv3'
-    }
-});
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'youbrewapp@outlook.com',
+                    pass: 'ayiwotgxnabaldbf'
+                }
+            });
 
 router.post('/signup', function(req, res) {
     if (!req.body.name || !req.body.password || !req.body.email || !req.body.name) {
@@ -36,7 +31,7 @@ router.post('/signup', function(req, res) {
             isAdmin: req.body.isAdmin,
         });
                     var mailOptions = {
-                from: 'youbrewapp@outlook.com',
+                from: 'youbrewapp@gmail.com',
                 to: emailsend,
                 subject: 'You Brew!',
                 html: '<img style="width:200px;height:200px;" src="cid:YouBrewLogoMin.png"/><br/><br/><h3>Hello '+req.body.name+', You are now registered with You Brew.  Contact your administrator for your password</h3> <h4>Log in <a href=https://youbrew.herokuapp.com/>HERE</a></h4><h6>This email was generated automatically, please do not reply.',
