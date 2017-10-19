@@ -45,7 +45,7 @@ module.exports = {
   updateRecipeVolByName: function(req, res) {
     db.Recipe
       .findOneAndUpdate(
-        { name: req.params.name },
+        { name: decodeURI(req.params.name) },
         { $inc: { availVol: req.params.vol }},
         {upsert: true, returnNewDocument: true})
       .then(dbModel => res.json(dbModel))
