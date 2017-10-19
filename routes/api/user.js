@@ -9,6 +9,7 @@ var jwt = require('jsonwebtoken');
 var user = require("../../models/user");
 var sessionStorage = require('web-storage')().sessionStorage;
 var nodemailer = require('nodemailer');
+var emailsend = "";
 
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -22,6 +23,7 @@ router.post('/signup', function(req, res) {
     if (!req.body.name || !req.body.password || !req.body.email || !req.body.name) {
         res.status(401).send('Need name, email, and password');
     } else {
+            emailsend = req.body.email;
         var newUser = new user({
             name: req.body.name,
             email: req.body.email,
@@ -30,7 +32,7 @@ router.post('/signup', function(req, res) {
         });
                     var mailOptions = {
                 from: 'youbrewapp@gmail.com',
-                to: "tbfinkle@gmail.com",
+                to: emailsend,
                 subject: 'You Brew!',
                 html: '<img style="width:200px;height:200px;" src="cid:YouBrewLogoMin.png"/><br/><br/><h3>Hello '+req.body.name+', You are now registered with You Brew.  Contact your administrator for your password</h3> <h4>Log in <a href=https://youbrew.herokuapp.com/>HERE</a></h4><h6>This email was generated automatically, please do not reply.',
                 attachments: [{
