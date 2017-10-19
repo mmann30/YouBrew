@@ -153,7 +153,7 @@ class Availability extends Component {
       .then(res => this.loadRecipes())
       .then(API.deleteBatch(obj._id))
         .then(res => this.loadBatches())
-      .catch(err => console.log(err))  
+      .catch(err => console.log(err))
   }
   // Calculates the percentage of time passed from
   // two dates.
@@ -174,7 +174,7 @@ class Availability extends Component {
       <Container>
         <Row>
           <Col size="md-14">
-            <h1>Inventory</h1>
+            <h1><img id="logo" src="assets/images/inventorylogo.png" />Inventory</h1>
             <ReactTable className="table-style -striped -highlight"
               data={recipes}
               columns={[
@@ -213,7 +213,7 @@ class Availability extends Component {
         </Row>
         <Row>
           <Col size="md-14">
-            <h1>In process</h1>
+            <h1><img id="logo" src="assets/images/inprocess.png" />In process</h1>
             <ReactTable className="table-style -striped -highlight"
               data={batches}
               columns={[
@@ -268,8 +268,8 @@ class Availability extends Component {
 	              maxWidth: 80,
                 Cell: row => (
                   <div>
-                    <OrderBtn 
-                      id="orderDone" 
+                    <OrderBtn
+                      id="orderDone"
                       onClick={() => this.batchReady(row.original)}
                     >
                       Ready

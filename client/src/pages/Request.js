@@ -14,7 +14,7 @@ class Request extends Component {
     return (
       <Container>
         <form style={{width: "70%"}}>
-          <h1>Request</h1>
+          <h1><img id="logo" src="assets/images/requestlogo.png" />Request</h1>
           <h4>Request a new batch to be put into production</h4>
           <div className="form-group">
             <label htmlFor="exampleFormControlInput1">Name</label>

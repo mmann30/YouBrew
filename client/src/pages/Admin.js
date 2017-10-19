@@ -264,7 +264,7 @@ class Admin extends Component {
 
         <Row>
           <Col size="md-14">
-            <h1>Access Control</h1>
+            <h1><img id="logo" src="assets/images/administratorlogo.png" />Access Control</h1>
             <ReactTable className="-striped -highlight"
               data={users}
               columns={[{
