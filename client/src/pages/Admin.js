@@ -94,7 +94,13 @@ class Admin extends Component {
                   isAdmin: this.state.isAdmin
               })).then(function(response) {
                   console.log(response.request);
-                  self.setState({ name: "", email: "", password: "", isAdmin: "", error: "" });
+                  self.setState({
+                    name: "",
+                    email: "",
+                    password: "",
+                    isAdmin: "",
+                    modalIsOpen: false,
+                    error: "" });
               })
               .catch(function(error) {
                   console.log(error.request.response);
@@ -111,7 +117,7 @@ class Admin extends Component {
       //     }).catch(err => console.log(err))
 
       };
-
+      this.closeModal();
 
   };
 
@@ -359,17 +365,17 @@ class Admin extends Component {
             </p>
             <div className="form-group">
               <FormBtn
-                className="cancel btn btn-primary"
-                onClick={this.closeModal}
-              >
-                Close
-              </FormBtn>
-              <FormBtn
                 className="submit btn btn-primary"
                 disabled={!(this.state.email && this.state.password && this.state.password)}
                 onClick={this.handleUserFormSubmit}
               >
-                Add New User
+                Add User
+              </FormBtn>
+              <FormBtn
+                className="cancel btn btn-primary"
+                onClick={this.closeModal}
+              >
+                Close
               </FormBtn>
             </div>
             <br/>

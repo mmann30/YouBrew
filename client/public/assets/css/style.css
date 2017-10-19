@@ -99,9 +99,7 @@ li.list-group-item{
 	border-radius: 10px;
 }
 
-/*#recipeinput {
-	width: 50%;
-}*/
+
 
 #editrecipe{
 	margin-top: 20px;
@@ -161,7 +159,7 @@ li.list-group-item{
   margin-bottom: 0px;
   grid-row-start: 2;
   grid-row-end: 3;
-	
+
 }
 
 .text-muted {
