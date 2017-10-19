@@ -20,7 +20,7 @@ function seedBatch() {
         isReady: false
     },
     {
-        name: "Souther BEL",
+        name: "Southern BEL",
         style: "Belgian single",
         availVol: 40,
         totalVol: 40,
