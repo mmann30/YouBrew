@@ -9,6 +9,7 @@ import ReactTable from 'react-table';
 import Modal from 'react-modal';
 import "react-table/react-table.css";
 import { ReactTableDefaults } from 'react-table';
+import { Input, TextArea, FormBtn } from "../components/Form";
 var moment = require('moment');
 var sessionStorage = require('web-storage')().sessionStorage;
 
@@ -21,7 +22,7 @@ Object.assign(ReactTableDefaults, {
 });
 
 // ============react-modal styles=================
-const orderModalStyles = {
+const modalStyles = {
   overlay : {
     position          : 'fixed',
     top               : 0,
@@ -31,14 +32,15 @@ const orderModalStyles = {
     backgroundColor   : 'rgba(77,68,41,0.57)'
   },
   content : {
-    top               : '40%',
+    width             : '500px',
+    top               : '50%',
     left              : '50%',
     right             : 'auto',
     bottom            : 'auto',
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
-	backgroundColor   : 'rgba(255,230,153,1.00)',
-	borderRadius      : '10px',
+  	backgroundColor   : 'rgba(255,255,255,1.00)',
+  	borderRadius      : '10px',
   }
 };
 
@@ -228,11 +230,9 @@ class Availability extends Component {
                                 >
                                   <div
                                     style={{
-                                      width: `${row.value}%`,
+                                      width: "75%",
                                       height: '100%',
-                                      backgroundColor: row.value > 66 ? '#85cc00'
-                                        : row.value > 33 ? '#ffbf00'
-                                        : '#ff2e00',
+                                      backgroundColor: '#85cc00',
                                       borderRadius: '2px',
                                       transition: 'all .2s ease-out'
                                     }}
@@ -255,7 +255,7 @@ class Availability extends Component {
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
-          style={orderModalStyles}
+          style={modalStyles}
           contentLabel="order"
         >
           <h2>{this.state.name}</h2>
@@ -279,8 +279,16 @@ class Availability extends Component {
             <input type="hidden" id="id" name="id" value={this.state._id}/>
           </form>
 
-          <button onClick={this.closeModal}>Cancel</button>
-          <button onClick={this.handleFormSubmit}>Submit</button>
+          <FormBtn
+            className="cancel btn btn-primary"
+            onClick={this.closeModal}>
+            Cancel
+          </FormBtn>
+          <FormBtn
+            className="cancel btn btn-primary"
+            onClick={this.handleFormSubmit}>
+            Submit
+          </FormBtn>
 
         </Modal>
 
