@@ -5,6 +5,8 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Modal from 'react-modal';
 import { EditBtn, DeleteBtn } from "../components/Buttons";
+import { Input, TextArea, FormBtn } from "../components/Form";
+
 var sessionStorage = require('web-storage')().sessionStorage;
 
 const isAdmin = sessionStorage.get("admin_token");
@@ -18,20 +20,18 @@ const modalStyles = {
     left              : 0,
     right             : 0,
     bottom            : 0,
-    backgroundColor   : 'rgba(0,0,0,0.73)'
+    backgroundColor   : 'rgba(77,68,41,0.57)'
   },
   content : {
-	width			  : '80%',
-	input			  : '100%',
-    top               : '40%',
+    width             : '500px',
+    top               : '50%',
     left              : '50%',
     right             : 'auto',
     bottom            : 'auto',
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
-	background        : 'rgba(255,230,153,1.00)',
-	inputwidth		  : '100%',
-	borderRadius      : '10px',
+  	backgroundColor   : 'rgba(255,255,255,1.00)',
+  	borderRadius      : '10px',
   }
 };
 // ===================================================
@@ -156,8 +156,16 @@ class MyRecipes extends Component {
             <p>Notes: <input id="recipeinput"/></p><br />
           </form>
 
-          <button onClick={this.closeModal}>Cancel</button>
-          <button onClick={this.closeModal}>Submit</button>
+          <FormBtn
+            className="cancel btn btn-primary"
+            onClick={this.closeModal}>
+            Cancel
+          </FormBtn>
+          <FormBtn
+            className="cancel btn btn-primary"
+            onClick={this.closeModal}>
+            Submit
+          </FormBtn>
         </Modal>
 
       </Container>
