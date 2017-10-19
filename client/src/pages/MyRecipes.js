@@ -94,6 +94,7 @@ class MyRecipes extends Component {
     return (
 
       <Container>
+		<h2><img id="logo" src="assets/images/myrecipeslogo.png" />My Recipes</h2>
         <div>
           {this.state.recipes.length ? (
             <List>
