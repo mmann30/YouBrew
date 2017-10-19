@@ -40,6 +40,9 @@ export default {
     updateRecipeVol: function(id, vol) {
         return axios.put("api/recipe/" + id + "/" + vol);
     },
+    updateRecipeVolByName: function(name, vol) {
+        return axios.put("api/recipe/volbyname/" + name + "/" + vol );
+    },
     deleteRecipe: function(id) {
        return axios.delete("api/recipe/" + id);
     },

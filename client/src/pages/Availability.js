@@ -147,6 +147,23 @@ class Availability extends Component {
     num = -num;
     return num;
   }
+
+  batchReady(obj) {
+    API.updateRecipeVolByName(obj.name, obj.totalVol, obj._id)
+      .then(res => this.loadRecipes())
+      .then(API.deleteBatch(obj._id))
+        .then(res => this.loadBatches())
+      .catch(err => console.log(err))  
+  }
+  // Calculates the percentage of time passed from
+  // two dates.
+  // getProgress = (startDate, endDate) => {
+  //   let totalTime = endDate - startDate;
+  //   let timePassed = Date.now() - startDate;
+  //   console.log("TIME PASSED>>>>>>>" + timePassed);
+  //   return (timePassed / totalTime) * 100 + "%";
+  // }
+
   // =============================================
 
   render() {
@@ -156,7 +173,7 @@ class Availability extends Component {
     return (
       <Container>
         <Row>
-          <Col size="md-10">
+          <Col size="md-14">
             <h1>Inventory</h1>
             <ReactTable className="table-style -striped -highlight"
               data={recipes}
@@ -184,7 +201,6 @@ class Availability extends Component {
               {
                 Header: "Options",
                 accessor: "options",
-
 	              maxWidth: 80,
                 Cell: row => (
                   <div>
@@ -196,7 +212,7 @@ class Availability extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="md-10">
+          <Col size="md-14">
             <h1>In process</h1>
             <ReactTable className="table-style -striped -highlight"
               data={batches}
@@ -245,7 +261,21 @@ class Availability extends Component {
                 accessor: "endDate",
                 maxWidth: 150,
                 Cell: row => (moment(row.value).format('MMMM Do YYYY'))
-
+              },
+              {
+                Header: "Options",
+                accessor: "options",
+	              maxWidth: 80,
+                Cell: row => (
+                  <div>
+                    <OrderBtn 
+                      id="orderDone" 
+                      onClick={() => this.batchReady(row.original)}
+                    >
+                      Ready
+                    </OrderBtn>
+                  </div>
+                ),
               }]}
             />
           </Col>

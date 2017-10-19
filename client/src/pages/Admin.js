@@ -263,7 +263,7 @@ class Admin extends Component {
       <Container>
 
         <Row>
-          <Col size="md-10">
+          <Col size="md-14">
             <h1>Access Control</h1>
             <ReactTable className="-striped -highlight"
               data={users}

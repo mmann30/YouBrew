@@ -18,7 +18,7 @@ class MySales extends Component {
  <Container>
 
         <Row>
-          <Col size="md-10">
+          <Col size="md-12">
             <h1>My Sales</h1>
             <ReactTable className="-striped -highlight"
               data={[{

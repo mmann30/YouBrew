@@ -6,6 +6,15 @@ body{
 h1 {
 	font-family: 'Carter One', cursive;
 }
+
+ul.nav.navbar-nav.navbar-right{
+	margin-top: 5px;
+}
+
+.navbar-toggle{
+	margin-top: 12px;
+}
+
 .floatR{
   float: right;
   position: relative;
@@ -22,8 +31,18 @@ h1 {
 	margin-right: 20px;
 }
 
-#arches{
-	height: 30px;
+
+textarea.form-control {
+    margin-bottom: 20px;
+}
+
+div.containermyrecipes {
+	padding-top: 17px;
+	background-color: #FDF8E5;
+}
+
+li.list-group-item{
+	border-color: #31231D;
 }
 
 #emptytop{
@@ -89,6 +108,7 @@ h1 {
 #recipeHeader{
 	font-size: 30px;
 	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 #login.btn{
