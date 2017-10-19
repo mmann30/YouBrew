@@ -11,7 +11,7 @@ var sessionStorage = require('web-storage')().sessionStorage;
 var nodemailer = require('nodemailer');
 var emailsend = "";
 
-            var transporter = nodemailer.createTransport("SMTP", {
+            var transporter = nodemailer.createTransport({
                 service: 'hotmail',
                 auth: {
                     user: 'youbrewapp@outlook.com',
