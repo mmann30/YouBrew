@@ -6,6 +6,15 @@ body{
 h1 {
 	font-family: 'Carter One', cursive;
 }
+
+ul.nav.navbar-nav.navbar-right{
+	margin-top: 5px;
+}
+
+.navbar-toggle{
+	margin-top: 12px;
+}
+
 .floatR{
   float: right;
   position: relative;
@@ -22,8 +31,18 @@ h1 {
 	margin-right: 20px;
 }
 
-#arches{
-	height: 30px;
+
+textarea.form-control {
+    margin-bottom: 20px;
+}
+
+div.containermyrecipes {
+	padding-top: 17px;
+	background-color: #FDF8E5;
+}
+
+li.list-group-item{
+	border-color: #31231D;
 }
 
 #emptytop{
@@ -75,14 +94,13 @@ h1 {
 	max-width: 100%;
 	padding: 30px;
 	position: relative;
-	margin-left: 20%;
-	margin-right: 20%;
+	/*margin-left: 20%;*/
+	/*margin-right: 20%;*/
 	border-radius: 10px;
+	
 }
 
-/*#recipeinput {
-	width: 50%;
-}*/
+
 
 #editrecipe{
 	margin-top: 20px;
@@ -91,6 +109,7 @@ h1 {
 #recipeHeader{
 	font-size: 30px;
 	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 #login.btn{
@@ -141,7 +160,7 @@ h1 {
   margin-bottom: 0px;
   grid-row-start: 2;
   grid-row-end: 3;
-	
+
 }
 
 .text-muted {
