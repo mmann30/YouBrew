@@ -12,7 +12,8 @@ class Request extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container fluid id="requestform">
+		<Container id="requestcontainer">
         <form>
         <div className="form-group">
           <label htmlFor="exampleFormControlInput1">Name</label>
@@ -36,9 +37,10 @@ class Request extends Component {
           <label>Notes</label>
           <textarea className="form-control" id="requestNotes" rows={6} defaultValue={""} />
 
-           <RequestBtn id="mail" >Send Request</RequestBtn>
+           <RequestBtn className="requestbutton" id="mail" >Send Request</RequestBtn>
         </div>
       </form>
+	  </Container>
       </Container>
     )
   }

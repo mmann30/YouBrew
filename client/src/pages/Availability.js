@@ -173,7 +173,7 @@ class Availability extends Component {
     return (
       <Container>
         <Row>
-          <Col size="md-10">
+          <Col size="md-14">
             <h1>Inventory</h1>
             <ReactTable className="table-style -striped -highlight"
               data={recipes}
@@ -212,7 +212,7 @@ class Availability extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="md-10">
+          <Col size="md-14">
             <h1>In process</h1>
             <ReactTable className="table-style -striped -highlight"
               data={batches}
