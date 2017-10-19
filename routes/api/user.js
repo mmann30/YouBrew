@@ -11,13 +11,18 @@ var sessionStorage = require('web-storage')().sessionStorage;
 var nodemailer = require('nodemailer');
 var emailsend = "";
 
-            var transporter = nodemailer.createTransport({
-                service: 'hotmail',
-                auth: {
-                    user: 'youbrewapp@outlook.com',
-                    pass: '99bottlesofbeer'
-                }
-            });
+            var transport = nodemailer.createTransport("SMTP", {
+    host: "smtp-mail.outlook.com", // hostname
+    secureConnection: false, // TLS requires secureConnection to be false
+    port: 587, // port for secure SMTP
+    auth: {
+        user: "youbrewapp@outlook.com",
+        pass: "99bottlesofbeer"
+    },
+    tls: {
+        ciphers:'SSLv3'
+    }
+});
 
 router.post('/signup', function(req, res) {
     if (!req.body.name || !req.body.password || !req.body.email || !req.body.name) {
