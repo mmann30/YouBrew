@@ -27,6 +27,24 @@ function seedBatch() {
         date: Date.now(),
         endDate: Date.now() + 10000,
         isReady: false
+    },
+    {
+        name: "Equilibrium",
+        style: "pale ale",
+        availVol: 20,
+        totalVol: 20,
+        date: Date.now(),
+        endDate: Date.now() + 6000,
+        isReady: false
+    },
+    {
+        name: "EveryDay",
+        style: "pilsner",
+        availVol: 20,
+        totalVol: 20,
+        date: Date.now(),
+        endDate: Date.now() + 6000,
+        isReady: false
     }
   ];
 

@@ -21,11 +21,11 @@ mongoose.connect(
 
 seedBatch();
 console.log("Batch seeded")
-seedRecipe();
-console.log("Recipe seeded")
-seedCustomer();
-console.log("Customer seeded")
-seedSale();
-console.log("Sale seeded")
-seedUser();
-console.log("User seeded")
+// seedRecipe();
+// console.log("Recipe seeded")
+// seedCustomer();
+// console.log("Customer seeded")
+// seedSale();
+// console.log("Sale seeded")
+// seedUser();
+// console.log("User seeded")
