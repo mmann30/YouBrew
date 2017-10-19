@@ -19,7 +19,7 @@ class MySales extends Component {
 
         <Row>
           <Col size="md-12">
-            <h1>My Sales</h1>
+            <h2><img id="logo" src="assets/images/mysales.png" />My Sales</h2>
             <ReactTable className="-striped -highlight"
               data={[{
                 name: "Beer XYZ",

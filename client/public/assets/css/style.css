@@ -94,9 +94,10 @@ li.list-group-item{
 	max-width: 100%;
 	padding: 30px;
 	position: relative;
-	margin-left: 20%;
-	margin-right: 20%;
+	/*margin-left: 20%;*/
+	/*margin-right: 20%;*/
 	border-radius: 10px;
+	
 }
 
 

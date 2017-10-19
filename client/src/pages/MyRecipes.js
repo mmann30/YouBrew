@@ -1,3 +1,4 @@
+import "./pages.css";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
@@ -97,8 +98,9 @@ class MyRecipes extends Component {
     const recipes = this.state.recipes;
     return (
 
-      <Container>
-        <div>
+      <Container className="containermyrecipes">
+
+        <h2><img id="logo" src="assets/images/myrecipes.png" />My Recipes</h2>
           {this.state.recipes.length ? (
             <List>
               {this.state.recipes.map(recipe => (
@@ -138,7 +140,6 @@ class MyRecipes extends Component {
             <h3>No Results to Display</h3>
           )}
 
-        </div>
 
         <Modal
           isOpen={this.state.modalIsOpen}
