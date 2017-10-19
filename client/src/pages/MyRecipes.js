@@ -42,7 +42,7 @@ class MyRecipes extends Component {
      modalIsOpen: false,
      recipes: []
   };
- 
+
   componentWillMount() {
     this.loadRecipes();
   }
@@ -92,17 +92,17 @@ class MyRecipes extends Component {
   render() {
     const recipes = this.state.recipes;
     return (
-      
+
       <Container>
         <div>
           {this.state.recipes.length ? (
             <List>
               {this.state.recipes.map(recipe => (
                 <ListItem key={recipe._id}>
-                    {isAdmin === true ? 
+                    {isAdmin === true ?
                       (
-                        <EditBtn 
-                          class="editRec" 
+                        <EditBtn
+                          class="editRec"
                           onClick={this.openModal}>
                             Edit
                         </EditBtn>
@@ -112,7 +112,7 @@ class MyRecipes extends Component {
                     {isAdmin === true ?
                       (
                         <DeleteBtn
-                          class="deleteRec"
+                          className="cancel btn btn-danger"
                           onClick={() => this.deleteRecipe(recipe._id)}
                         >
                           Delete
@@ -143,7 +143,7 @@ class MyRecipes extends Component {
           style={modalStyles}
           contentLabel="edit"
         >
-        
+
           <h2>{this.state.name}</h2>
 
           <form>
@@ -155,9 +155,9 @@ class MyRecipes extends Component {
             <p>Season: <input id="recipeinput"/></p><br />
             <p>Notes: <input id="recipeinput"/></p><br />
           </form>
-        
+
           <button onClick={this.closeModal}>Cancel</button>
-          <button onClick={this.closeModal}>Submit</button>     
+          <button onClick={this.closeModal}>Submit</button>
         </Modal>
 
       </Container>

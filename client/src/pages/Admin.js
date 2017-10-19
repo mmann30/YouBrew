@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { EditBtn , AddRecipeBtn , AddUserBtn , AddBatchBtn } from "../components/Buttons";
-// import NewRecipeModalContent from "../components/Modal";
 import { Select, SelectItem } from "../components/Select";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
@@ -31,14 +30,15 @@ const modalStyles = {
     backgroundColor   : 'rgba(77,68,41,0.57)'
   },
   content : {
-    top               : '40%',
+    width             : '500px',
+    top               : '50%',
     left              : '50%',
     right             : 'auto',
     bottom            : 'auto',
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
-	backgroundColor   : 'rgba(255,230,153,1.00)',
-	borderRadius      : '10px',
+  	backgroundColor   : 'rgba(255,255,255,1.00)',
+  	borderRadius      : '10px',
   }
 };
 
@@ -313,8 +313,16 @@ class Admin extends Component {
               <input onChange={this.handleInputChange} type="checkbox" name="isAdmin" id="isAdmin" value={this.state.isAdmin}/>
                &zwnj; &zwnj; Give administrative privileges
             </p>
-            <button onClick={this.closeModal}>Add user</button>
-            <button onClick={this.closeModal}>Cancel</button>
+            <FormBtn
+              className="cancel btn btn-primary"
+              onClick={this.closeModal}>
+              Add user
+            </FormBtn>
+            <FormBtn
+              className="cancel btn btn-primary"
+              onClick={this.closeModal}>
+              Cancel
+            </FormBtn>
           </div>
           : this.state.userModalOpen ?
           <div>
@@ -351,13 +359,13 @@ class Admin extends Component {
             </p>
             <div className="form-group">
               <FormBtn
-                className="cancel btn btn-danger"
+                className="cancel btn btn-primary"
                 onClick={this.closeModal}
               >
                 Close
               </FormBtn>
               <FormBtn
-                className="submit btn btn-success"
+                className="submit btn btn-primary"
                 disabled={!(this.state.email && this.state.password && this.state.password)}
                 onClick={this.handleUserFormSubmit}
               >
@@ -390,8 +398,16 @@ class Admin extends Component {
                 placeholder="Number of Barrels (required)"
               />
             </p>
-            <button onClick={this.handleBatchFormSubmit}>Brew</button>
-            <button onClick={this.closeModal}>Cancel</button>
+            <FormBtn
+              className="cancel btn btn-primary"
+              onClick={this.handleBatchFormSubmit}>
+              Brew
+            </FormBtn>
+            <FormBtn
+              className="cancel btn btn-primary"
+              onClick={this.closeModal}>
+              Cancel
+            </FormBtn>
           </div>
           : this.state.recipeModalOpen ?
           <div>
