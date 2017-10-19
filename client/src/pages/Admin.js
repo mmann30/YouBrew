@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { EditBtn , AddRecipeBtn , AddUserBtn , AddBatchBtn } from "../components/Buttons";
-// import NewRecipeModalContent from "../components/Modal";
 import { Select, SelectItem } from "../components/Select";
 import ReactTable from 'react-table';
 import Modal from 'react-modal';
@@ -31,14 +30,15 @@ const modalStyles = {
     backgroundColor   : 'rgba(77,68,41,0.57)'
   },
   content : {
-    top               : '40%',
+    width             : '500px',
+    top               : '50%',
     left              : '50%',
     right             : 'auto',
     bottom            : 'auto',
     marginRight       : '-50%',
     transform         : 'translate(-50%, -50%)',
-	backgroundColor   : 'rgba(255,230,153,1.00)',
-	borderRadius      : '10px',
+  	backgroundColor   : 'rgba(255,255,255,1.00)',
+  	borderRadius      : '10px',
   }
 };
 
