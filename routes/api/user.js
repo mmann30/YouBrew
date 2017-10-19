@@ -14,7 +14,7 @@ var emailsend = "";
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'youbrewapp@outlook.com',
+                    user: 'youbrewapp@gmail.com',
                     pass: 'ayiwotgxnabaldbf'
                 }
             });
